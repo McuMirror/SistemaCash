@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaCashValidador", "SistemaCashValidador\SistemaCashValidador.csproj", "{73DF6F46-EE11-449F-A4B6-5F9B6D040253}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PruebaConsola", "PruebaConsola\PruebaConsola.csproj", "{64DAE84E-4BAD-4637-AD55-24A31160C9FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashLib", "Cash\CashLib.csproj", "{39E7ADAD-0231-44D9-9E9D-F752C1A486CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F53_2", "..\..\Sistema Cash\Asstes\Demos Bill Dispenser\Jesus F53_2\F53_2\F53_2.csproj", "{28FF1B8D-2545-48F5-92B7-C7C036DA5545}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDLocal", "BDLocal\BDLocal.csproj", "{47EB0BBE-9A90-4D04-89B6-803289189DAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaCash", "SistemaCashWPF\SistemaCash\SistemaCash.csproj", "{F3DC42B4-CA76-4679-AC11-C6848400CBF5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{73DF6F46-EE11-449F-A4B6-5F9B6D040253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73DF6F46-EE11-449F-A4B6-5F9B6D040253}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73DF6F46-EE11-449F-A4B6-5F9B6D040253}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73DF6F46-EE11-449F-A4B6-5F9B6D040253}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64DAE84E-4BAD-4637-AD55-24A31160C9FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64DAE84E-4BAD-4637-AD55-24A31160C9FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64DAE84E-4BAD-4637-AD55-24A31160C9FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64DAE84E-4BAD-4637-AD55-24A31160C9FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39E7ADAD-0231-44D9-9E9D-F752C1A486CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39E7ADAD-0231-44D9-9E9D-F752C1A486CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39E7ADAD-0231-44D9-9E9D-F752C1A486CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39E7ADAD-0231-44D9-9E9D-F752C1A486CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28FF1B8D-2545-48F5-92B7-C7C036DA5545}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28FF1B8D-2545-48F5-92B7-C7C036DA5545}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28FF1B8D-2545-48F5-92B7-C7C036DA5545}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28FF1B8D-2545-48F5-92B7-C7C036DA5545}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47EB0BBE-9A90-4D04-89B6-803289189DAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47EB0BBE-9A90-4D04-89B6-803289189DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47EB0BBE-9A90-4D04-89B6-803289189DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47EB0BBE-9A90-4D04-89B6-803289189DAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3DC42B4-CA76-4679-AC11-C6848400CBF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3DC42B4-CA76-4679-AC11-C6848400CBF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3DC42B4-CA76-4679-AC11-C6848400CBF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3DC42B4-CA76-4679-AC11-C6848400CBF5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8BC169C6-9653-4985-9D48-3972C4E130D4}
+	EndGlobalSection
+EndGlobal
