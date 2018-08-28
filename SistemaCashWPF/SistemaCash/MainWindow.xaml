@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaCash"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1920" Width="1080" WindowStyle="None">
+    <Window.Background>
+        <ImageBrush ImageSource="Assets/fondo_cash5.jpg"/>
+    </Window.Background>
     <Grid>
-        
+
     </Grid>
 </Window>
