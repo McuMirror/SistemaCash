@@ -35,7 +35,7 @@ namespace SistemaCashValidador
         private void Form1_Load(object sender, EventArgs e)
         {
             this.controllerTransaccion.getStatusDevices();
-            this.showStored(this.controllerTransaccion.getStoredDevices());
+            this.controllerTransaccion.getCashBox();
             //listBilletes.Enabled = true;
         }
 
@@ -44,18 +44,18 @@ namespace SistemaCashValidador
             int depositoRequerido = Int32.Parse(inputEfectivo.Text);
             this.controllerTransaccion.setNewPayout(depositoRequerido);    
         }
-
-        private void showStored(Hashtable stored)
+       
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            lbM1.Text = stored["1"].ToString();
-            lbM2.Text = stored["2"].ToString();
-            lbM5.Text = stored["5"].ToString();
-            lbM10.Text = stored["10"].ToString();
-            lbB20.Text = stored["20"].ToString();
-            lbB50.Text = stored["50"].ToString();
-            lbB100.Text = stored["100"].ToString();
-            lbB200.Text = stored["200"].ToString();
-            lbB500.Text = stored["500"].ToString();
+            this.controllerTransaccion.closesDevices();
+        }
+
+        private void btnCaja_Click(object sender, EventArgs e)
+        {
+            dialogoCaja dialogo = new dialogoCaja();
+            dialogo.cashBoxEvent += updateCashBox;
+            dialogo.setInput(this.controllerTransaccion.getCashBox());
+            dialogo.ShowDialog();
         }
 
         #region Eventos Para actualizar vistas
@@ -192,17 +192,13 @@ namespace SistemaCashValidador
             }
         }
 
+        private void updateCashBox(object sender, EventArgs e, Hashtable data)
+        {
+            this.controllerTransaccion.updateCashBox(data);           
+        }
+
         #endregion
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            this.controllerTransaccion.closesDevices();
-        }
-
-        private void btnCaja_Click(object sender, EventArgs e)
-        {
-            Dialogo dialogo = new Dialogo();
-            dialogo.ShowDialog();
-        }
+       
     }
 }

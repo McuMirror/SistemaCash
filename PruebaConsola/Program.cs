@@ -30,66 +30,66 @@ namespace PruebaConsola
         static void Main(string[] args)
         {
 
-            hopperAcceptor = new CashLib.HopperAcceptor();
-            hopperDispenser = new CashLib.HopperDispenser();
-            billAcceptor = new CashLib.BillAcceptor();
-            billDespenser = new CashLib.BillDespenser();
+            //hopperAcceptor = new CashLib.HopperAcceptor();
+            //hopperDispenser = new CashLib.HopperDispenser();
+            //billAcceptor = new CashLib.BillAcceptor();
+            //billDespenser = new CashLib.BillDespenser();
 
-            billAcceptor.powerUpEvent += powerUpHandle;
-            billAcceptor.connectEvent += connectedHandle;
-            billAcceptor.stackEvent += stackHandle;
-            billAcceptor.powerUpCompleteEvent += PowerUpCompletedHandle;
-            billAcceptor.escrowEvent += escrowHandle;
+            //billAcceptor.powerUpEvent += powerUpHandle;
+            //billAcceptor.connectEvent += connectedHandle;
+            //billAcceptor.stackEvent += stackHandle;
+            //billAcceptor.powerUpCompleteEvent += PowerUpCompletedHandle;
+            //billAcceptor.escrowEvent += escrowHandle;
 
             
 
-            Console.WriteLine("1.- Abriendo conexion Hopper Acceptor");
-            if (hopperAcceptor.openConnection())
-            {
-                Console.WriteLine("Esta conectado");
-            }
-            else
-            {
-                Console.WriteLine("No esta conectado");
-            }
+            //Console.WriteLine("1.- Abriendo conexion Hopper Acceptor");
+            //if (hopperAcceptor.openConnection())
+            //{
+            //    Console.WriteLine("Esta conectado");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No esta conectado");
+            //}
 
-            Console.WriteLine("2.- Abriendo conexion Hopper Dispenser");
-            if (hopperDispenser.openConnection())
-            {
-                Console.WriteLine("Esta conectado");
-            }
-            else
-            {
-                Console.WriteLine("No esta conectado");
-            }
+            //Console.WriteLine("2.- Abriendo conexion Hopper Dispenser");
+            //if (hopperDispenser.openConnection())
+            //{
+            //    Console.WriteLine("Esta conectado");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No esta conectado");
+            //}
 
-            Console.WriteLine("3.- Abriendo conexion Bill Acceptor");
-            if (billAcceptor.openConnection())
-            {
-                Console.WriteLine("Esta conectado");
-            }
-            else
-            {
-                Console.WriteLine("No esta conectado");
-            }
+            //Console.WriteLine("3.- Abriendo conexion Bill Acceptor");
+            //if (billAcceptor.openConnection())
+            //{
+            //    Console.WriteLine("Esta conectado");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No esta conectado");
+            //}
 
-            Console.WriteLine("4.- Abriendo conexion Bill Dispenser");
-            if (billDespenser.openConnection())
-            {
-                Console.WriteLine("Esta conectado");
-            }
-            else
-            {
-                Console.WriteLine("No esta conectado");
-            }
-            Console.WriteLine("-------------");
+            //Console.WriteLine("4.- Abriendo conexion Bill Dispenser");
+            //if (billDespenser.openConnection())
+            //{
+            //    Console.WriteLine("Esta conectado");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No esta conectado");
+            //}
+            //Console.WriteLine("-------------");
 
 
-            billDespenser.enable();
-            //billDespenser.returnCash(20, 3);
-            //billDespenser.returnCash(50, 2);
-            billDespenser.returnCash(100, 1);
-            billDespenser.disable();
+            //billDespenser.enable();
+            ////billDespenser.returnCash(20, 3);
+            ////billDespenser.returnCash(50, 2);
+            //billDespenser.returnCash(100, 1);
+            //billDespenser.disable();
 
             //hopperDispenser.enable();
             //hopperDispenser.returnCash(10,2);

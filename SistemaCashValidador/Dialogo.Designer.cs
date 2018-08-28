@@ -1,6 +1,6 @@
 ﻿namespace SistemaCashValidador
 {
-    partial class Dialogo
+    partial class dialogoCaja
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dialogo));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dialogoCaja));
             this.lbMensajeDialogo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,17 +37,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.inpt5 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.input10 = new System.Windows.Forms.TextBox();
+            this.inpt10 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.inpt20 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.input50 = new System.Windows.Forms.TextBox();
+            this.inpt50 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.input100 = new System.Windows.Forms.TextBox();
+            this.inpt100 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.input200 = new System.Windows.Forms.TextBox();
+            this.inpt200 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.input500 = new System.Windows.Forms.TextBox();
+            this.inpt500 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -93,10 +93,10 @@
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
-            // input10
+            // inpt10
             // 
-            resources.ApplyResources(this.input10, "input10");
-            this.input10.Name = "input10";
+            resources.ApplyResources(this.inpt10, "inpt10");
+            this.inpt10.Name = "inpt10";
             // 
             // label5
             // 
@@ -113,40 +113,40 @@
             resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
             // 
-            // input50
+            // inpt50
             // 
-            resources.ApplyResources(this.input50, "input50");
-            this.input50.Name = "input50";
+            resources.ApplyResources(this.inpt50, "inpt50");
+            this.inpt50.Name = "inpt50";
             // 
             // label7
             // 
             resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
             // 
-            // input100
+            // inpt100
             // 
-            resources.ApplyResources(this.input100, "input100");
-            this.input100.Name = "input100";
+            resources.ApplyResources(this.inpt100, "inpt100");
+            this.inpt100.Name = "inpt100";
             // 
             // label8
             // 
             resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
             // 
-            // input200
+            // inpt200
             // 
-            resources.ApplyResources(this.input200, "input200");
-            this.input200.Name = "input200";
+            resources.ApplyResources(this.inpt200, "inpt200");
+            this.inpt200.Name = "inpt200";
             // 
             // label9
             // 
             resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
             // 
-            // input500
+            // inpt500
             // 
-            resources.ApplyResources(this.input500, "input500");
-            this.input500.Name = "input500";
+            resources.ApplyResources(this.inpt500, "inpt500");
+            this.inpt500.Name = "inpt500";
             // 
             // label10
             // 
@@ -173,17 +173,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.input500);
+            this.Controls.Add(this.inpt500);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.input200);
+            this.Controls.Add(this.inpt200);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.input100);
+            this.Controls.Add(this.inpt100);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.input50);
+            this.Controls.Add(this.inpt50);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.inpt20);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.input10);
+            this.Controls.Add(this.inpt10);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.inpt5);
             this.Controls.Add(this.label4);
@@ -212,17 +212,17 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox inpt5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox input10;
+        private System.Windows.Forms.TextBox inpt10;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox inpt20;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox input50;
+        private System.Windows.Forms.TextBox inpt50;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox input100;
+        private System.Windows.Forms.TextBox inpt100;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox input200;
+        private System.Windows.Forms.TextBox inpt200;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox input500;
+        private System.Windows.Forms.TextBox inpt500;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnCancelar;

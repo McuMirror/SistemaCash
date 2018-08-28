@@ -25,13 +25,13 @@ namespace SistemaCashValidador.Clases
 
         public Hashtable getDBStore()
         {            
-            return this.DB.getCashStore();
+            return this.DB.getCashBox();
         }
 
         public void setNewRegister(int payout)
         {
             this.numTransaccion = this.DB.getlatestRegister();
-            stored = this.DB.getCashStore();
+            stored = this.DB.getCashBox();
             this.pago.setNewOperation(payout, this.stored);
             this.total = 0;
         }        

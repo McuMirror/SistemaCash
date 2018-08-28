@@ -321,25 +321,25 @@
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="input10.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="inpt10.Location" type="System.Drawing.Point, System.Drawing">
     <value>52, 137</value>
   </data>
-  <data name="input10.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="inpt10.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
   </data>
-  <data name="input10.TabIndex" type="System.Int32, mscorlib">
+  <data name="inpt10.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="&gt;&gt;input10.Name" xml:space="preserve">
-    <value>input10</value>
+  <data name="&gt;&gt;inpt10.Name" xml:space="preserve">
+    <value>inpt10</value>
   </data>
-  <data name="&gt;&gt;input10.Type" xml:space="preserve">
+  <data name="&gt;&gt;inpt10.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;input10.Parent" xml:space="preserve">
+  <data name="&gt;&gt;inpt10.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;input10.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;inpt10.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
@@ -423,25 +423,25 @@
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="input50.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="inpt50.Location" type="System.Drawing.Point, System.Drawing">
     <value>242, 85</value>
   </data>
-  <data name="input50.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="inpt50.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
   </data>
-  <data name="input50.TabIndex" type="System.Int32, mscorlib">
+  <data name="inpt50.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
-  <data name="&gt;&gt;input50.Name" xml:space="preserve">
-    <value>input50</value>
+  <data name="&gt;&gt;inpt50.Name" xml:space="preserve">
+    <value>inpt50</value>
   </data>
-  <data name="&gt;&gt;input50.Type" xml:space="preserve">
+  <data name="&gt;&gt;inpt50.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;input50.Parent" xml:space="preserve">
+  <data name="&gt;&gt;inpt50.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;input50.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;inpt50.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
@@ -474,25 +474,25 @@
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="input100.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="inpt100.Location" type="System.Drawing.Point, System.Drawing">
     <value>242, 111</value>
   </data>
-  <data name="input100.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="inpt100.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
   </data>
-  <data name="input100.TabIndex" type="System.Int32, mscorlib">
+  <data name="inpt100.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
   </data>
-  <data name="&gt;&gt;input100.Name" xml:space="preserve">
-    <value>input100</value>
+  <data name="&gt;&gt;inpt100.Name" xml:space="preserve">
+    <value>inpt100</value>
   </data>
-  <data name="&gt;&gt;input100.Type" xml:space="preserve">
+  <data name="&gt;&gt;inpt100.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;input100.Parent" xml:space="preserve">
+  <data name="&gt;&gt;inpt100.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;input100.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;inpt100.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
@@ -525,25 +525,25 @@
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="input200.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="inpt200.Location" type="System.Drawing.Point, System.Drawing">
     <value>242, 137</value>
   </data>
-  <data name="input200.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="inpt200.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
   </data>
-  <data name="input200.TabIndex" type="System.Int32, mscorlib">
+  <data name="inpt200.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
-  <data name="&gt;&gt;input200.Name" xml:space="preserve">
-    <value>input200</value>
+  <data name="&gt;&gt;inpt200.Name" xml:space="preserve">
+    <value>inpt200</value>
   </data>
-  <data name="&gt;&gt;input200.Type" xml:space="preserve">
+  <data name="&gt;&gt;inpt200.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;input200.Parent" xml:space="preserve">
+  <data name="&gt;&gt;inpt200.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;input200.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;inpt200.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
@@ -576,25 +576,25 @@
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="input500.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="inpt500.Location" type="System.Drawing.Point, System.Drawing">
     <value>242, 163</value>
   </data>
-  <data name="input500.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="inpt500.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
   </data>
-  <data name="input500.TabIndex" type="System.Int32, mscorlib">
+  <data name="inpt500.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
   </data>
-  <data name="&gt;&gt;input500.Name" xml:space="preserve">
-    <value>input500</value>
+  <data name="&gt;&gt;inpt500.Name" xml:space="preserve">
+    <value>inpt500</value>
   </data>
-  <data name="&gt;&gt;input500.Type" xml:space="preserve">
+  <data name="&gt;&gt;inpt500.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;input500.Parent" xml:space="preserve">
+  <data name="&gt;&gt;inpt500.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;input500.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;inpt500.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="label10.AutoSize" type="System.Boolean, mscorlib">

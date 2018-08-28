@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Caja.cs" />
     <Compile Include="Clases\CCTalk.cs" />
     <Compile Include="Clases\Error.cs" />
     <Compile Include="Clases\MessageEventArgs.cs" />

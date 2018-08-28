@@ -97,5 +97,8 @@
   <ItemGroup>
     <Resource Include="Assets\fondo_cash5.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\siccob logo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

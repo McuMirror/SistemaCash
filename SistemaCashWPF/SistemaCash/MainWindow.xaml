@@ -5,11 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaCash"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1920" Width="1080" WindowStyle="None">
+        Title="MainWindow" Height="1920" Width="1080" WindowStyle="ToolWindow" WindowStartupLocation="Manual" WindowState="Maximized">
     <Window.Background>
         <ImageBrush ImageSource="Assets/fondo_cash5.jpg"/>
     </Window.Background>
     <Grid>
-
+        <Label Content="Sistema Demo Chash" HorizontalAlignment="Left" Margin="161,692,0,0" VerticalAlignment="Top" FontSize="72" FontFamily="Open Sans Extrabold" Foreground="#FFF7F3F3">
+            <Label.Effect>
+                <DropShadowEffect BlurRadius="12"/>
+            </Label.Effect>
+        </Label>
+        <Image HorizontalAlignment="Left" Height="220" Margin="419,805,0,0" VerticalAlignment="Top" Width="220" Source="Assets/siccob logo.png" Stretch="Fill">
+            <Image.Effect>
+                <DropShadowEffect ShadowDepth="10" BlurRadius="25" Color="#FF666464"/>
+            </Image.Effect>
+        </Image>
     </Grid>
 </Window>

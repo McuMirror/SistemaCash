@@ -13,24 +13,26 @@ namespace SistemaCashValidador.Constrollers
         private Transaccion transaction;
         private CCTalk cctalk;
         private Error error;
+        private Caja cashBox;
         public delegate void ErrorEventHandler(object sender, MessageEventArgs e);
         public delegate void DialogErrorEventHandler(object sender, MessageEventArgs e);
         public delegate void ListBillsEventHandler(object sender, MessageEventArgs e);
         public delegate void ListCoinsEventHandler(object sender, MessageEventArgs e);
         public delegate void StoreEventHandler(object sender, MessageEventArgs e);
         public delegate void TransactionEventHandler(object sender, MessageEventArgs e);
-        event ErrorEventHandler errorEvent;
-        event DialogErrorEventHandler dialogErrorEvent;
-        event ListBillsEventHandler ListBillsEvent;
-        event ListCoinsEventHandler ListCoinsEvent;
-        event StoreEventHandler storeEvent;
-        event TransactionEventHandler transactionEvent;
+        public event ErrorEventHandler errorEvent;
+        public event DialogErrorEventHandler dialogErrorEvent;
+        public event ListBillsEventHandler ListBillsEvent;
+        public event ListCoinsEventHandler ListCoinsEvent;
+        public event StoreEventHandler storeEvent;
+        public event TransactionEventHandler transactionEvent;
 
         public Controller_Transaccion()
         {
             this.cctalk = CCTalk.getInstancia();
             this.error = Error.getInstancia();
             this.transaction = new Transaccion();
+            this.cashBox = new Caja();
             
         }
 
@@ -43,6 +45,7 @@ namespace SistemaCashValidador.Constrollers
             this.cctalk.lbStoresEvent += new CCTalk.updateLbStoreEventHandler(storeEvent);
             this.cctalk.lbTransactionEvent += new CCTalk.updateLbTransactionEventHandler(transactionEvent);
             this.cctalk.setEvents();
+            this.cashBox.lbStoreEvent += new Caja.lbStoreEventHandler(storeEvent);
         }
 
         public void getStatusDevices()
@@ -50,14 +53,19 @@ namespace SistemaCashValidador.Constrollers
             this.cctalk.getStatus();
         }
 
-        public Hashtable getStoredDevices()
+        public Hashtable getCashBox()
         {
-            return this.transaction.getDBStore();
+            return this.cashBox.setCashBoxInitial();
         }
 
         public void setNewPayout(int payout)
         {            
             this.transaction.setNewRegister(payout);                 
+        }
+
+        public void updateCashBox(Hashtable data)
+        {
+            this.cashBox.update(data);
         }
         
         public void closesDevices()
