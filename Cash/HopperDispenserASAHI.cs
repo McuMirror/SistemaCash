@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -9,59 +7,47 @@ using System.Threading.Tasks;
 
 namespace CashLib
 {
-    public class HopperDispenser : Hopper
+    public class HopperDispenserASAHI: Hopper
     {
 
-        public HopperDispenser()
+        public HopperDispenserASAHI()
         {
-            this.manufacturer = "USB Serial Port";
-            this.device = "COMBOT";
+            this.manufacturer = "Silicon Labs CP210x USB to UART Bridge";
+            this.device = "ASAHI";
         }
 
         public void returnCash(int typeCash, int count = 255)
-        {            
+        {
             switch (typeCash)
             {
                 case 1:
-                    this.emptyContainerCoin(33, (byte)count);                    
+                    this.emptyContainerCoin(4, (byte)count);
                     break;
                 case 5:
-                    this.emptyContainerCoin(77, (byte)count);                    
+                    this.emptyContainerCoin(5, (byte)count);
                     break;
                 case 10:
-                    this.emptyContainerCoin(76, (byte)count);                    
-                    break;
-                case 2:
-                    this.emptyMoneyBox();
-                    break;
-            }            
+                    this.emptyContainerCoin(7, (byte)count);
+                    break;               
+            }
         }
 
         /*
-         * Encagado de vaciar todos los contendores
-         * Los valores de lso contendores son los siguientes:
-         *  Contenedor 33 : $1
-         *  Contenedor 76 : $10
-         *  Contenedor 77 : $5
-         *  
-         */
+        * Encagado de vaciar todos los contendores
+        * Los valores de lso contendores son los siguientes:
+        *  Contenedor 4 : $1
+        *  Contenedor 5 : $5
+        *  Contenedor 7 : $10
+        *  
+        */
         public void emptyContainesCoins()
         {
-            this.emptyMoneyBox();
-            this.emptyContainerCoin(33);
-            this.emptyContainerCoin(77);
-            this.emptyContainerCoin(76);
+            this.emptyContainerCoin(4);
+            this.emptyContainerCoin(5);
+            this.emptyContainerCoin(7);
         }
 
-        /*
-         * Encargado de vaciar el contenedor alcancia con Id 2 contiene monedas de $2
-         */
-        public void emptyMoneyBox()
-        {
-            this.setMessage(new List<byte>() { 12, 0, 1, 70 }, new
-            List<byte>() { 2 });
-        }
-
+        
         /*
          * Encargado de vaciar el contenedor especificando el dispositivo
          */

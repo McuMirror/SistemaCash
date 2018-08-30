@@ -14,15 +14,18 @@ namespace CashLib
 {
 
 
-    public class Hopper: IDevice
+    public class Hopper : IDevice
     {
-        private static SerialPort port;
+        protected static SerialPort port;
         private bool connection = true;
         protected byte[] resultMessage;
         private static string COM;
-        
+        protected string manufacturer;
+        protected string device;
+
+
         public bool openConnection()
-        {             
+        {
             try
             {
                 if (port == null)
@@ -35,11 +38,11 @@ namespace CashLib
                 else
                 {
                     Console.WriteLine("Utiliza el puerto : {0}", COM);
-                }              
+                }
             }
             catch (IOException ex)
             {
-                this.connection = false;                
+                this.connection = false;
             }
             catch (Exception ex)
             {
@@ -69,7 +72,7 @@ namespace CashLib
                     if (properties.Name == "Name" && properties.Value != null)
                     {
                         var valor = (String)properties.Value;
-                        if (valor.Contains("USB Serial Port"))
+                        if (valor.Contains(this.manufacturer))
                         {
                             puertoCOM = valor.Substring(valor.LastIndexOf("COM"), 4);
                         }
@@ -97,13 +100,13 @@ namespace CashLib
 
         public void disable()
         {
-            
+
         }
 
         //Envia mensaje al dispositivo
         protected void setMessage(List<byte> parameter, List<byte> data)
         {
-            parameter = this.setChecksum(parameter,data);
+            parameter = this.setChecksum(parameter, data);
             this.sendMessage(parameter);
             Thread.Sleep(500);
             this.getMessage(parameter);
@@ -152,16 +155,19 @@ namespace CashLib
         private void getMessage(List<byte> parameters)
         {
             string RX = "RX : ";
+            int length = 0;
             byte[] result = new byte[port.BytesToRead];
             port.Read(result, 0, result.Length);
-            resultMessage = new byte[result.Length];
+            length = (this.device == "COMBOT") ? result.Length : (result.Length - parameters.Count);
+            resultMessage = new byte[length];
+            length = (this.device == "COMBOT") ? 0 : parameters.Count;
 
-            for (int i = 0, j = 0; i < result.Length; i++, j++)
+            for (int i = length, j = 0; i < result.Length; i++, j++)
             {
                 resultMessage[j] = result[i];
                 RX += result[i] + " ";
             }
-            //Console.WriteLine(RX); 
+            Console.WriteLine(RX);
         }
 
         /*
@@ -188,9 +194,17 @@ namespace CashLib
         //Estableciendo la configuracion inicial para el hooper
         protected void setConfig()
         {
-            this.resetAccepter();
-            this.setDefaultConfigConteinersCoins();
-            this.setConfigDefault();
+            if (this.device == "COMBOT")
+            {
+                this.resetAccepter();
+                this.setDefaultConfigConteinersCoins();
+                this.setConfigDefault();
+            }
+            else
+            {
+                this.resetAccepter();
+                this.setConfigDefault();
+            }
         }
 
         /*
@@ -199,7 +213,14 @@ namespace CashLib
         */
         private void resetAccepter()
         {
-            this.setMessage(new List<byte>() { 26, 0, 1, 1 }, new List<byte>());
+            if (this.device == "COMBOT")
+            {
+                this.setMessage(new List<byte>() { 26, 0, 1, 1 }, new List<byte>());
+            }
+            else
+            {
+                this.setMessage(new List<byte>() { 2, 0, 1, 1 }, new List<byte>());  
+            }
         }
 
         /*
@@ -222,20 +243,28 @@ namespace CashLib
             //Para agregar solo las $10,$5,$2 $1 mandar 120 
             //[01111000] = 120 
             // El data queda [120,255] el 255 siempres se va a poner
-
-            this.setMessage(new List<byte>() { 26, 0, 1, 231 }, new
+            if (this.device == "COMBOT")
+            {
+                this.setMessage(new List<byte>() { 26, 0, 1, 231 }, new
             List<byte>() { 120, 255 });
+            }
+            else
+            {
+                this.setMessage(new List<byte>() { 2, 0, 1, 231 }, new
+           List<byte>() { 255, 255 });
+            }
+
         }
 
         /*
          * Obtiene los id que tienen los dispositivos 
          */
-        private void getIdDevice()
+        public void getIdDevice()
         {
             this.setMessage(new List<byte>() { 0, 0, 1, 253 }, new
             List<byte>());
         }
 
-       
+
     }
 }

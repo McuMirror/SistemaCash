@@ -19,6 +19,8 @@ namespace PruebaConsola
         private static CashLib.BillAcceptor billAcceptor;
         private static CashLib.HopperDispenser hopperDispenser;
         private static CashLib.BillDespenser billDespenser;
+        private static CashLib.HopperAcceptorASAHI hopperAcceptorASAHI;
+        private static CashLib.HopperDispenserASAHI hopperDispenserASAHI;
         //private static Recycler scr = new Recycler();
         private static MPOST.Acceptor billAccept;
 
@@ -29,7 +31,86 @@ namespace PruebaConsola
 
         static void Main(string[] args)
         {
+            billAcceptor = new CashLib.BillAcceptor();
+            billDespenser = new CashLib.BillDespenser();
+            hopperAcceptorASAHI = new CashLib.HopperAcceptorASAHI();
+            hopperDispenserASAHI = new CashLib.HopperDispenserASAHI();
 
+            Console.WriteLine("1.- Abriendo conexion Hopper Acceptor");
+            if (hopperAcceptorASAHI.openConnection())
+            {
+                Console.WriteLine("Esta conectado");
+            }
+            else
+            {
+                Console.WriteLine("No esta conectado");
+            }
+
+            Console.WriteLine("2.- Abriendo conexion Hopper Dispenser");
+            if (hopperDispenserASAHI.openConnection())
+            {
+                Console.WriteLine("Esta conectado");
+            }
+            else
+            {
+                Console.WriteLine("No esta conectado");
+            }
+
+            Console.WriteLine("3.- Abriendo conexion Bill Acceptor");
+            if (billAcceptor.openConnection())
+            {
+                Console.WriteLine("Esta conectado");
+            }
+            else
+            {
+                Console.WriteLine("No esta conectado");
+            }
+
+            Console.WriteLine("4.- Abriendo conexion Bill Dispenser");
+            if (billDespenser.openConnection())
+            {
+                Console.WriteLine("Esta conectado");
+            }
+            else
+            {
+                Console.WriteLine("No esta conectado");
+            }
+            Console.WriteLine("-------------");
+            Console.ReadLine();
+
+            //hopperAcceptorASAHI.enable();
+
+            //hopperDispenserASAHI.returnCash(10,1);
+            //int contador = 0;
+            //byte[] result;
+            //while (true)
+            //{
+            //   result = hopperAcceptorASAHI.depositCash(contador);
+            //}
+
+            //bool continuar = true;
+            //string b20,b50,b100;
+            //while (continuar){
+            //    Console.WriteLine("Obtener billetes 20 : ");
+            //    b20 = Console.ReadLine();
+            //    Console.WriteLine("Obtener billetes 50 : ");
+            //    b50 = Console.ReadLine();
+            //    Console.WriteLine("Obtener billetes 100 : ");
+            //    b100 = Console.ReadLine();
+            //    Console.WriteLine("entragado el efectivo");
+            //    billDespenser.returnCash(new int[] {Int32.Parse(b20), Int32.Parse(b50), Int32.Parse(b100)});
+            //    Console.WriteLine("Deseas realizar otra opericion ?");
+            //    string resp = Console.ReadLine();
+
+            //    if (resp == "n" || resp == "N")
+            //    {
+            //        continuar = false;
+            //    }
+            //}
+    }
+
+        static void pruebas()
+        {
             //hopperAcceptor = new CashLib.HopperAcceptor();
             //hopperDispenser = new CashLib.HopperDispenser();
             //billAcceptor = new CashLib.BillAcceptor();
@@ -41,7 +122,7 @@ namespace PruebaConsola
             //billAcceptor.powerUpCompleteEvent += PowerUpCompletedHandle;
             //billAcceptor.escrowEvent += escrowHandle;
 
-            
+
 
             //Console.WriteLine("1.- Abriendo conexion Hopper Acceptor");
             //if (hopperAcceptor.openConnection())
@@ -130,7 +211,7 @@ namespace PruebaConsola
             ////utilizandoPayout();
             ////Console.WriteLine("Vaciando Contenedores ....");
             ////hopperDispenser.emptyContainerCoin(33,5);
-            Console.WriteLine("Termino proceso");
+            //Console.WriteLine("Termino proceso");
 
         }
 
@@ -171,7 +252,7 @@ namespace PruebaConsola
 
             while (deposited < toPay)
             {
-                result = hopperAcceptor.depositCash();
+                result = hopperAcceptor.depositCash(contador);
 
                 if (result[4] != contador)
                 {

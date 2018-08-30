@@ -17,7 +17,6 @@ namespace SistemaCashValidador.Clases
         public delegate void lbStoreEventHandler(object sender, MessageEventArgs e);
         public event lbStoreEventHandler lbStoreEvent;
         
-
         public Caja()
         {
             this.DB = new Modelo_Transaccion();

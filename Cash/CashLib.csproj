@@ -52,7 +52,9 @@
     <Compile Include="BillDespenser.cs" />
     <Compile Include="Hopper.cs" />
     <Compile Include="HopperAcceptor.cs" />
+    <Compile Include="HopperAcceptorASAHI.cs" />
     <Compile Include="HopperDispenser.cs" />
+    <Compile Include="HopperDispenserASAHI.cs" />
     <Compile Include="HopperOld.cs" />
     <Compile Include="IDevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

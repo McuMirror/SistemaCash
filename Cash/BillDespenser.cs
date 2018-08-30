@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Ports;
@@ -18,17 +19,23 @@ namespace CashLib
         private byte[] resultMessage;
         private static string RX;
         private static string TX;
+        private byte[] deliveriBill;
 
         private byte[] cancel = new byte[] { 0x10, 0x02, 0x00, 0x03, 0x00, 0x10, 0x1C, 0x10, 0x03, 0xE0, 0x48 };
         private byte[] request = new byte[] { 0x10, 0x05 };
         private byte[] request2 = new byte[] { 0x10, 0x06 };
         private byte[] configDefault = new byte[] { 0x10, 0x02, 0x00, 0x21, 0x60, 0x02, 0xFF, 0x00, 0x00, 0x1A, 0x00, 0x40, 0x082, 0x6E, 0x89, 0x75, 0x93, 0x7F, 0x00, 0x00, 0x0C, 0x0C, 0x0C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1C, 0x10, 0x03, 0xA6, 0xAE };
-        private byte[] bill20 = new byte[] { 0x10, 0x02, 0x00, 0x19, 0x60, 0x03, 0x15, 0xE4, 0x30, 0xB1, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x02, 0x02, 0x02, 0x00, 0x1C, 0x10, 0x03, 0x9A, 0xD6 };
-        private byte[] bill50 = new byte[] { 0x10, 0x02, 0x00, 0x19, 0x60, 0x03, 0x15, 0xE4, 0x30, 0x30, 0x30, 0xB1, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x02, 0x02, 0x02, 0x00, 0x1C, 0x10, 0x03, 0x8B, 0x76 };
-        private byte[] bill100 = new byte[] { 0x10, 0x02, 0x00, 0x19, 0x60, 0x03, 0x15, 0xE4, 0x30, 0x30, 0x30, 0x30, 0x30, 0xB1, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x02, 0x02, 0x02, 0x00, 0x1C, 0x10, 0x03, 0x99, 0x10 };
+
+        private byte[] dispenserBill = new byte[] { 0x10, 0x02, 0x00, 0x19, 0x60, 0x03, 0x15, 0xE4, 0x30, 0xB1, 0x30, 0xB1, 0x30, 0xB1, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x02, 0x02, 0x02, 0x00, 0x1C, 0x10, 0x03, 0x9A, 0xD6 };
+
         private byte[] clear_log = new byte[] { 0x10, 0x02, 0x00, 0x2d, 0x60, 0x12, 0x29, 0x03, 0x4c, 0x6f, 0x67, 0x20, 0x63, 0x6c, 0x65, 0x61, 0x72, 0x20, 0x64, 0x61, 0x74, 0x65, 0x20, 0x3a, 0x20, 0x32, 0x30, 0x31, 0x38, 0x2e, 0x30, 0x38, 0x2e, 0x31, 0x35, 0x20, 0x31, 0x35, 0x3a, 0x35, 0x37, 0x3a, 0x33, 0x34, 0x00, 0x00, 0x00, 0x00, 0x1c, 0x10, 0x03, 0x76, 0x35 };
         private byte[] bill_count = new byte[] { 0x10, 0x02, 0x00, 0x19, 0x60, 0x03, 0x15, 0xE4, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x00, 0x00, 0x00, 0x00, 0x1C, 0x10, 0x03, 0x14, 0x4d };
         private byte[] mechal_reset = new byte[] { 0x10, 0x02, 0x00, 0x11, 0x60, 0x02, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1C, 0x10, 0x03, 0x64, 0xEC };
+
+        public BillDespenser()
+        {
+            deliveriBill = new byte[] {48,177,178,51,180,53,54,183,57};          
+        }
 
         public bool openConnection()
         {
@@ -117,29 +124,15 @@ namespace CashLib
             return (Parity)Enum.Parse(typeof(Parity), parity);
         }
 
-        public void returnCash(int money, int cantidad)
+        public void returnCash(int[] count)
         {
-            int contador = 0;
-
-            while (contador < cantidad)
-            {
-                switch (money)
-                {
-                    case 20:                        
-                        sendMessage(bill20);
-                        setFreeDevice();
-                        break;
-                    case 50:
-                        sendMessage(bill50);
-                        setFreeDevice();
-                        break;
-                    case 100:
-                        sendMessage(bill100);
-                        setFreeDevice();
-                        break;
-                }
-                contador++;                
-            }
+            Thread.Sleep(2000);
+            this.dispenserBill[9] = this.deliveriBill[count[0]]; //billetes 20
+            this.dispenserBill[11] = this.deliveriBill[count[1]]; // billetes 50
+            this.dispenserBill[13] = this.deliveriBill[count[2]]; //billetes 100
+            this.setCheckSum();
+            sendMessage(this.dispenserBill);
+            setFreeDevice();
         }
 
         private void setConfigDefault()
@@ -179,7 +172,7 @@ namespace CashLib
             getMessage();
             setFreeDevice();
             setMessage(mechal_reset);
-            getMessage();            
+            getMessage();
         }
 
         private void sendMessage(byte[] parameter)
@@ -188,7 +181,7 @@ namespace CashLib
             bool error = false;
             do
             {
-                
+
                 setMessage(parameter);
                 result = getMessage();
 
@@ -203,7 +196,7 @@ namespace CashLib
                 {
                     error = false;
                 }
-            } while (error);                       
+            } while (error);
         }
 
         private void setMessage(byte[] parameters)
@@ -237,5 +230,70 @@ namespace CashLib
             //Console.WriteLine(RX);
             return finalByte;
         }
+
+        public void setCheckSum()
+        {
+
+            byte[] range = new byte[29];
+            int cont = 2;
+            ushort[] table = new ushort[256];
+            ushort polynomial = (ushort)0x8408;
+            ushort value;
+            ushort pow;
+            ushort crc = 0;
+
+            //Obteniendo el rango que se va a calcular
+            for (int i = 0; i < this.dispenserBill.Length; i++)
+            {
+                range[i] = this.dispenserBill[cont];           
+                if (cont == 30)
+                {
+                    break;
+                }
+                else
+                {
+                    cont++;
+                }
+            }
+            
+            //Definir los valore elevados a la potencia agregandolos a la tabla
+            for (ushort i = 0; i < table.Length; ++i)
+            {
+                value = 0;
+                pow = i;
+
+                for (byte j = 0; j < 8; j++)
+                {
+                    if (((value ^ pow) & 0x0001) != 0)
+                    {
+                        value = (ushort)((value >> 1) ^ polynomial);
+                    }
+                    else
+                    {
+                        value >>= 1;
+                    }
+                    pow >>= 1;
+                }
+                table[i] = value;
+            }
+            
+            //Obtenniendo el checksum
+            for (int x = 0; x < range.Length; x++)
+            {
+                byte index = (byte)(crc ^ range[x]);
+                crc = (ushort)((crc >> 8) ^ table[index]);
+            }
+
+            //Invirtiendo los valores del checksum
+            crc = (ushort)((crc << 8) | ((crc >> 8) & 0xFF));
+
+            //Obtenemos el checksum en byte
+            byte[] listCheckSum = BitConverter.GetBytes(crc);
+
+            this.dispenserBill[31] = listCheckSum[1];
+            this.dispenserBill[32] = listCheckSum[0];            
+        }
+
+
     }
 }

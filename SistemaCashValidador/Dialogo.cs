@@ -20,7 +20,7 @@ namespace SistemaCashValidador
 
         public dialogoCaja()
         {
-            InitializeComponent();       
+            InitializeComponent();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -35,21 +35,21 @@ namespace SistemaCashValidador
                 stored = new Hashtable();
                 stored.Add("1", this.validateInput(inpt1.Text));
                 stored.Add("2", this.validateInput(inpt2.Text));
-                stored.Add("5", Int32.Parse(inpt5.Text));
-                stored.Add("10", Int32.Parse(inpt10.Text));
-                stored.Add("20", Int32.Parse(inpt20.Text));
-                stored.Add("50", Int32.Parse(inpt50.Text));
-                stored.Add("100", Int32.Parse(inpt100.Text));
-                stored.Add("200", Int32.Parse(inpt200.Text));
-                stored.Add("500", Int32.Parse(inpt500.Text));
+                stored.Add("5", this.validateInput(inpt5.Text));
+                stored.Add("10", this.validateInput(inpt10.Text));
+                stored.Add("20", this.validateInput(inpt20.Text));
+                stored.Add("50", this.validateInput(inpt50.Text));
+                stored.Add("100", this.validateInput(inpt100.Text));
+                stored.Add("200", this.validateInput(inpt200.Text));
+                stored.Add("500", this.validateInput(inpt500.Text));
                 cashBoxEvent(sender, e, stored);
                 this.Close();
             }
             catch (Exception ex)
-            {                
+            {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         public void setInput(Hashtable data)
@@ -62,7 +62,7 @@ namespace SistemaCashValidador
                 inpt10.Text = data["10"].ToString();
                 inpt20.Text = data["20"].ToString();
                 inpt50.Text = data["50"].ToString();
-                inpt500.Text = data["100"].ToString();
+                inpt100.Text = data["100"].ToString();
                 inpt200.Text = data["200"].ToString();
                 inpt500.Text = data["500"].ToString();
             }
@@ -70,24 +70,25 @@ namespace SistemaCashValidador
 
         private int validateInput(string data)
         {
-            try
+
+            if (data != "")
             {
-                if (data != "")
+                try
                 {
-                    int value = Convert.ToInt32(data);
-                    return value;
+                    return Convert.ToInt32(data);
                 }
-                else
+                catch (Exception ex)
                 {
-                    throw new Exception("No puede haber campos vacios.");
+                    throw new Exception("No se admiten letras");
                 }
             }
-            catch (Exception ex)
+            else
             {
-                throw new Exception("No se admiten letras");
+                throw new Exception("No puede haber campos vacios.");
             }
+
         }
 
-        
+
     }
 }

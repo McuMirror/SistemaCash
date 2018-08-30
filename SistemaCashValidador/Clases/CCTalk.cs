@@ -16,8 +16,8 @@ namespace SistemaCashValidador.Clases
         public event updateLbStoreEventHandler lbStoresEvent;
         public event updateLbTransactionEventHandler lbTransactionEvent;
 
-        private CashLib.HopperAcceptor hopperAcceptor;
-        private CashLib.HopperDispenser hopperDispenser;
+        private CashLib.HopperAcceptorASAHI hopperAcceptor;
+        private CashLib.HopperDispenserASAHI hopperDispenser;
         private CashLib.BillAcceptor billAcceptor;
         private CashLib.BillDespenser billDespenser;
 
@@ -29,8 +29,8 @@ namespace SistemaCashValidador.Clases
         public CCTalk()
         {
             error = Error.getInstancia();
-            hopperAcceptor = new CashLib.HopperAcceptor();
-            hopperDispenser = new CashLib.HopperDispenser();
+            hopperAcceptor = new CashLib.HopperAcceptorASAHI();
+            hopperDispenser = new CashLib.HopperDispenserASAHI();
             billAcceptor = new CashLib.BillAcceptor();
             billDespenser = new CashLib.BillDespenser();
             components = new MessageEventArgs();
@@ -82,9 +82,9 @@ namespace SistemaCashValidador.Clases
         }
 
         public void enableDevices(Hashtable DBStored)
-        {            
+        {
             billAcceptor.enable();
-            billDespenser.enable();
+            //billDespenser.enable();
             hopperAcceptor.enable();
             hopperDispenser.enable();
 
@@ -106,34 +106,34 @@ namespace SistemaCashValidador.Clases
             this.error.setMesseg("Ingrese el efectivo");
             while (deposited < total)
             {
-                result = hopperAcceptor.depositCash();
+                result = hopperAcceptor.depositCash(contador);
 
-                if (result[4] != contador)
+                if (result[1] != contador)
                 {
-                    switch (result[5])
+                    switch (result[0])
                     {
-                        case 7:
+                        case 10:
                             components.lbMoney10 += 1;
                             components.listCoins = 10;
                             deposited += 10;
                             listConisEvent(this, components);
                             this.stored["10"] = components.lbMoney10;
                             break;
-                        case 6:
+                        case 5:
                             components.lbMoney5 += 1;
                             components.listCoins = 5;
                             deposited += 5;
                             listConisEvent(this, components);
                             this.stored["5"] = components.lbMoney5;
                             break;
-                        case 5:
+                        case 2:
                             components.lbMoney2 += 1;
                             components.listCoins = 2;
                             deposited += 2;
                             listConisEvent(this, components);
                             this.stored["2"] = components.lbMoney2;
                             break;
-                        case 4:
+                        case 1:
                             components.lbMoney1 += 1;
                             components.listCoins = 1;
                             deposited += 1;
@@ -144,7 +144,7 @@ namespace SistemaCashValidador.Clases
                     components.lbTotal = deposited;
                     lbTransactionEvent(this, components);
                     lbStoresEvent(this, components);
-                    contador = result[4];
+                    contador = result[1];
                 }
                 else if (this.billDesposited != 0)
                 {
@@ -188,14 +188,14 @@ namespace SistemaCashValidador.Clases
                     lbTransactionEvent(this, components);
                     this.billDesposited = 0;
 
-                }                
+                }
             }
             this.error.setMesseg("Transacción terminada");
             return deposited;
         }
 
         public void disableDevices()
-        {            
+        {
             hopperAcceptor.disable();
             hopperDispenser.disable();
             billAcceptor.disable();
@@ -232,10 +232,43 @@ namespace SistemaCashValidador.Clases
         public void setDeliverCash(int cash, Hashtable countCash)
         {
             string valor = "";
+            int[] returnBill = new int[3] { 0, 0, 0 };
             components.lbCambio = cash;
             lbTransactionEvent(this, components);
 
             this.error.setMesseg("Entregando cambio .... : " + cash);
+
+            foreach (DictionaryEntry i in countCash)
+            {
+                int key = (int)i.Key;
+                int value = (int)i.Value;
+                this.error.setMesseg("Entregando billetes : " + cash + " : " + key + " : " + value);
+                switch (key)
+                {
+                    case 20:
+                        returnBill[0] = value;
+                        this.stored[key.ToString()] = (int)this.stored[key.ToString()] - value;
+                        break;
+                    case 50:
+                        returnBill[1] = value;
+                        this.stored[key.ToString()] = (int)this.stored[key.ToString()] - value;
+                        break;
+                    case 100:
+                        returnBill[2] = value;
+                        this.stored[key.ToString()] = (int)this.stored[key.ToString()] - value;
+                        break;
+                }
+
+                this.stored[key.ToString()] = (int)this.stored[key.ToString()] - 1;
+                this.updateComponents(key, value);
+
+                lbStoresEvent(this, components);
+                valor += i.Key.ToString() + " : " + i.Value.ToString() + "  ";
+            }
+
+            billDespenser.returnCash(returnBill);
+
+
 
             foreach (DictionaryEntry i in countCash)
             {
@@ -249,10 +282,10 @@ namespace SistemaCashValidador.Clases
                 }
                 else if (key == 20 || key == 50 || key == 100)
                 {
-                    this.error.setMesseg("Entregando billetes : " + cash + " : " + key + " : " + value);
-                    this.stored[key.ToString()] = (int)this.stored[key.ToString()] - 1;
-                    this.updateComponents(key, value);                    
-                    billDespenser.returnCash(key, value);
+                    //this.error.setMesseg("Entregando billetes : " + cash + " : " + key + " : " + value);
+                    //this.stored[key.ToString()] = (int)this.stored[key.ToString()] - 1;
+                    //this.updateComponents(key, value);                    
+                    //billDespenser.returnCash(key, value);
                 }
                 lbStoresEvent(this, components);
                 valor += i.Key.ToString() + " : " + i.Value.ToString() + "  ";
@@ -267,7 +300,7 @@ namespace SistemaCashValidador.Clases
             {
                 case 1:
                     components.lbMoney1 -= count;
-                    break;                                    
+                    break;
                 case 5:
                     components.lbMoney5 -= count;
                     break;
@@ -301,7 +334,7 @@ namespace SistemaCashValidador.Clases
 
         private void connectedHandle(object sender, EventArgs e)
         {
-            billAcceptor.configEnable();            
+            billAcceptor.configEnable();
         }
 
         private void stackHandle(object sender, EventArgs e)

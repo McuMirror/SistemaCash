@@ -14,6 +14,7 @@ namespace SistemaCashValidador.Constrollers
         private CCTalk cctalk;
         private Error error;
         private Caja cashBox;
+
         public delegate void ErrorEventHandler(object sender, MessageEventArgs e);
         public delegate void DialogErrorEventHandler(object sender, MessageEventArgs e);
         public delegate void ListBillsEventHandler(object sender, MessageEventArgs e);
