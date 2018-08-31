@@ -4,6 +4,7 @@ using System.Threading;
 
 namespace SistemaCashValidador.Clases
 {
+    [Serializable]
     class CCTalk
     {
         private static CCTalk instancia = null;
@@ -25,10 +26,14 @@ namespace SistemaCashValidador.Clases
         private Error error;
         private int billDesposited;
         private Hashtable stored;
+        private FactoryDevices factory;
 
+        private string hopper = "";
+        
         public CCTalk()
         {
             error = Error.getInstancia();
+            factory = FactoryDevices.getInstancia();
             hopperAcceptor = new CashLib.HopperAcceptorASAHI();
             hopperDispenser = new CashLib.HopperDispenserASAHI();
             billAcceptor = new CashLib.BillAcceptor();
@@ -43,6 +48,23 @@ namespace SistemaCashValidador.Clases
                 instancia = new CCTalk();
             }
             return instancia;
+        }
+
+        public bool getConfigDevices()
+        {
+            if (this.hopper == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public void setHooper(string hopper)
+        {
+            this.hopper = hopper;
         }
 
         public void getStatus()
@@ -231,44 +253,39 @@ namespace SistemaCashValidador.Clases
 
         public void setDeliverCash(int cash, Hashtable countCash)
         {
-            string valor = "";
+
             int[] returnBill = new int[3] { 0, 0, 0 };
             components.lbCambio = cash;
             lbTransactionEvent(this, components);
 
-            this.error.setMesseg("Entregando cambio .... : " + cash);
+            this.error.setMesseg("Entregando cambio .... ");
 
             foreach (DictionaryEntry i in countCash)
             {
                 int key = (int)i.Key;
-                int value = (int)i.Value;
-                this.error.setMesseg("Entregando billetes : " + cash + " : " + key + " : " + value);
+                int value = (int)i.Value;              
                 switch (key)
                 {
                     case 20:
                         returnBill[0] = value;
                         this.stored[key.ToString()] = (int)this.stored[key.ToString()] - value;
+                        this.updateComponents(key, value);
                         break;
                     case 50:
                         returnBill[1] = value;
                         this.stored[key.ToString()] = (int)this.stored[key.ToString()] - value;
+                        this.updateComponents(key, value);
                         break;
                     case 100:
                         returnBill[2] = value;
                         this.stored[key.ToString()] = (int)this.stored[key.ToString()] - value;
+                        this.updateComponents(key, value);
                         break;
-                }
-
-                this.stored[key.ToString()] = (int)this.stored[key.ToString()] - 1;
-                this.updateComponents(key, value);
-
-                lbStoresEvent(this, components);
-                valor += i.Key.ToString() + " : " + i.Value.ToString() + "  ";
+                }                                
+                lbStoresEvent(this, components);                
             }
 
             billDespenser.returnCash(returnBill);
-
-
 
             foreach (DictionaryEntry i in countCash)
             {
@@ -279,19 +296,11 @@ namespace SistemaCashValidador.Clases
                     this.stored[key.ToString()] = (int)this.stored[key.ToString()] - 1;
                     this.updateComponents(key, value);
                     hopperDispenser.returnCash(key, value);
-                }
-                else if (key == 20 || key == 50 || key == 100)
-                {
-                    //this.error.setMesseg("Entregando billetes : " + cash + " : " + key + " : " + value);
-                    //this.stored[key.ToString()] = (int)this.stored[key.ToString()] - 1;
-                    //this.updateComponents(key, value);                    
-                    //billDespenser.returnCash(key, value);
-                }
-                lbStoresEvent(this, components);
-                valor += i.Key.ToString() + " : " + i.Value.ToString() + "  ";
+                }              
+                lbStoresEvent(this, components);                                
             }
 
-            this.error.setMesseg("Transacción terminada");
+           this.error.setMesseg("Transacción terminada");
         }
 
         private void updateComponents(int value, int count)

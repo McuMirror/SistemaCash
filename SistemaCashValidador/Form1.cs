@@ -29,11 +29,13 @@ namespace SistemaCashValidador
             this.controllerTransaccion.ListCoinsEvent += updateListCoins;
             this.controllerTransaccion.storeEvent += updateLbStore;
             this.controllerTransaccion.transactionEvent += updateLbTransaccion;
+            this.controllerTransaccion.configHopperEvent += setConfigHopper;
             this.controllerTransaccion.setConfigEvents();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.controllerTransaccion.validateConfigDevices();
             this.controllerTransaccion.getStatusDevices();
             this.controllerTransaccion.getCashBox();
             //listBilletes.Enabled = true;
@@ -197,6 +199,17 @@ namespace SistemaCashValidador
             this.controllerTransaccion.updateCashBox(data);           
         }
 
+        private void setConfigHopper()
+        {
+            FormConfigHopper formConfigHopper = new FormConfigHopper();
+            formConfigHopper.getHopperEvent += setHopper;
+            formConfigHopper.ShowDialog();
+        }
+
+        private void setHopper(string hopper)
+        {            
+            this.controllerTransaccion.setConfigHopper(hopper);
+        }
         #endregion
 
        
