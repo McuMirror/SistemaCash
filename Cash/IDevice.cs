@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CashLib
 {
-    interface IDevice
+    public interface IDevice
     {        
         bool openConnection(); //Abre la conexion con el dispositvo
         string getCOMPort(); //Obtiene el puerto COM

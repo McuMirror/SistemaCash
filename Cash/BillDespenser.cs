@@ -85,6 +85,10 @@ namespace CashLib
                         {
                             puertoCOM = valor.Substring(valor.LastIndexOf("COM"), 4);
                         }
+                        else if(valor.Contains("Puerto de comunicaciones"))
+                        {
+                            puertoCOM = "COM2";
+                        }
                     }
                 }
             }

@@ -21,12 +21,14 @@ namespace SistemaCashValidador.Constrollers
         public delegate void ListCoinsEventHandler(object sender, MessageEventArgs e);
         public delegate void StoreEventHandler(object sender, MessageEventArgs e);
         public delegate void TransactionEventHandler(object sender, MessageEventArgs e);
+        public delegate void ConfigHopperEventHandler();
         public event ErrorEventHandler errorEvent;
         public event DialogErrorEventHandler dialogErrorEvent;
         public event ListBillsEventHandler ListBillsEvent;
         public event ListCoinsEventHandler ListCoinsEvent;
         public event StoreEventHandler storeEvent;
         public event TransactionEventHandler transactionEvent;
+        public event ConfigHopperEventHandler configHopperEvent;
 
         public Controller_Transaccion()
         {
@@ -36,6 +38,20 @@ namespace SistemaCashValidador.Constrollers
             this.cashBox = new Caja();
             
         }
+
+        public void validateConfigDevices()
+        {
+            if (!this.cctalk.getConfigDevices())
+            {
+                configHopperEvent();
+            }
+        }
+
+        public void setConfigHopper(string hopper)
+        {
+            this.cctalk.setHooper(hopper);
+         }
+
 
         public void setConfigEvents()
         {
