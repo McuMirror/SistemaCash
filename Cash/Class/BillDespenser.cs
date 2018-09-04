@@ -8,19 +8,19 @@ using System.Management;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using CashLib.Interfaces;
 
-namespace CashLib
+namespace CashLib.Class
 {
-    public class BillDespenser : IDevice
+    public class BillDespenser : IDeviceDispenser
     {
-        private SerialPort port;
+        private SerialPort portDispenser;
         private bool connection = true;
         private string COM;
-        private byte[] resultMessage;
+        //private byte[] resultMessage; Se eliminar encuanto se determine que ya esta funcionando sin requerir esta variable
         private static string RX;
         private static string TX;
-        private byte[] deliveriBill;
-
+        //private byte[] deliveriBill; Se validara si ya no se requiere la variable
         private byte[] cancel = new byte[] { 0x10, 0x02, 0x00, 0x03, 0x00, 0x10, 0x1C, 0x10, 0x03, 0xE0, 0x48 };
         private byte[] request = new byte[] { 0x10, 0x05 };
         private byte[] request2 = new byte[] { 0x10, 0x06 };
@@ -28,23 +28,35 @@ namespace CashLib
 
         private byte[] dispenserBill = new byte[] { 0x10, 0x02, 0x00, 0x19, 0x60, 0x03, 0x15, 0xE4, 0x30, 0xB1, 0x30, 0xB1, 0x30, 0xB1, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x02, 0x02, 0x02, 0x00, 0x1C, 0x10, 0x03, 0x9A, 0xD6 };
 
-        private byte[] clear_log = new byte[] { 0x10, 0x02, 0x00, 0x2d, 0x60, 0x12, 0x29, 0x03, 0x4c, 0x6f, 0x67, 0x20, 0x63, 0x6c, 0x65, 0x61, 0x72, 0x20, 0x64, 0x61, 0x74, 0x65, 0x20, 0x3a, 0x20, 0x32, 0x30, 0x31, 0x38, 0x2e, 0x30, 0x38, 0x2e, 0x31, 0x35, 0x20, 0x31, 0x35, 0x3a, 0x35, 0x37, 0x3a, 0x33, 0x34, 0x00, 0x00, 0x00, 0x00, 0x1c, 0x10, 0x03, 0x76, 0x35 };
-        private byte[] bill_count = new byte[] { 0x10, 0x02, 0x00, 0x19, 0x60, 0x03, 0x15, 0xE4, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x00, 0x00, 0x00, 0x00, 0x1C, 0x10, 0x03, 0x14, 0x4d };
-        private byte[] mechal_reset = new byte[] { 0x10, 0x02, 0x00, 0x11, 0x60, 0x02, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1C, 0x10, 0x03, 0x64, 0xEC };
+        private byte[] clearLog = new byte[] { 0x10, 0x02, 0x00, 0x2d, 0x60, 0x12, 0x29, 0x03, 0x4c, 0x6f, 0x67, 0x20, 0x63, 0x6c, 0x65, 0x61, 0x72, 0x20, 0x64, 0x61, 0x74, 0x65, 0x20, 0x3a, 0x20, 0x32, 0x30, 0x31, 0x38, 0x2e, 0x30, 0x38, 0x2e, 0x31, 0x35, 0x20, 0x31, 0x35, 0x3a, 0x35, 0x37, 0x3a, 0x33, 0x34, 0x00, 0x00, 0x00, 0x00, 0x1c, 0x10, 0x03, 0x76, 0x35 };
+        private byte[] billCount = new byte[] { 0x10, 0x02, 0x00, 0x19, 0x60, 0x03, 0x15, 0xE4, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x00, 0x00, 0x00, 0x00, 0x1C, 0x10, 0x03, 0x14, 0x4d };
+        private byte[] mechalReset = new byte[] { 0x10, 0x02, 0x00, 0x11, 0x60, 0x02, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1C, 0x10, 0x03, 0x64, 0xEC };
 
+        private Dictionary<int, int> quantityCodeToDelivered;
+       
         public BillDespenser()
         {
-            deliveriBill = new byte[] {48,177,178,51,180,53,54,183,57};          
+            //this.deliveriBill = new byte[] {48,177,178,51,180,53,54,183,57};
+            this.quantityCodeToDelivered = new Dictionary<int, int>();
+            this.quantityCodeToDelivered.Add(0,48);
+            this.quantityCodeToDelivered.Add(1,177);
+            this.quantityCodeToDelivered.Add(2,178);
+            this.quantityCodeToDelivered.Add(3,51);
+            this.quantityCodeToDelivered.Add(4,180);
+            this.quantityCodeToDelivered.Add(5,53);
+            this.quantityCodeToDelivered.Add(6,54);
+            this.quantityCodeToDelivered.Add(7,183);
+            this.quantityCodeToDelivered.Add(8,57);            
         }
 
-        public bool openConnection()
+        public override bool openConnection()
         {
             try
             {
                 this.COM = getCOMPort();
                 Console.WriteLine("Utiliza el puerto : {0}", this.COM);
-                this.port = new SerialPort(this.COM, 9600, Parity.Even);
-                port.Open();
+                this.portDispenser = new SerialPort(this.COM, 9600, Parity.Even);
+                this.portDispenser.Open();
                 //resetDevice();
                 setConfigDefault();
             }
@@ -60,7 +72,7 @@ namespace CashLib
             return this.connection;
         }
 
-        public string getCOMPort()
+        public override string getCOMPort()
         {
             string puertoCOM = "";
 
@@ -95,23 +107,23 @@ namespace CashLib
 
             if (puertoCOM == "")
             {
-                this.port = null;
+                this.portDispenser = null;
                 throw new Exception("Bill Dispenser no conectado");
             }
             return puertoCOM;
         }
 
-        public void enable()
+        public override void enable()
         {
             setFreeDevice();
         }
 
-        public void disable()
+        public override void disable()
         {
             setFreeDevice();
         }
 
-        public bool isConnection()
+        public override bool isConnection()
         {
             return this.connection;
         }
@@ -128,12 +140,15 @@ namespace CashLib
             return (Parity)Enum.Parse(typeof(Parity), parity);
         }
 
-        public void returnCash(int[] count)
+        public override void returnCash(int denominationCash, int countMoney, int[] countBill)
         {
             Thread.Sleep(2000);
-            this.dispenserBill[9] = this.deliveriBill[count[0]]; //billetes 20
-            this.dispenserBill[11] = this.deliveriBill[count[1]]; // billetes 50
-            this.dispenserBill[13] = this.deliveriBill[count[2]]; //billetes 100
+            //this.dispenserBill[9] = this.deliveriBill[countBill[0]]; //billetes 20
+            //this.dispenserBill[11] = this.deliveriBill[countBill[1]]; // billetes 50
+            //this.dispenserBill[13] = this.deliveriBill[countBill[2]]; //billetes 100
+            this.dispenserBill[9] = (byte)this.quantityCodeToDelivered[countBill[0]]; //billetes 20
+            this.dispenserBill[11] = (byte)this.quantityCodeToDelivered[countBill[1]]; // billetes 50
+            this.dispenserBill[13] = (byte)this.quantityCodeToDelivered[countBill[2]]; //billetes 100
             this.setCheckSum();
             sendMessage(this.dispenserBill);
             setFreeDevice();
@@ -169,13 +184,13 @@ namespace CashLib
             setMessage(cancel);
             getMessage();
             setFreeDevice();
-            setMessage(bill_count);
+            setMessage(billCount);
             getMessage();
             setFreeDevice();
             setMessage(cancel);
             getMessage();
             setFreeDevice();
-            setMessage(mechal_reset);
+            setMessage(mechalReset);
             getMessage();
         }
 
@@ -206,7 +221,7 @@ namespace CashLib
         private void setMessage(byte[] parameters)
         {
             TX = "TX: ";
-            port.Write(parameters, 0, parameters.Length);
+            this.portDispenser.Write(parameters, 0, parameters.Length);
             Thread.Sleep(150);
 
             for (int i = 0, j = 0; i < parameters.Length; i++, j++)
@@ -220,9 +235,9 @@ namespace CashLib
         {
             RX = "RX :";
             byte finalByte = 0;
-            byte[] result = new byte[port.BytesToRead];
+            byte[] result = new byte[this.portDispenser.BytesToRead];
 
-            port.Read(result, 0, result.Length);
+            this.portDispenser.Read(result, 0, result.Length);
             Thread.Sleep(500);
             resultMessage = new byte[result.Length];
             for (int i = 0, j = 0; i < result.Length; i++, j++)
@@ -297,7 +312,6 @@ namespace CashLib
             this.dispenserBill[31] = listCheckSum[1];
             this.dispenserBill[32] = listCheckSum[0];            
         }
-
 
     }
 }

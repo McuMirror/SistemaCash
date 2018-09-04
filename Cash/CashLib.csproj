@@ -48,16 +48,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BillAcceptor.cs" />
-    <Compile Include="BillDespenser.cs" />
-    <Compile Include="Hopper.cs" />
-    <Compile Include="HopperAcceptor.cs" />
-    <Compile Include="HopperAcceptorASAHI.cs" />
-    <Compile Include="HopperDispenser.cs" />
-    <Compile Include="HopperDispenserASAHI.cs" />
+    <Compile Include="Class\BillAcceptor.cs" />
+    <Compile Include="Class\BillDespenser.cs" />
+    <Compile Include="Factory\FactoryDeviceCash.cs" />
+    <Compile Include="Interfaces\IDeviceAcceptor.cs" />
+    <Compile Include="Interfaces\IDeviceDispenser.cs" />
+    <Compile Include="Interfaces\IDeviceHopper.cs" />
+    <Compile Include="Class\HopperAcceptor.cs" />
+    <Compile Include="Class\HopperAcceptorASAHI.cs" />
+    <Compile Include="Class\HopperDispenser.cs" />
+    <Compile Include="Class\HopperDispenserASAHI.cs" />
     <Compile Include="HopperOld.cs" />
-    <Compile Include="IDevice.cs" />
+    <Compile Include="Interfaces\IDevice.cs" />
+    <Compile Include="Interfaces\IFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

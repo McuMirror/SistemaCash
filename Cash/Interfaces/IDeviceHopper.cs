@@ -10,13 +10,13 @@ using System.Management;
 
 
 
-namespace CashLib
+namespace CashLib.Interfaces
 {
 
 
-    public class Hopper : IDevice
+    public class IDeviceHopper : IDevice
     {
-        protected static SerialPort port;
+        protected static SerialPort portHopper;
         private bool connection = true;
         protected byte[] resultMessage;
         private static string COM;
@@ -24,16 +24,16 @@ namespace CashLib
         protected string device;
 
 
-        public bool openConnection()
+        public virtual bool openConnection()
         {
             try
             {
-                if (port == null)
+                if (portHopper == null)
                 {
                     COM = getCOMPort();
                     Console.WriteLine("Utiliza el puerto : {0}", COM);
-                    port = new SerialPort(COM, 9600);
-                    port.Open();
+                    portHopper = new SerialPort(COM, 9600);
+                    portHopper.Open();
                 }
                 else
                 {
@@ -51,7 +51,7 @@ namespace CashLib
             return this.connection;
         }
 
-        public string getCOMPort()
+        public virtual string getCOMPort()
         {
             string puertoCOM = "";
 
@@ -82,23 +82,23 @@ namespace CashLib
 
             if (puertoCOM == "")
             {
-                port = null;
+                portHopper = null;
                 throw new Exception("Hopper no conectado");
             }
             return puertoCOM;
         }
 
-        public bool isConnection()
+        public virtual bool isConnection()
         {
             return this.connection;
         }
 
-        public void enable()
+        public virtual void enable()
         {
             this.setConfig();
         }
 
-        public void disable()
+        public virtual void disable()
         {
 
         }
@@ -147,7 +147,7 @@ namespace CashLib
                 TX += parameters[i] + " ";
             }
 
-            port.Write(arrayWrite, 0, arrayWrite.Length);
+            portHopper.Write(arrayWrite, 0, arrayWrite.Length);
             //Console.WriteLine(TX);
         }
 
@@ -156,8 +156,8 @@ namespace CashLib
         {
             string RX = "RX : ";
             int length = 0;
-            byte[] result = new byte[port.BytesToRead];
-            port.Read(result, 0, result.Length);
+            byte[] result = new byte[portHopper.BytesToRead];
+            portHopper.Read(result, 0, result.Length);
             length = (this.device == "COMBOT") ? result.Length : (result.Length - parameters.Count);
             resultMessage = new byte[length];
             length = (this.device == "COMBOT") ? 0 : parameters.Count;
@@ -192,7 +192,7 @@ namespace CashLib
         }
 
         //Estableciendo la configuracion inicial para el hooper
-        protected void setConfig()
+        public virtual void setConfig()
         {
             if (this.device == "COMBOT")
             {

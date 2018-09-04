@@ -343,7 +343,7 @@ namespace SistemaCashValidador.Clases
 
         private void connectedHandle(object sender, EventArgs e)
         {
-            billAcceptor.configEnable();
+            billAcceptor.setConfig();
         }
 
         private void stackHandle(object sender, EventArgs e)

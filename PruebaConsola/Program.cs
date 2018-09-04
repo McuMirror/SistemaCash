@@ -15,29 +15,46 @@ namespace PruebaConsola
 {
     class Program
     {
-        private static CashLib.HopperAcceptor hopperAcceptor;
-        private static CashLib.BillAcceptor billAcceptor;
-        private static CashLib.HopperDispenser hopperDispenser;
-        private static CashLib.BillDespenser billDespenser;
-        private static CashLib.HopperAcceptorASAHI hopperAcceptorASAHI;
-        private static CashLib.HopperDispenserASAHI hopperDispenserASAHI;
+        private static CashLib.Interfaces.IDeviceAcceptor hopperAcceptor;
+        private static CashLib.Interfaces.IDeviceAcceptor billAcceptor;
+        private static CashLib.Interfaces.IDeviceDispenser hopperDispenser;
+        private static CashLib.Interfaces.IDeviceDispenser billDespenser;
+        //private static CashLib.HopperAcceptorASAHI hopperAcceptorASAHI;
+        //private static CashLib.HopperDispenserASAHI hopperDispenserASAHI;
         //private static Recycler scr = new Recycler();
         private static MPOST.Acceptor billAccept;
 
         private static Hashtable devolver = new Hashtable();
         private static Hashtable denominacion = new Hashtable();
+        private static CashLib.Factory.FactoryDeviceCash factory = new CashLib.Factory.FactoryDeviceCash();
         private static int billDesposited;
 
 
         static void Main(string[] args)
         {
-            billAcceptor = new CashLib.BillAcceptor();
-            billDespenser = new CashLib.BillDespenser();
-            hopperAcceptorASAHI = new CashLib.HopperAcceptorASAHI();
-            hopperDispenserASAHI = new CashLib.HopperDispenserASAHI();
+            hopperAcceptor = factory.CreateDeviceAcceptor("COMBOT");
+            billAcceptor = factory.CreateDeviceAcceptor("BILL");
+            hopperDispenser = factory.CreateDeviceDispenser("COMBOT");
+            billDespenser = factory.CreateDeviceDispenser("BILL");
+
+            billAcceptor.powerUpEvent += powerUpHandle;
+            billAcceptor.connectEvent += connectedHandle;
+            billAcceptor.stackEvent += stackHandle;
+            billAcceptor.powerUpCompleteEvent += PowerUpCompletedHandle;
+            billAcceptor.escrowEvent += escrowHandle;
+
+            pruebas2();
+        }
+
+        static void pruebas2()
+        {
+            //billAcceptor = new CashLib.BillAcceptor();
+            //billDespenser = new CashLib.BillDespenser();
+            //hopperAcceptorASAHI = new CashLib.HopperAcceptorASAHI();
+            //hopperDispenserASAHI = new CashLib.HopperDispenserASAHI();
 
             Console.WriteLine("1.- Abriendo conexion Hopper Acceptor");
-            if (hopperAcceptorASAHI.openConnection())
+            if (hopperAcceptor.openConnection())
             {
                 Console.WriteLine("Esta conectado");
             }
@@ -47,7 +64,7 @@ namespace PruebaConsola
             }
 
             Console.WriteLine("2.- Abriendo conexion Hopper Dispenser");
-            if (hopperDispenserASAHI.openConnection())
+            if (hopperDispenser.openConnection())
             {
                 Console.WriteLine("Esta conectado");
             }
@@ -107,7 +124,7 @@ namespace PruebaConsola
             //        continuar = false;
             //    }
             //}
-    }
+        }
 
         static void pruebas()
         {
@@ -222,15 +239,16 @@ namespace PruebaConsola
 
         static void connectedHandle(object sender, EventArgs e)
         {
-            billAcceptor.configEnable();            
+            billAcceptor.setConfig();
         }
 
         static void stackHandle(object sender, EventArgs e)
         {
-            Console.WriteLine("Evento : Stack");            
-            billDesposited += (int)billAcceptor.getDepositeBill();
+            Console.WriteLine("Evento : Stack");
+            byte[] cash = billAcceptor.getCashDesposite();
+            billDesposited += (int)cash[0];
             Console.WriteLine("Recibido : {0}", billDesposited);
-            
+
         }
 
         static void PowerUpCompletedHandle(object sender, EventArgs e)
@@ -252,7 +270,7 @@ namespace PruebaConsola
 
             while (deposited < toPay)
             {
-                result = hopperAcceptor.depositCash(contador);
+                result = hopperAcceptor.getCashDesposite(contador);
 
                 if (result[4] != contador)
                 {
@@ -318,7 +336,7 @@ namespace PruebaConsola
             }
         }
 
-        static int devolverCambio(int cambio, int moneda )
+        static int devolverCambio(int cambio, int moneda)
         {
             int cantidad = 0;
 

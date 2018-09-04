@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using CashLib.Interfaces;
 
-namespace CashLib
+namespace CashLib.Class
 {
-    public class HopperDispenserASAHI: Hopper
+    public class HopperDispenserASAHI: IDeviceDispenser
     {
 
         public HopperDispenserASAHI()
@@ -16,18 +17,18 @@ namespace CashLib
             this.device = "ASAHI";
         }
 
-        public void returnCash(int typeCash, int count = 255)
+        public override void returnCash(int denominationCash = 0, int countMoney = 0, int[] countBill = null)
         {
-            switch (typeCash)
+            switch (denominationCash)
             {
                 case 1:
-                    this.emptyContainerCoin(4, (byte)count);
+                    this.emptyContainerCoin(4, (byte)countMoney);
                     break;
                 case 5:
-                    this.emptyContainerCoin(5, (byte)count);
+                    this.emptyContainerCoin(5, (byte)countMoney);
                     break;
                 case 10:
-                    this.emptyContainerCoin(7, (byte)count);
+                    this.emptyContainerCoin(7, (byte)countMoney);
                     break;               
             }
         }
@@ -46,7 +47,6 @@ namespace CashLib
             this.emptyContainerCoin(5);
             this.emptyContainerCoin(7);
         }
-
         
         /*
          * Encargado de vaciar el contenedor especificando el dispositivo
@@ -86,5 +86,6 @@ namespace CashLib
             }
             return serie;
         }
+       
     }
 }

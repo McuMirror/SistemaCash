@@ -11,26 +11,29 @@ using CPI.BanknoteDevices.Events;
 using System.Windows.Forms;
 using MPOST;
 using System.Management;
+using CashLib.Interfaces;
 
-namespace CashLib
+namespace CashLib.Class
 {
-    public class BillAcceptor : IDevice
+    public class BillAcceptor : IDeviceAcceptor
     {        
         private string COM;
         private Acceptor billAcceptor = new Acceptor();
-        public delegate void powerUpEventHandler(object sender, EventArgs e);
-        public delegate void connectEventHandler(object sender, EventArgs e);
-        public delegate void stackEventHandler(object sender, EventArgs e);
-        public delegate void powerUpCompletedEventHandler(object sender, EventArgs e);
-        public delegate void escrowEventHandler(object sender, EventArgs e);
-        public event powerUpEventHandler powerUpEvent;
-        public event connectEventHandler connectEvent;
-        public event stackEventHandler stackEvent;
-        public event powerUpCompletedEventHandler powerUpCompleteEvent;
-        public event escrowEventHandler escrowEvent;
+
+        //Se realizara pruebas con dispositivos en caso de tener prueba exitosa se eliminara estos delegates.
+        //public delegate void powerUpEventHandler(object sender, EventArgs e);
+        //public delegate void connectEventHandler(object sender, EventArgs e);
+        //public delegate void stackEventHandler(object sender, EventArgs e);
+        //public delegate void powerUpCompletedEventHandler(object sender, EventArgs e);
+        //public delegate void escrowEventHandler(object sender, EventArgs e);
+        public override event powerUpEventHandler powerUpEvent;
+        public override event connectEventHandler connectEvent;
+        public override event stackEventHandler stackEvent;
+        public override event powerUpCompletedEventHandler powerUpCompleteEvent;
+        public override event escrowEventHandler escrowEvent;
         private bool connection = true;        
 
-        public bool openConnection()
+        public override bool openConnection()
         {
             try
             {                
@@ -49,7 +52,7 @@ namespace CashLib
             return this.connection;
         }
 
-        public string getCOMPort()
+        public override string getCOMPort()
         {
             string puertoCOM = "";
 
@@ -85,17 +88,17 @@ namespace CashLib
             return puertoCOM;           
         }
 
-        public bool isConnection()
+        public override bool isConnection()
         {
             return this.connection;
         }
 
-        public void enable()
+        public override void enable()
         {        
             billAcceptor.Open(this.COM, PowerUp.A);
         }
 
-        public void disable()
+        public override void disable()
         {
             billAcceptor.Close();
         }
@@ -109,7 +112,7 @@ namespace CashLib
             billAcceptor.OnEscrow += new EscrowEventHandler(escrowEvent);
         }
 
-        public void configEnable()
+        public override void setConfig()
         {
             this.configDefault();
             billAcceptor.EnableAcceptance = true;
@@ -130,16 +133,27 @@ namespace CashLib
             billAcceptor.SetBillValueEnables(ref enables);
         }
 
-        public double getDepositeBill()
+        //Despues de validar su funcionamiento con el metod getCashDeposite se elimina esta funcion
+        //public double getDepositeBill()
+        //{
+        //    double bill = 0;
+        //    if (billAcceptor.DocType == DocumentType.Bill)
+        //    {
+        //        MPOST.Bill bills = billAcceptor.Bill;
+        //        bill = bills.Value;
+        //    }
+        //    return bill;
+        //}
+
+        public override byte[] getCashDesposite(int count)
         {
-            double bill = 0;
+            byte[] bill = new byte[1];
             if (billAcceptor.DocType == DocumentType.Bill)
             {
                 MPOST.Bill bills = billAcceptor.Bill;
-                bill = bills.Value;
+                bill[0] = (byte)bills.Value;
             }
             return bill;
         }
-
     }
 }

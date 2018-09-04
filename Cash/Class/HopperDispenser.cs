@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using CashLib.Interfaces;
 
-namespace CashLib
+namespace CashLib.Class
 {
-    public class HopperDispenser : Hopper
+    public class HopperDispenser : IDeviceDispenser
     {
 
         public HopperDispenser()
@@ -18,18 +19,18 @@ namespace CashLib
             this.device = "COMBOT";
         }
 
-        public void returnCash(int typeCash, int count = 255)
+        public override void returnCash(int denominationCash, int countMoney = 255, int[] countBill = null)
         {            
-            switch (typeCash)
+            switch (denominationCash)
             {
                 case 1:
-                    this.emptyContainerCoin(33, (byte)count);                    
+                    this.emptyContainerCoin(33, (byte)countMoney);                    
                     break;
                 case 5:
-                    this.emptyContainerCoin(77, (byte)count);                    
+                    this.emptyContainerCoin(77, (byte)countMoney);                    
                     break;
                 case 10:
-                    this.emptyContainerCoin(76, (byte)count);                    
+                    this.emptyContainerCoin(76, (byte)countMoney);                    
                     break;
                 case 2:
                     this.emptyMoneyBox();
