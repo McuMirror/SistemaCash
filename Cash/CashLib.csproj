@@ -49,7 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\BillAcceptor.cs" />
+    <Compile Include="Class\BillAcceptorPrueba.cs" />
     <Compile Include="Class\BillDespenser.cs" />
+    <Compile Include="Class\BillDispenserPrueba.cs" />
+    <Compile Include="Class\HopperAcceptorPrueba.cs" />
+    <Compile Include="Class\HopperDispenserPrueba.cs" />
     <Compile Include="Factory\FactoryDeviceCash.cs" />
     <Compile Include="Interfaces\IDeviceAcceptor.cs" />
     <Compile Include="Interfaces\IDeviceDispenser.cs" />

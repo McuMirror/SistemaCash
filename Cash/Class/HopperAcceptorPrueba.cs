@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,23 +7,51 @@ using CashLib.Interfaces;
 
 namespace CashLib.Class
 {
-    public class HopperAcceptor : IDeviceAcceptor
+    class HopperAcceptorPrueba : IDeviceAcceptor
     {
-        public HopperAcceptor()
+        private string COM = "";
+        private bool connection = true;
+
+        public override bool openConnection()
         {
-            this.manufacturer = "USB Serial Port";
-            this.device = "COMBOT";
+            try
+            {
+                this.COM = getCOMPort();
+                Console.WriteLine("Utiliza el puerto : {0}", COM);
+            }           
+            catch (Exception ex)
+            {
+                this.connection = false;
+            }
+
+            return this.connection;
         }
 
-        /*
-         * Encardo de obtener la cantidad y monedas depositadas en el hopper acceptor
-         */
+        public override string getCOMPort()
+        {
+            string puertoCOM = "COM1";
+            return puertoCOM;
+        }
+
+        public override bool isConnection()
+        {
+            return true;
+        }
+
+        public override void enable()
+        {
+
+        }
+
+        public override void disable()
+        {
+
+        }
+
         public override byte[] getCashDesposite(int contador)
         {
-            
+
             byte[] result = new byte[2];
-            this.setMessage(new List<byte>() { 2, 0, 1, 229 }, new
-                List<byte>() { 4 });
 
             if (resultMessage[4] != contador)
             {

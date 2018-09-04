@@ -21,6 +21,10 @@ namespace CashLib.Factory
                     return new HopperAcceptor();
                 case "BILL":
                     return new BillAcceptor();
+                case "BILLPrueba":
+                    return new BillAcceptorPrueba();
+                case "HOPPERPrueba":
+                    return new HopperAcceptorPrueba();
                 default:
                     return null;
             }
@@ -36,6 +40,10 @@ namespace CashLib.Factory
                     return new HopperDispenser();
                 case "BILL":
                     return new BillDespenser();
+                case "BILLPrueba":
+                    return new BillDispenserPrueba();
+                case "HOPPERPrueba":
+                    return new HopperDispenserPrueba();
                 default:
                     return null;
             }

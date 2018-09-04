@@ -17,27 +17,27 @@ namespace SistemaCashValidador.Clases
         public event updateLbStoreEventHandler lbStoresEvent;
         public event updateLbTransactionEventHandler lbTransactionEvent;
 
-        private CashLib.HopperAcceptorASAHI hopperAcceptor;
-        private CashLib.HopperDispenserASAHI hopperDispenser;
-        private CashLib.BillAcceptor billAcceptor;
-        private CashLib.BillDespenser billDespenser;
+        private CashLib.Interfaces.IDeviceAcceptor hopperAcceptor;
+        private CashLib.Interfaces.IDeviceDispenser hopperDispenser;
+        private CashLib.Interfaces.IDeviceAcceptor billAcceptor;
+        private CashLib.Interfaces.IDeviceDispenser billDespenser;
+        private CashLib.Factory.FactoryDeviceCash factory;
 
         private MessageEventArgs components;
         private Error error;
         private int billDesposited;
         private Hashtable stored;
-        private FactoryDevices factory;
 
         private string hopper = "";
         
         public CCTalk()
         {
             error = Error.getInstancia();
-            factory = FactoryDevices.getInstancia();
-            hopperAcceptor = new CashLib.HopperAcceptorASAHI();
-            hopperDispenser = new CashLib.HopperDispenserASAHI();
-            billAcceptor = new CashLib.BillAcceptor();
-            billDespenser = new CashLib.BillDespenser();
+            factory = new CashLib.Factory.FactoryDeviceCash();
+            hopperAcceptor = factory.CreateDeviceAcceptor("HOPPERPrueba");
+            hopperDispenser = factory.CreateDeviceDispenser("HOPPERPrueba");
+            billAcceptor = factory.CreateDeviceAcceptor("BILLPrueba");
+            billDespenser = factory.CreateDeviceDispenser("BILLPrueba");
             components = new MessageEventArgs();
         }
 
@@ -128,7 +128,7 @@ namespace SistemaCashValidador.Clases
             this.error.setMesseg("Ingrese el efectivo");
             while (deposited < total)
             {
-                result = hopperAcceptor.depositCash(contador);
+                result = hopperAcceptor.getCashDesposite(contador);
 
                 if (result[1] != contador)
                 {
@@ -285,7 +285,7 @@ namespace SistemaCashValidador.Clases
                 lbStoresEvent(this, components);                
             }
 
-            billDespenser.returnCash(returnBill);
+            billDespenser.returnCash(0,0,returnBill);
 
             foreach (DictionaryEntry i in countCash)
             {
@@ -295,7 +295,7 @@ namespace SistemaCashValidador.Clases
                 {
                     this.stored[key.ToString()] = (int)this.stored[key.ToString()] - 1;
                     this.updateComponents(key, value);
-                    hopperDispenser.returnCash(key, value);
+                    hopperDispenser.returnCash(key, value, null);
                 }              
                 lbStoresEvent(this, components);                                
             }
@@ -349,7 +349,8 @@ namespace SistemaCashValidador.Clases
         private void stackHandle(object sender, EventArgs e)
         {
             Console.WriteLine("Evento : Stack");
-            this.billDesposited = (int)billAcceptor.getDepositeBill();
+            byte[] cash = billAcceptor.getCashDesposite();
+            this.billDesposited += (int)cash[0];            
             Console.WriteLine("Recibido : {0}", this.billDesposited);
         }
 

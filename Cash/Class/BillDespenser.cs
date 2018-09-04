@@ -22,8 +22,8 @@ namespace CashLib.Class
         private static string TX;
         //private byte[] deliveriBill; Se validara si ya no se requiere la variable
         private byte[] cancel = new byte[] { 0x10, 0x02, 0x00, 0x03, 0x00, 0x10, 0x1C, 0x10, 0x03, 0xE0, 0x48 };
-        private byte[] request = new byte[] { 0x10, 0x05 };
-        private byte[] request2 = new byte[] { 0x10, 0x06 };
+        private byte[] statusRequest = new byte[] { 0x10, 0x05 };
+        private byte[] releaseRequest = new byte[] { 0x10, 0x06 };
         private byte[] configDefault = new byte[] { 0x10, 0x02, 0x00, 0x21, 0x60, 0x02, 0xFF, 0x00, 0x00, 0x1A, 0x00, 0x40, 0x082, 0x6E, 0x89, 0x75, 0x93, 0x7F, 0x00, 0x00, 0x0C, 0x0C, 0x0C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1C, 0x10, 0x03, 0xA6, 0xAE };
 
         private byte[] dispenserBill = new byte[] { 0x10, 0x02, 0x00, 0x19, 0x60, 0x03, 0x15, 0xE4, 0x30, 0xB1, 0x30, 0xB1, 0x30, 0xB1, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x02, 0x02, 0x02, 0x00, 0x1C, 0x10, 0x03, 0x9A, 0xD6 };
@@ -156,7 +156,7 @@ namespace CashLib.Class
 
         private void setConfigDefault()
         {
-            sendMessage(request);
+            sendMessage(statusRequest);
             sendMessage(configDefault);
         }
 
@@ -164,15 +164,15 @@ namespace CashLib.Class
         {
             setMessage(cancel);
             getMessage();
-            setMessage(request2);
-            setMessage(request);
+            setMessage(releaseRequest);
+            setMessage(statusRequest);
             getMessage();
-            setMessage(request2);
+            setMessage(releaseRequest);
             getMessage();
-            setMessage(request2);
-            setMessage(request);
+            setMessage(releaseRequest);
+            setMessage(statusRequest);
             getMessage();
-            setMessage(request);
+            setMessage(statusRequest);
             getMessage();
         }
 
@@ -206,8 +206,8 @@ namespace CashLib.Class
 
                 if (result != 6)
                 {
-                    setMessage(request2);
-                    setMessage(request);
+                    setMessage(releaseRequest);
+                    setMessage(statusRequest);
                     getMessage();
                     error = true;
                 }

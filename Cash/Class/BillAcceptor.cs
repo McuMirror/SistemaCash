@@ -103,7 +103,7 @@ namespace CashLib.Class
             billAcceptor.Close();
         }
 
-        public void setEvents()
+        public override void setEvents()
         {
             billAcceptor.OnPowerUp += new PowerUpEventHandler(powerUpEvent);
             billAcceptor.OnConnected += new ConnectedEventHandler(connectEvent);

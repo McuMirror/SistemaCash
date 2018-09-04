@@ -20,5 +20,6 @@ namespace CashLib.Interfaces
         public virtual event escrowEventHandler escrowEvent;
 
         public abstract byte[] getCashDesposite(int count = 0);
+        public abstract void setEvents();
     }
 }

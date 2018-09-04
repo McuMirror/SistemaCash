@@ -29,13 +29,19 @@ namespace PruebaConsola
         private static CashLib.Factory.FactoryDeviceCash factory = new CashLib.Factory.FactoryDeviceCash();
         private static int billDesposited;
 
+        private static string deviceHopperAcceptor = "HOPPERPrueba",
+            deviceHopperDispenser = "HOPPERPrueba",
+            deviceBillAcceptor = "BILLPrueba",
+            deviceBillDispenser = "BILLPrueba";
+            
+
 
         static void Main(string[] args)
         {
-            hopperAcceptor = factory.CreateDeviceAcceptor("COMBOT");
-            billAcceptor = factory.CreateDeviceAcceptor("BILL");
-            hopperDispenser = factory.CreateDeviceDispenser("COMBOT");
-            billDespenser = factory.CreateDeviceDispenser("BILL");
+            hopperAcceptor = factory.CreateDeviceAcceptor(deviceHopperAcceptor);
+            billAcceptor = factory.CreateDeviceAcceptor(deviceBillAcceptor);
+            hopperDispenser = factory.CreateDeviceDispenser(deviceHopperDispenser);
+            billDespenser = factory.CreateDeviceDispenser(deviceBillDispenser);
 
             billAcceptor.powerUpEvent += powerUpHandle;
             billAcceptor.connectEvent += connectedHandle;

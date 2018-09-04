@@ -48,6 +48,11 @@ namespace CashLib.Class
             }
             result[1] = this.resultMessage[4];
             return result;
-        }      
+        }
+
+        public override void setEvents()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
