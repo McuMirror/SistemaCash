@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace SistemaCashValidador
 {
-    public partial class FormConfigHopper : Form       
+    public partial class FormConfigHopper : Form
     {
-        public delegate void GetHopperEventHandler(string data);
-        public event GetHopperEventHandler getHopperEvent;
+        public delegate void GetConfigDevicesEventHandler(Dictionary<string, string> data);
+        public event GetConfigDevicesEventHandler getConfigDevicesEvent;
 
         public FormConfigHopper()
         {
@@ -22,27 +22,41 @@ namespace SistemaCashValidador
 
         private void FormConfigHopper_Load(object sender, EventArgs e)
         {
-            selectHooper.SelectedIndex = 0;
+            selectHooperAcceptor.SelectedIndex = 0;
+            selectHopperDispenser.SelectedIndex = 0;
+            selectBillAcceptor.SelectedIndex = 0;
+            selectBillDispenser.SelectedIndex = 0;
         }
-      
+
         private void btnSave_Click(object sender, EventArgs e)
         {
-            int index = selectHooper.SelectedIndex;
-            Object hopper = selectHooper.SelectedItem;
+            Dictionary<string, string> selects = new Dictionary<string, string>();
+            selects.Add("HOPPERACCEPTOR", selectHooperAcceptor.SelectedItem.ToString());
+            selects.Add("HOPPERDISPENSER", selectHopperDispenser.SelectedItem.ToString());
+            selects.Add("BILLACCEPTOR", selectBillAcceptor.SelectedItem.ToString());
+            selects.Add("BILLDISPENSER", selectBillDispenser.SelectedItem.ToString());
+            bool undefineDevice = true;
 
-            if (index != 0)
+            foreach (KeyValuePair<string, string> select in selects)
             {
-                getHopperEvent(hopper.ToString());
+                if (select.Value == "Seleccionar")
+                {
+                    undefineDevice = false;
+                }
+            }
+            
+            if (undefineDevice)
+            {
+                getConfigDevicesEvent(selects);
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Debes definir el tipo de hopper");
+                MessageBox.Show("Debes definir todos los dispositivos");
             }
-          
-            
+                        
         }
 
-      
+
     }
 }

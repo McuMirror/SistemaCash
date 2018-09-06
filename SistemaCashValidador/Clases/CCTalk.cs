@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 
 namespace SistemaCashValidador.Clases
 {
-    [Serializable]
+
     class CCTalk
     {
         private static CCTalk instancia = null;
@@ -20,25 +23,26 @@ namespace SistemaCashValidador.Clases
         private CashLib.Interfaces.IDeviceAcceptor hopperAcceptor;
         private CashLib.Interfaces.IDeviceDispenser hopperDispenser;
         private CashLib.Interfaces.IDeviceAcceptor billAcceptor;
-        private CashLib.Interfaces.IDeviceDispenser billDespenser;
+        private CashLib.Interfaces.IDeviceDispenser billDispenser;
         private CashLib.Factory.FactoryDeviceCash factory;
 
         private MessageEventArgs components;
         private Error error;
         private int billDesposited;
         private Hashtable stored;
-
-        private string hopper = "";
+        private CCTalkConfig config;
         
         public CCTalk()
         {
             error = Error.getInstancia();
             factory = new CashLib.Factory.FactoryDeviceCash();
+            components = new MessageEventArgs();
+            config = new CCTalkConfig();
+
             hopperAcceptor = factory.CreateDeviceAcceptor("HOPPERPrueba");
             hopperDispenser = factory.CreateDeviceDispenser("HOPPERPrueba");
             billAcceptor = factory.CreateDeviceAcceptor("BILLPrueba");
-            billDespenser = factory.CreateDeviceDispenser("BILLPrueba");
-            components = new MessageEventArgs();
+            billDispenser = factory.CreateDeviceDispenser("BILLPrueba");
         }
 
         public static CCTalk getInstancia()
@@ -50,21 +54,29 @@ namespace SistemaCashValidador.Clases
             return instancia;
         }
 
-        public bool getConfigDevices()
+        public bool validateConfigDevices()
         {
-            if (this.hopper == "")
+            try
             {
-                return false;
+                BinaryFormatter formated = new BinaryFormatter();
+                Stream file = new FileStream("configDevices.cash", FileMode.Open, FileAccess.Read, FileShare.None);
+                this.config = (CCTalkConfig)formated.Deserialize(file);
+                return this.config.validateConfiguration();
             }
-            else
+            catch (IOException ex)
             {
-                return true;
+                return this.config.validateConfiguration();
             }
+            
         }
 
-        public void setHooper(string hopper)
+        public void setConfigDevices(Dictionary<string, string> selectedDevices)
         {
-            this.hopper = hopper;
+            this.config.setConfig(selectedDevices);
+            BinaryFormatter formated = new BinaryFormatter();
+            Stream file = new FileStream("configDevices.cash", FileMode.Create, FileAccess.Write, FileShare.None);
+            formated.Serialize(file, this.config);
+            file.Close();
         }
 
         public void getStatus()
@@ -86,7 +98,7 @@ namespace SistemaCashValidador.Clases
                 fail += " No Conectado Bill Acceptor";
             }
 
-            if (!billDespenser.openConnection())
+            if (!billDispenser.openConnection())
             {
                 fail += " No Conectado Bill Dispenser";
             }
@@ -221,7 +233,7 @@ namespace SistemaCashValidador.Clases
             hopperAcceptor.disable();
             hopperDispenser.disable();
             billAcceptor.disable();
-            billDespenser.disable();
+            billDispenser.disable();
 
         }
 
@@ -285,7 +297,7 @@ namespace SistemaCashValidador.Clases
                 lbStoresEvent(this, components);                
             }
 
-            billDespenser.returnCash(0,0,returnBill);
+            billDispenser.returnCash(0,0,returnBill);
 
             foreach (DictionaryEntry i in countCash)
             {

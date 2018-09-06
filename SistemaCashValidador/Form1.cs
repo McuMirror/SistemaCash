@@ -202,16 +202,14 @@ namespace SistemaCashValidador
         private void setConfigHopper()
         {
             FormConfigHopper formConfigHopper = new FormConfigHopper();
-            formConfigHopper.getHopperEvent += setHopper;
+            formConfigHopper.getConfigDevicesEvent += setConfigDevices;
             formConfigHopper.ShowDialog();
         }
 
-        private void setHopper(string hopper)
-        {            
-            this.controllerTransaccion.setConfigHopper(hopper);
+        private void setConfigDevices(Dictionary<string, string> selectedDevices)
+        {
+            this.controllerTransaccion.setConfigDevices(selectedDevices);            
         }
-        #endregion
-
-       
+        #endregion       
     }
 }

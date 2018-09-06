@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using SistemaCashValidador.Clases;
@@ -23,7 +25,7 @@ namespace SistemaCashValidador.Constrollers
         public delegate void TransactionEventHandler(object sender, MessageEventArgs e);
         public delegate void ConfigHopperEventHandler();
         public event ErrorEventHandler errorEvent;
-        public event DialogErrorEventHandler dialogErrorEvent;
+        //public event DialogErrorEventHandler dialogErrorEvent;
         public event ListBillsEventHandler ListBillsEvent;
         public event ListCoinsEventHandler ListCoinsEvent;
         public event StoreEventHandler storeEvent;
@@ -39,20 +41,6 @@ namespace SistemaCashValidador.Constrollers
             
         }
 
-        public void validateConfigDevices()
-        {
-            if (!this.cctalk.getConfigDevices())
-            {
-                configHopperEvent();
-            }
-        }
-
-        public void setConfigHopper(string hopper)
-        {
-            this.cctalk.setHooper(hopper);
-         }
-
-
         public void setConfigEvents()
         {
             this.error.errorEvent += new Error.ErrorEventHandler(errorEvent);
@@ -65,6 +53,19 @@ namespace SistemaCashValidador.Constrollers
             this.cashBox.lbStoreEvent += new Caja.lbStoreEventHandler(storeEvent);
         }
 
+        public void validateConfigDevices()
+        {
+            if (!this.cctalk.validateConfigDevices())
+            {
+                configHopperEvent();
+            }
+        }
+
+        public void setConfigDevices(Dictionary<string,string> selectedDevices)
+        {
+            this.cctalk.setConfigDevices(selectedDevices);
+         }
+       
         public void getStatusDevices()
         {            
             this.cctalk.getStatus();

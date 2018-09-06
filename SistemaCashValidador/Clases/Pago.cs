@@ -11,7 +11,7 @@ namespace SistemaCashValidador.Clases
     class Pago
     {
         private CCTalk cctalk;
-        private Error error;
+        //private Error error;
         private int total;
         private int deposited;
         private Hashtable stored;
@@ -20,7 +20,7 @@ namespace SistemaCashValidador.Clases
         public Pago()
         {
             cctalk = CCTalk.getInstancia();
-            error = Error.getInstancia();
+            //error = Error.getInstancia(); Se validara si es necesario
         }
         
         public void setNewOperation(int payout, Hashtable DBStored)

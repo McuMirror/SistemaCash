@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Clases\Caja.cs" />
     <Compile Include="Clases\CCTalk.cs" />
+    <Compile Include="Clases\CCTalkConfig.cs" />
     <Compile Include="Clases\Error.cs" />
     <Compile Include="Clases\MessageEventArgs.cs" />
     <Compile Include="Clases\Pago.cs" />
