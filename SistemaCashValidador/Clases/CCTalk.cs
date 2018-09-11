@@ -15,8 +15,8 @@ namespace SistemaCashValidador.Clases
         public delegate void updateListCoinsEventHandler(object sender, MessageEventArgs e);
         public delegate void updateLbStoreEventHandler(object sender, MessageEventArgs e);
         public delegate void updateLbTransactionEventHandler(object sender, MessageEventArgs e);
-        public event updateListBillsEventHandler listBillsEvent;
-        public event updateListCoinsEventHandler listConisEvent;
+        //public event updateListBillsEventHandler listBillsEvent;
+        //public event updateListCoinsEventHandler listConisEvent;
         public event updateLbStoreEventHandler lbStoresEvent;
         public event updateLbTransactionEventHandler lbTransactionEvent;
 
@@ -37,12 +37,7 @@ namespace SistemaCashValidador.Clases
             error = Error.getInstancia();
             factory = new CashLib.Factory.FactoryDeviceCash();
             components = new MessageEventArgs();
-            config = new CCTalkConfig();
-
-            hopperAcceptor = factory.CreateDeviceAcceptor("HOPPERPrueba");
-            hopperDispenser = factory.CreateDeviceDispenser("HOPPERPrueba");
-            billAcceptor = factory.CreateDeviceAcceptor("BILLPrueba");
-            billDispenser = factory.CreateDeviceDispenser("BILLPrueba");
+            config = new CCTalkConfig();            
         }
 
         public static CCTalk getInstancia()
@@ -77,6 +72,26 @@ namespace SistemaCashValidador.Clases
             Stream file = new FileStream("configDevices.cash", FileMode.Create, FileAccess.Write, FileShare.None);
             formated.Serialize(file, this.config);
             file.Close();
+        }       
+
+        public void initializeDevices()
+        {
+            Dictionary<string, string> devices = this.config.getConfig();
+            this.hopperAcceptor = factory.CreateDeviceAcceptor(devices["HOPPERACCEPTOR"]);
+            this.hopperDispenser = factory.CreateDeviceDispenser(devices["HOPPERDISPENSER"]);
+            this.billAcceptor = factory.CreateDeviceAcceptor(devices["BILLACCEPTOR"]);
+            this.billDispenser = factory.CreateDeviceDispenser(devices["BILLDISPENSER"]);
+            this.setEvents();
+        }
+
+        private void setEvents()
+        {
+            billAcceptor.powerUpEvent += powerUpHandle;
+            billAcceptor.connectEvent += connectedHandle;
+            billAcceptor.stackEvent += stackHandle;
+            billAcceptor.powerUpCompleteEvent += PowerUpCompletedHandle;
+            billAcceptor.escrowEvent += escrowHandle;
+            billAcceptor.setEvents();
         }
 
         public void getStatus()
@@ -105,16 +120,6 @@ namespace SistemaCashValidador.Clases
             this.error.setMesseg(fail);
         }
 
-        public void setEvents()
-        {
-            billAcceptor.powerUpEvent += powerUpHandle;
-            billAcceptor.connectEvent += connectedHandle;
-            billAcceptor.stackEvent += stackHandle;
-            billAcceptor.powerUpCompleteEvent += PowerUpCompletedHandle;
-            billAcceptor.escrowEvent += escrowHandle;
-            billAcceptor.setEvents();
-        }
-
         public void enableDevices(Hashtable DBStored)
         {
             billAcceptor.enable();
@@ -126,8 +131,8 @@ namespace SistemaCashValidador.Clases
             this.billDesposited = 0;
             this.setValuesInitialLabelsAndList();
 
-            listConisEvent(this, components);
-            listBillsEvent(this, components);
+            //listConisEvent(this, components);
+            //listBillsEvent(this, components);
             lbTransactionEvent(this, components);
         }
 
@@ -147,35 +152,35 @@ namespace SistemaCashValidador.Clases
                     switch (result[0])
                     {
                         case 10:
-                            components.lbMoney10 += 1;
+                            components.inputR10 += 1;
                             components.listCoins = 10;
                             deposited += 10;
-                            listConisEvent(this, components);
-                            this.stored["10"] = components.lbMoney10;
+                            //listConisEvent(this, components);
+                            this.stored["10"] = components.inputR10;
                             break;
                         case 5:
-                            components.lbMoney5 += 1;
+                            components.inputR5 += 1;
                             components.listCoins = 5;
                             deposited += 5;
-                            listConisEvent(this, components);
-                            this.stored["5"] = components.lbMoney5;
+                            //listConisEvent(this, components);
+                            this.stored["5"] = components.inputR5;
                             break;
                         case 2:
-                            components.lbMoney2 += 1;
+                            components.inputR2 += 1;
                             components.listCoins = 2;
                             deposited += 2;
-                            listConisEvent(this, components);
-                            this.stored["2"] = components.lbMoney2;
+                            //listConisEvent(this, components);
+                            this.stored["2"] = components.inputR2;
                             break;
                         case 1:
-                            components.lbMoney1 += 1;
+                            components.inputR1 += 1;
                             components.listCoins = 1;
                             deposited += 1;
-                            listConisEvent(this, components);
-                            this.stored["1"] = components.lbMoney5;
+                            //listConisEvent(this, components);
+                            this.stored["1"] = components.inputR5;
                             break;
                     }
-                    components.lbTotal = deposited;
+                    components.lbIngresado = deposited;
                     lbTransactionEvent(this, components);
                     lbStoresEvent(this, components);
                     contador = result[1];
@@ -185,40 +190,40 @@ namespace SistemaCashValidador.Clases
                     switch (this.billDesposited)
                     {
                         case 20:
-                            components.lbBill20 += 1;
+                            components.inputR20 += 1;
                             components.listBills = 20;
-                            listBillsEvent(this, components);
-                            this.stored["20"] = components.lbBill20;
+                            //listBillsEvent(this, components);
+                            this.stored["20"] = components.inputR20;
                             break;
                         case 50:
-                            components.lbBill50 += 1;
+                            components.inputR50 += 1;
                             components.listBills = 50;
-                            listBillsEvent(this, components);
-                            this.stored["50"] = components.lbBill50;
+                            //listBillsEvent(this, components);
+                            this.stored["50"] = components.inputR50;
                             break;
                         case 100:
-                            components.lbBill100 += 1;
+                            components.inputR100 += 1;
                             components.listBills = 100;
-                            listBillsEvent(this, components);
-                            this.stored["100"] = components.lbBill100;
+                            //listBillsEvent(this, components);
+                            this.stored["100"] = components.inputR100;
                             break;
                         case 200:
-                            components.lbBill200 += 1;
+                            components.inputR200 += 1;
                             components.listBills = 200;
-                            listBillsEvent(this, components);
-                            this.stored["200"] = components.lbBill200;
+                            //listBillsEvent(this, components);
+                            this.stored["200"] = components.inputR200;
                             break;
                         case 500:
-                            components.lbBill500 += 1;
+                            components.inputR500 += 1;
                             components.listBills = 500;
-                            listBillsEvent(this, components);
-                            this.stored["500"] = components.lbBill500;
+                            //listBillsEvent(this, components);
+                            this.stored["500"] = components.inputR500;
                             break;
                     }
 
                     lbStoresEvent(this, components);
                     deposited += this.billDesposited;
-                    components.lbTotal = deposited;
+                    components.lbIngresado = deposited;
                     lbTransactionEvent(this, components);
                     this.billDesposited = 0;
 
@@ -246,16 +251,16 @@ namespace SistemaCashValidador.Clases
         {
             this.components.listCoins = 0;
             this.components.listBills = 0;
-            this.components.lbTotal = 0;
-            this.components.lbMoney1 = (int)this.stored["1"];
-            this.components.lbMoney2 = (int)this.stored["2"];
-            this.components.lbMoney5 = (int)this.stored["5"];
-            this.components.lbMoney10 = (int)this.stored["10"];
-            this.components.lbBill20 = (int)this.stored["20"];
-            this.components.lbBill50 = (int)this.stored["50"];
-            this.components.lbBill100 = (int)this.stored["100"];
-            this.components.lbBill200 = (int)this.stored["200"];
-            this.components.lbBill500 = (int)this.stored["500"];
+            this.components.lbIngresado = 0;
+            this.components.inputR1 = (int)this.stored["1"];
+            this.components.inputR2 = (int)this.stored["2"];
+            this.components.inputR5 = (int)this.stored["5"];
+            this.components.inputR10 = (int)this.stored["10"];
+            this.components.inputR20 = (int)this.stored["20"];
+            this.components.inputR50 = (int)this.stored["50"];
+            this.components.inputR100 = (int)this.stored["100"];
+            this.components.inputR200 = (int)this.stored["200"];
+            this.components.inputR500 = (int)this.stored["500"];
         }
 
         public Hashtable getCashStored()
@@ -320,28 +325,28 @@ namespace SistemaCashValidador.Clases
             switch (value)
             {
                 case 1:
-                    components.lbMoney1 -= count;
+                    components.inputR1 -= count;
                     break;
                 case 5:
-                    components.lbMoney5 -= count;
+                    components.inputR5 -= count;
                     break;
                 case 10:
-                    components.lbMoney10 -= count;
+                    components.inputR10 -= count;
                     break;
                 case 20:
-                    components.lbBill20 -= count;
+                    components.inputR20 -= count;
                     break;
                 case 50:
-                    components.lbBill50 -= count;
+                    components.inputR50 -= count;
                     break;
                 case 100:
-                    components.lbBill100 -= count;
+                    components.inputR100 -= count;
                     break;
                 case 200:
-                    components.lbBill200 -= count;
+                    components.inputR200 -= count;
                     break;
                 case 500:
-                    components.lbBill500 -= count;
+                    components.inputR500 -= count;
                     break;
             }
         }

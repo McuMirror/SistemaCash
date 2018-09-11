@@ -19,12 +19,13 @@ namespace CashLib.Factory
                     return new HopperAcceptorASAHI();
                 case "COMBOT":
                     return new HopperAcceptor();
-                case "BILL":
+                case "SCADVANCE":
                     return new BillAcceptor();
-                case "BILLPrueba":
+                case "HOPPER PRUEBA":
+                    return new HopperAcceptorPrueba();               
+                case "BILL PRUEBA":
                     return new BillAcceptorPrueba();
-                case "HOPPERPrueba":
-                    return new HopperAcceptorPrueba();
+               
                 default:
                     return null;
             }
@@ -38,11 +39,11 @@ namespace CashLib.Factory
                     return new HopperDispenserASAHI();
                 case "COMBOT":
                     return new HopperDispenser();
-                case "BILL":
+                case "F53":
                     return new BillDespenser();
-                case "BILLPrueba":
+                case "HOPPER PRUEBA":
                     return new BillDispenserPrueba();
-                case "HOPPERPrueba":
+                case "BILL PRUEBA":
                     return new HopperDispenserPrueba();
                 default:
                     return null;

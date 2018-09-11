@@ -51,28 +51,7 @@ namespace CashLib.Class
         public override byte[] getCashDesposite(int contador)
         {
 
-            byte[] result = new byte[2];
-
-            if (resultMessage[4] != contador)
-            {
-                switch (resultMessage[5])
-                {
-                    case 7:
-                        result[0] = 10;
-                        break;
-                    case 6:
-                        result[0] = 5;
-                        break;
-                    case 5:
-                        result[0] = 2;
-                        break;
-                    case 4:
-                        result[0] = 1;
-                        break;
-                }
-
-            }
-            result[1] = this.resultMessage[4];
+            byte[] result = new byte[2];           
             return result;
         }
 

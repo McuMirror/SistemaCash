@@ -251,7 +251,7 @@ namespace CashLib.Interfaces
             else
             {
                 this.setMessage(new List<byte>() { 2, 0, 1, 231 }, new
-           List<byte>() { 255, 255 });
+           List<byte>() { 124, 255 });
             }
 
         }

@@ -26,15 +26,15 @@ namespace SistemaCashValidador.Clases
         public Hashtable setCashBoxInitial()
         {
             this.data = this.DB.getCashBox();
-            this.lbComponents.lbMoney1 = (int) data["1"];
-            this.lbComponents.lbMoney2 = (int) data["2"];
-            this.lbComponents.lbMoney5 = (int) data["5"];
-            this.lbComponents.lbMoney10 = (int) data["10"];
-            this.lbComponents.lbBill20 = (int) data["20"];
-            this.lbComponents.lbBill50 = (int) data["50"];
-            this.lbComponents.lbBill100 = (int) data["100"];
-            this.lbComponents.lbBill200 = (int) data["200"];
-            this.lbComponents.lbBill500 = (int) data["500"];
+            this.lbComponents.inputR1 = (int) data["1"];
+            this.lbComponents.inputR2 = (int) data["2"];
+            this.lbComponents.inputR5 = (int) data["5"];
+            this.lbComponents.inputR10 = (int) data["10"];
+            this.lbComponents.inputR20 = (int) data["20"];
+            this.lbComponents.inputR50 = (int) data["50"];
+            this.lbComponents.inputR100 = (int) data["100"];
+            this.lbComponents.inputR200 = (int) data["200"];
+            this.lbComponents.inputR500 = (int) data["500"];
 
             lbStoreEvent(this,lbComponents);
 

@@ -10,7 +10,7 @@
         <ImageBrush ImageSource="Assets/fondo_cash5.jpg"/>
     </Window.Background>
     <Grid>
-        <Label Content="Sistema Demo Chash" HorizontalAlignment="Left" Margin="161,692,0,0" VerticalAlignment="Top" FontSize="72" FontFamily="Open Sans Extrabold" Foreground="#FFF7F3F3">
+        <Label Content="Sistema Demo Cash" HorizontalAlignment="Left" Margin="161,692,0,0" VerticalAlignment="Top" FontSize="72" FontFamily="Open Sans Extrabold" Foreground="#FFF7F3F3">
             <Label.Effect>
                 <DropShadowEffect BlurRadius="12"/>
             </Label.Effect>

@@ -41,18 +41,6 @@ namespace SistemaCashValidador.Constrollers
             
         }
 
-        public void setConfigEvents()
-        {
-            this.error.errorEvent += new Error.ErrorEventHandler(errorEvent);
-            //this.error.dialogErrorEvent += new Error.DialogoErrorEventHandler(dialogErrorEvent);
-            this.cctalk.listBillsEvent += new CCTalk.updateListBillsEventHandler(ListBillsEvent);
-            this.cctalk.listConisEvent += new CCTalk.updateListCoinsEventHandler(ListCoinsEvent);
-            this.cctalk.lbStoresEvent += new CCTalk.updateLbStoreEventHandler(storeEvent);
-            this.cctalk.lbTransactionEvent += new CCTalk.updateLbTransactionEventHandler(transactionEvent);
-            this.cctalk.setEvents();
-            this.cashBox.lbStoreEvent += new Caja.lbStoreEventHandler(storeEvent);
-        }
-
         public void validateConfigDevices()
         {
             if (!this.cctalk.validateConfigDevices())
@@ -61,6 +49,18 @@ namespace SistemaCashValidador.Constrollers
             }
         }
 
+        public void setConfigEvents()
+        {
+            this.error.errorEvent += new Error.ErrorEventHandler(errorEvent);
+            //this.error.dialogErrorEvent += new Error.DialogoErrorEventHandler(dialogErrorEvent);
+            //this.cctalk.listBillsEvent += new CCTalk.updateListBillsEventHandler(ListBillsEvent);
+            //this.cctalk.listConisEvent += new CCTalk.updateListCoinsEventHandler(ListCoinsEvent);
+            this.cctalk.lbStoresEvent += new CCTalk.updateLbStoreEventHandler(storeEvent);
+            this.cctalk.lbTransactionEvent += new CCTalk.updateLbTransactionEventHandler(transactionEvent);
+            this.cctalk.initializeDevices();            
+            this.cashBox.lbStoreEvent += new Caja.lbStoreEventHandler(storeEvent);
+        }
+      
         public void setConfigDevices(Dictionary<string,string> selectedDevices)
         {
             this.cctalk.setConfigDevices(selectedDevices);

@@ -13,17 +13,17 @@ namespace SistemaCashValidador.Clases
 
         public CCTalkConfig()
         {
-            deviceConfiguration = new Dictionary<string, string>();
-            deviceConfiguration.Add("HOPPERACCEPTOR", "");
-            deviceConfiguration.Add("HOPPERDISPENSER", "");
-            deviceConfiguration.Add("BILLACCEPTOR", "");
-            deviceConfiguration.Add("BILLDISPENSER", "");
+            this.deviceConfiguration = new Dictionary<string, string>();
+            this.deviceConfiguration.Add("HOPPERACCEPTOR", "");
+            this.deviceConfiguration.Add("HOPPERDISPENSER", "");
+            this.deviceConfiguration.Add("BILLACCEPTOR", "");
+            this.deviceConfiguration.Add("BILLDISPENSER", "");
         }
 
         public bool validateConfiguration()
         {
             bool areTheDeviceDefined = true;
-            foreach (KeyValuePair<string, string> device in deviceConfiguration)
+            foreach (KeyValuePair<string, string> device in this.deviceConfiguration)
             {
                 if (device.Value == "")
                 {
@@ -35,7 +35,12 @@ namespace SistemaCashValidador.Clases
 
         public void setConfig(Dictionary<string, string> selectedDevices)
         {
-            deviceConfiguration = selectedDevices;
+            this.deviceConfiguration = selectedDevices;
+        }
+
+        public Dictionary<string, string> getConfig()
+        {
+            return this.deviceConfiguration;
         }
     }
 }

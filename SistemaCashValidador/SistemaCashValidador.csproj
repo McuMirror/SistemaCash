@@ -69,6 +69,12 @@
     <Compile Include="Clases\Pago.cs" />
     <Compile Include="Clases\Transaccion.cs" />
     <Compile Include="Constrollers\Controller_Transaccion.cs" />
+    <Compile Include="Desglose.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Desglose.Designer.cs">
+      <DependentUpon>Desglose.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     <Compile Include="Modelos\Modelo_Transaccion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Desglose.resx">
+      <DependentUpon>Desglose.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogo.resx">
       <DependentUpon>Dialogo.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,6 +116,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -122,10 +132,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Assets\" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="Assets\icon_configuration.png" />
+    <None Include="Assets\icon_cashbox.png" />
+    <None Include="Assets\icon_cashTrasnsaction.png" />
+    <None Include="Assets\fondo_cash5.jpg" />
+    <None Include="Assets\fondo_cash6.jpg" />
+    <None Include="Assets\logo_siccob.png" />
     <Content Include="DBCash.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

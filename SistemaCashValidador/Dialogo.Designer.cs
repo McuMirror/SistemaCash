@@ -167,10 +167,11 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // Dialogo
+            // dialogoCaja
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ControlBox = false;
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.inpt500);
@@ -195,7 +196,7 @@
             this.Controls.Add(this.lbMensajeDialogo);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Dialogo";
+            this.Name = "dialogoCaja";
             this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();

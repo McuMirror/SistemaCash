@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormConfigHopper));
             this.btnSave = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.selectHooperAcceptor = new System.Windows.Forms.ComboBox();
@@ -66,7 +67,7 @@
             "Seleccionar",
             "COMBOT",
             "ASAHI",
-            "PRUEBA"});
+            "HOPPER PRUEBA"});
             this.selectHooperAcceptor.Location = new System.Drawing.Point(166, 69);
             this.selectHooperAcceptor.Name = "selectHooperAcceptor";
             this.selectHooperAcceptor.Size = new System.Drawing.Size(121, 21);
@@ -88,7 +89,7 @@
             "Seleccionar",
             "COMBOT",
             "ASAHI",
-            "PRUEBA"});
+            "HOPPER PRUEBA"});
             this.selectHopperDispenser.Location = new System.Drawing.Point(166, 110);
             this.selectHopperDispenser.Name = "selectHopperDispenser";
             this.selectHopperDispenser.Size = new System.Drawing.Size(121, 21);
@@ -109,7 +110,7 @@
             this.selectBillAcceptor.Items.AddRange(new object[] {
             "Seleccionar",
             "SCADVANCE",
-            "PRUEBA"});
+            "BILL PRUEBA"});
             this.selectBillAcceptor.Location = new System.Drawing.Point(166, 149);
             this.selectBillAcceptor.Name = "selectBillAcceptor";
             this.selectBillAcceptor.Size = new System.Drawing.Size(121, 21);
@@ -130,7 +131,7 @@
             this.selectBillDispenser.Items.AddRange(new object[] {
             "Seleccionar",
             "F53",
-            "PRUEBA"});
+            "BILL PRUEBA"});
             this.selectBillDispenser.Location = new System.Drawing.Point(166, 190);
             this.selectBillDispenser.Name = "selectBillDispenser";
             this.selectBillDispenser.Size = new System.Drawing.Size(121, 21);
@@ -149,7 +150,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(339, 289);
+            this.ClientSize = new System.Drawing.Size(334, 291);
+            this.ControlBox = false;
             this.Controls.Add(this.selectBillDispenser);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.selectBillAcceptor);
@@ -160,9 +162,15 @@
             this.Controls.Add(this.selectHooperAcceptor);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSave);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(350, 330);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(350, 330);
             this.Name = "FormConfigHopper";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Configurar Dispositvos";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FormConfigHopper_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
