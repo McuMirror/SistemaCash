@@ -121,19 +121,37 @@
   <data name="icon_cashbox" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\icon_cashbox.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="fondo_cash6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\fondo_cash6.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="icon_configuration" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\icon_configuration.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="fondo_cash5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\fondo_cash5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_Cash_Register" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\icon_Cash_Register.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo_siccob" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\logo_siccob.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondo_cash6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\fondo_cash6.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_cashTrasnsaction" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\icon_cashTrasnsaction.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="logo_siccob" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\logo_siccob.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_Cash_Counter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\icon_Cash_Counter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondo_cash5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\fondo_cash5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_power" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\icon_power.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\icon_close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_configuration_devices" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\icon_configuration_devices.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_Shutdown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\icon_Shutdown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

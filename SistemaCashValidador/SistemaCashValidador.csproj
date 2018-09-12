@@ -140,6 +140,12 @@
     <None Include="Assets\fondo_cash5.jpg" />
     <None Include="Assets\fondo_cash6.jpg" />
     <None Include="Assets\logo_siccob.png" />
+    <None Include="Assets\icon_close.png" />
+    <None Include="Assets\icon_power.png" />
+    <None Include="Assets\icon_configuration_devices.png" />
+    <None Include="Assets\icon_Cash_Counter.png" />
+    <None Include="Assets\icon_Cash_Register.png" />
+    <None Include="Assets\icon_Shutdown.png" />
     <Content Include="DBCash.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

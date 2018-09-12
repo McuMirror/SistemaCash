@@ -18,16 +18,14 @@ namespace SistemaCashValidador.Constrollers
         private Caja cashBox;
 
         public delegate void ErrorEventHandler(object sender, MessageEventArgs e);
-        public delegate void DialogErrorEventHandler(object sender, MessageEventArgs e);
-        public delegate void ListBillsEventHandler(object sender, MessageEventArgs e);
-        public delegate void ListCoinsEventHandler(object sender, MessageEventArgs e);
+        public delegate void InformationDevicesEventHandler(object sender, MessageEventArgs e);
+        public delegate void DialogErrorEventHandler(object sender, MessageEventArgs e);       
         public delegate void StoreEventHandler(object sender, MessageEventArgs e);
         public delegate void TransactionEventHandler(object sender, MessageEventArgs e);
-        public delegate void ConfigHopperEventHandler();
+        public delegate void ConfigHopperEventHandler(object sender, EventArgs e);
         public event ErrorEventHandler errorEvent;
+        public event InformationDevicesEventHandler informationDeviceEvent;
         //public event DialogErrorEventHandler dialogErrorEvent;
-        public event ListBillsEventHandler ListBillsEvent;
-        public event ListCoinsEventHandler ListCoinsEvent;
         public event StoreEventHandler storeEvent;
         public event TransactionEventHandler transactionEvent;
         public event ConfigHopperEventHandler configHopperEvent;
@@ -38,36 +36,47 @@ namespace SistemaCashValidador.Constrollers
             this.error = Error.getInstancia();
             this.transaction = new Transaccion();
             this.cashBox = new Caja();
-            
         }
 
         public void validateConfigDevices()
         {
             if (!this.cctalk.validateConfigDevices())
             {
-                configHopperEvent();
+                configHopperEvent(this, new EventArgs());
             }
         }
 
-        public void setConfigEvents()
+        public Dictionary<string, string> getConfigDevices()
+        {
+            return this.cctalk.getConfigDevices();
+        }
+
+        public void setConfigEventError()
         {
             this.error.errorEvent += new Error.ErrorEventHandler(errorEvent);
             //this.error.dialogErrorEvent += new Error.DialogoErrorEventHandler(dialogErrorEvent);
-            //this.cctalk.listBillsEvent += new CCTalk.updateListBillsEventHandler(ListBillsEvent);
-            //this.cctalk.listConisEvent += new CCTalk.updateListCoinsEventHandler(ListCoinsEvent);
+        }
+
+        public void setConfigEventsDevices()
+        {            
+            this.cctalk.lbInformationDeviceEvent += new CCTalk.updateInformationDevicesEventHandler(informationDeviceEvent);
             this.cctalk.lbStoresEvent += new CCTalk.updateLbStoreEventHandler(storeEvent);
             this.cctalk.lbTransactionEvent += new CCTalk.updateLbTransactionEventHandler(transactionEvent);
-            this.cctalk.initializeDevices();            
             this.cashBox.lbStoreEvent += new Caja.lbStoreEventHandler(storeEvent);
         }
       
-        public void setConfigDevices(Dictionary<string,string> selectedDevices)
+        public void initializeDevices()
+        {
+            this.cctalk.initializeDevices();
+        }
+
+        public void setConfigDevices(Dictionary<string, string> selectedDevices)
         {
             this.cctalk.setConfigDevices(selectedDevices);
-         }
-       
+        }
+
         public void getStatusDevices()
-        {            
+        {
             this.cctalk.getStatus();
         }
 
@@ -77,15 +86,15 @@ namespace SistemaCashValidador.Constrollers
         }
 
         public void setNewPayout(int payout)
-        {            
-            this.transaction.setNewRegister(payout);                 
+        {
+            this.transaction.setNewRegister(payout);
         }
 
         public void updateCashBox(Hashtable data)
         {
             this.cashBox.update(data);
         }
-        
+
         public void closesDevices()
         {
             //this.cctalk.disableDevices();

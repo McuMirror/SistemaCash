@@ -19,15 +19,7 @@ namespace SistemaCashValidador
         {
             InitializeComponent();
         }
-
-        private void FormConfigHopper_Load(object sender, EventArgs e)
-        {
-            selectHooperAcceptor.SelectedIndex = 0;
-            selectHopperDispenser.SelectedIndex = 0;
-            selectBillAcceptor.SelectedIndex = 0;
-            selectBillDispenser.SelectedIndex = 0;
-        }
-
+       
         private void btnSave_Click(object sender, EventArgs e)
         {
             Dictionary<string, string> selects = new Dictionary<string, string>();
@@ -57,6 +49,54 @@ namespace SistemaCashValidador
                         
         }
 
-
+        public void setValuesSelects(Dictionary<string, string> devices)
+        {            
+            foreach (KeyValuePair<string,string> device in devices)
+            {                
+                switch (device.Key)
+                {
+                    case "HOPPERACCEPTOR":
+                        selectHooperAcceptor.SelectedIndex = getValueSelectDevice(device.Value);
+                        break;
+                    case "HOPPERDISPENSER":
+                        selectHopperDispenser.SelectedIndex = getValueSelectDevice(device.Value);  
+                        break;
+                    case "BILLACCEPTOR":
+                        selectBillAcceptor.SelectedIndex = getValueSelectDevice(device.Value);                        
+                        break;
+                    case "BILLDISPENSER":
+                        selectBillDispenser.SelectedIndex = getValueSelectDevice(device.Value);
+                        break;
+                }
+            }                        
+        }
+       
+        private int getValueSelectDevice(string valueDevice)
+        {
+            int valueSelect = 0;
+            switch (valueDevice)
+            {            
+                case "COMBOT":
+                    valueSelect = 1;
+                    break;
+                case "ASAHI":
+                    valueSelect = 2;
+                    break;
+                case "HOPPER PRUEBA":
+                    valueSelect = 3;
+                    break;
+                case "SCADVANCE":
+                    valueSelect = 1;
+                    break;
+                case "F53":
+                    valueSelect = 1;
+                    break;
+                case "BILL PRUEBA":
+                    valueSelect = 2;
+                    break;
+            }
+            return valueSelect;
+        }
+                              
     }
 }

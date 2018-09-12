@@ -61,6 +61,9 @@
             this.btnOperation = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbMensajeProceso = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.barTitle = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnClose = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
@@ -71,6 +74,8 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.barTitle.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -89,7 +94,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 561);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 600);
             this.tableLayoutPanel1.TabIndex = 13;
             // 
             // tableLayoutPanel2
@@ -99,13 +104,13 @@
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel7, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(81, 59);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(83, 63);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(621, 442);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(634, 474);
             this.tableLayoutPanel2.TabIndex = 3;
             // 
             // tableLayoutPanel7
@@ -122,7 +127,7 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 260F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(615, 376);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(628, 408);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // label2
@@ -132,7 +137,7 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(609, 50);
+            this.label2.Size = new System.Drawing.Size(622, 50);
             this.label2.TabIndex = 6;
             this.label2.Text = "Sistema Demo Cash";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -143,7 +148,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 313);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(609, 60);
+            this.panel3.Size = new System.Drawing.Size(622, 92);
             this.panel3.TabIndex = 2;
             // 
             // groupBox2
@@ -153,10 +158,11 @@
             this.groupBox2.Controls.Add(this.inptCambio);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(62, 8);
+            this.groupBox2.Location = new System.Drawing.Point(69, 8);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(488, 45);
+            this.groupBox2.Size = new System.Drawing.Size(488, 65);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             // 
@@ -166,7 +172,7 @@
             this.inptIngresado.Enabled = false;
             this.inptIngresado.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inptIngresado.ForeColor = System.Drawing.Color.Black;
-            this.inptIngresado.Location = new System.Drawing.Point(390, 11);
+            this.inptIngresado.Location = new System.Drawing.Point(390, 22);
             this.inptIngresado.Name = "inptIngresado";
             this.inptIngresado.ReadOnly = true;
             this.inptIngresado.Size = new System.Drawing.Size(80, 28);
@@ -180,8 +186,8 @@
             this.inptCambio.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.inptCambio.Enabled = false;
             this.inptCambio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inptCambio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.inptCambio.Location = new System.Drawing.Point(127, 11);
+            this.inptCambio.ForeColor = System.Drawing.Color.Black;
+            this.inptCambio.Location = new System.Drawing.Point(127, 22);
             this.inptCambio.Name = "inptCambio";
             this.inptCambio.ReadOnly = true;
             this.inptCambio.Size = new System.Drawing.Size(94, 28);
@@ -194,7 +200,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(244, 12);
+            this.label8.Location = new System.Drawing.Point(244, 23);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(130, 29);
             this.label8.TabIndex = 4;
@@ -206,7 +212,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(8, 12);
+            this.label6.Location = new System.Drawing.Point(8, 23);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(103, 29);
             this.label6.TabIndex = 2;
@@ -220,19 +226,20 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 53);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(609, 254);
+            this.panel2.Size = new System.Drawing.Size(622, 254);
             this.panel2.TabIndex = 1;
             // 
             // inputEfectivo
             // 
             this.inputEfectivo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.inputEfectivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputEfectivo.Location = new System.Drawing.Point(186, 11);
-            this.inputEfectivo.MaximumSize = new System.Drawing.Size(240, 20);
-            this.inputEfectivo.MinimumSize = new System.Drawing.Size(240, 20);
+            this.inputEfectivo.Location = new System.Drawing.Point(193, 11);
+            this.inputEfectivo.MaximumSize = new System.Drawing.Size(240, 30);
+            this.inputEfectivo.MinimumSize = new System.Drawing.Size(240, 30);
             this.inputEfectivo.Name = "inputEfectivo";
             this.inputEfectivo.Size = new System.Drawing.Size(240, 29);
             this.inputEfectivo.TabIndex = 14;
+            this.inputEfectivo.Text = "0";
             this.inputEfectivo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tableLayoutPanel4
@@ -254,7 +261,7 @@
             this.tableLayoutPanel4.Controls.Add(this.btn9, 2, 2);
             this.tableLayoutPanel4.Controls.Add(this.btnDepositar, 1, 3);
             this.tableLayoutPanel4.Controls.Add(this.btnClear, 1, 3);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(186, 46);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(193, 46);
             this.tableLayoutPanel4.MaximumSize = new System.Drawing.Size(240, 200);
             this.tableLayoutPanel4.MinimumSize = new System.Drawing.Size(240, 200);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -270,8 +277,10 @@
             // 
             // btn0
             // 
+            this.btn0.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
             this.btn0.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn0.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
+            this.btn0.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
+            this.btn0.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(184)))), ((int)(((byte)(219)))));
             this.btn0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn0.ForeColor = System.Drawing.Color.White;
             this.btn0.Location = new System.Drawing.Point(3, 123);
@@ -279,13 +288,15 @@
             this.btn0.Size = new System.Drawing.Size(74, 34);
             this.btn0.TabIndex = 9;
             this.btn0.Text = "0";
-            this.btn0.UseVisualStyleBackColor = true;
+            this.btn0.UseVisualStyleBackColor = false;
             this.btn0.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btn1
             // 
+            this.btn1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
             this.btn1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
+            this.btn1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
+            this.btn1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(184)))), ((int)(((byte)(219)))));
             this.btn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn1.ForeColor = System.Drawing.Color.White;
             this.btn1.Location = new System.Drawing.Point(3, 3);
@@ -293,27 +304,32 @@
             this.btn1.Size = new System.Drawing.Size(74, 34);
             this.btn1.TabIndex = 0;
             this.btn1.Text = "1";
-            this.btn1.UseVisualStyleBackColor = true;
+            this.btn1.UseVisualStyleBackColor = false;
             this.btn1.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btn2
             // 
+            this.btn2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
             this.btn2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
+            this.btn2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
+            this.btn2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(184)))), ((int)(((byte)(219)))));
             this.btn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btn2.ForeColor = System.Drawing.Color.White;
             this.btn2.Location = new System.Drawing.Point(83, 3);
             this.btn2.Name = "btn2";
             this.btn2.Size = new System.Drawing.Size(74, 34);
             this.btn2.TabIndex = 1;
             this.btn2.Text = "2";
-            this.btn2.UseVisualStyleBackColor = true;
+            this.btn2.UseVisualStyleBackColor = false;
             this.btn2.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btn3
             // 
+            this.btn3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
             this.btn3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
+            this.btn3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
+            this.btn3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(184)))), ((int)(((byte)(219)))));
             this.btn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn3.ForeColor = System.Drawing.Color.White;
             this.btn3.Location = new System.Drawing.Point(163, 3);
@@ -321,13 +337,15 @@
             this.btn3.Size = new System.Drawing.Size(74, 34);
             this.btn3.TabIndex = 2;
             this.btn3.Text = "3";
-            this.btn3.UseVisualStyleBackColor = true;
+            this.btn3.UseVisualStyleBackColor = false;
             this.btn3.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btn4
             // 
+            this.btn4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
             this.btn4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
+            this.btn4.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
+            this.btn4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(184)))), ((int)(((byte)(219)))));
             this.btn4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn4.ForeColor = System.Drawing.Color.White;
             this.btn4.Location = new System.Drawing.Point(3, 43);
@@ -335,13 +353,15 @@
             this.btn4.Size = new System.Drawing.Size(74, 34);
             this.btn4.TabIndex = 3;
             this.btn4.Text = "4";
-            this.btn4.UseVisualStyleBackColor = true;
+            this.btn4.UseVisualStyleBackColor = false;
             this.btn4.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btn5
             // 
+            this.btn5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
             this.btn5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
+            this.btn5.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
+            this.btn5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(184)))), ((int)(((byte)(219)))));
             this.btn5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn5.ForeColor = System.Drawing.Color.White;
             this.btn5.Location = new System.Drawing.Point(83, 43);
@@ -349,13 +369,15 @@
             this.btn5.Size = new System.Drawing.Size(74, 34);
             this.btn5.TabIndex = 4;
             this.btn5.Text = "5";
-            this.btn5.UseVisualStyleBackColor = true;
+            this.btn5.UseVisualStyleBackColor = false;
             this.btn5.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btn6
             // 
+            this.btn6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
             this.btn6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
+            this.btn6.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
+            this.btn6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(184)))), ((int)(((byte)(219)))));
             this.btn6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn6.ForeColor = System.Drawing.Color.White;
             this.btn6.Location = new System.Drawing.Point(163, 43);
@@ -363,13 +385,15 @@
             this.btn6.Size = new System.Drawing.Size(74, 34);
             this.btn6.TabIndex = 5;
             this.btn6.Text = "6";
-            this.btn6.UseVisualStyleBackColor = true;
+            this.btn6.UseVisualStyleBackColor = false;
             this.btn6.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btn7
             // 
+            this.btn7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
             this.btn7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
+            this.btn7.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
+            this.btn7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(184)))), ((int)(((byte)(219)))));
             this.btn7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn7.ForeColor = System.Drawing.Color.White;
             this.btn7.Location = new System.Drawing.Point(3, 83);
@@ -377,13 +401,15 @@
             this.btn7.Size = new System.Drawing.Size(74, 34);
             this.btn7.TabIndex = 6;
             this.btn7.Text = "7";
-            this.btn7.UseVisualStyleBackColor = true;
+            this.btn7.UseVisualStyleBackColor = false;
             this.btn7.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btn8
             // 
+            this.btn8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
             this.btn8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
+            this.btn8.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
+            this.btn8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(184)))), ((int)(((byte)(219)))));
             this.btn8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn8.ForeColor = System.Drawing.Color.White;
             this.btn8.Location = new System.Drawing.Point(83, 83);
@@ -391,13 +417,15 @@
             this.btn8.Size = new System.Drawing.Size(74, 34);
             this.btn8.TabIndex = 7;
             this.btn8.Text = "8";
-            this.btn8.UseVisualStyleBackColor = true;
+            this.btn8.UseVisualStyleBackColor = false;
             this.btn8.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btn9
             // 
+            this.btn9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
             this.btn9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn9.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
+            this.btn9.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
+            this.btn9.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(184)))), ((int)(((byte)(219)))));
             this.btn9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn9.ForeColor = System.Drawing.Color.White;
             this.btn9.Location = new System.Drawing.Point(163, 83);
@@ -405,16 +433,16 @@
             this.btn9.Size = new System.Drawing.Size(74, 34);
             this.btn9.TabIndex = 8;
             this.btn9.Text = "9";
-            this.btn9.UseVisualStyleBackColor = true;
+            this.btn9.UseVisualStyleBackColor = false;
             this.btn9.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btnDepositar
             // 
-            this.btnDepositar.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnDepositar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(98)))), ((int)(((byte)(117)))));
             this.tableLayoutPanel4.SetColumnSpan(this.btnDepositar, 3);
             this.btnDepositar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDepositar.FlatAppearance.BorderColor = System.Drawing.Color.DarkGreen;
-            this.btnDepositar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.ForestGreen;
+            this.btnDepositar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(98)))), ((int)(((byte)(117)))));
+            this.btnDepositar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
             this.btnDepositar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDepositar.ForeColor = System.Drawing.Color.White;
             this.btnDepositar.Location = new System.Drawing.Point(3, 163);
@@ -423,12 +451,15 @@
             this.btnDepositar.TabIndex = 1;
             this.btnDepositar.Text = "Pagar";
             this.btnDepositar.UseVisualStyleBackColor = false;
+            this.btnDepositar.Click += new System.EventHandler(this.generarTransaccion);
             // 
             // btnClear
             // 
+            this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
             this.tableLayoutPanel4.SetColumnSpan(this.btnClear, 2);
             this.btnClear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SkyBlue;
+            this.btnClear.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(181)))));
+            this.btnClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(184)))), ((int)(((byte)(219)))));
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.ForeColor = System.Drawing.Color.White;
             this.btnClear.Location = new System.Drawing.Point(83, 123);
@@ -436,7 +467,7 @@
             this.btnClear.Size = new System.Drawing.Size(154, 34);
             this.btnClear.TabIndex = 10;
             this.btnClear.Text = "C";
-            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // tableLayoutPanel3
@@ -451,7 +482,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(615, 54);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(628, 54);
             this.tableLayoutPanel3.TabIndex = 4;
             // 
             // flowLayoutPanel1
@@ -461,17 +492,18 @@
             this.flowLayoutPanel1.Controls.Add(this.btnOperation);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(310, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(317, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(302, 48);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(308, 48);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // btnCaja
             // 
             this.btnCaja.FlatAppearance.BorderSize = 0;
+            this.btnCaja.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(205)))), ((int)(((byte)(245)))));
             this.btnCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCaja.Image = global::SistemaCashValidador.Properties.Resources.icon_configuration;
-            this.btnCaja.Location = new System.Drawing.Point(251, 3);
+            this.btnCaja.Image = global::SistemaCashValidador.Properties.Resources.icon_configuration_devices;
+            this.btnCaja.Location = new System.Drawing.Point(257, 3);
             this.btnCaja.Name = "btnCaja";
             this.btnCaja.Size = new System.Drawing.Size(48, 40);
             this.btnCaja.TabIndex = 10;
@@ -482,9 +514,10 @@
             // btnConfigurar
             // 
             this.btnConfigurar.FlatAppearance.BorderSize = 0;
+            this.btnConfigurar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(205)))), ((int)(((byte)(245)))));
             this.btnConfigurar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfigurar.Image = global::SistemaCashValidador.Properties.Resources.icon_cashbox;
-            this.btnConfigurar.Location = new System.Drawing.Point(197, 3);
+            this.btnConfigurar.Image = global::SistemaCashValidador.Properties.Resources.icon_Cash_Counter;
+            this.btnConfigurar.Location = new System.Drawing.Point(203, 3);
             this.btnConfigurar.Name = "btnConfigurar";
             this.btnConfigurar.Size = new System.Drawing.Size(48, 40);
             this.btnConfigurar.TabIndex = 11;
@@ -494,9 +527,10 @@
             // btnOperation
             // 
             this.btnOperation.FlatAppearance.BorderSize = 0;
+            this.btnOperation.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(205)))), ((int)(((byte)(245)))));
             this.btnOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOperation.Image = global::SistemaCashValidador.Properties.Resources.icon_cashTrasnsaction;
-            this.btnOperation.Location = new System.Drawing.Point(143, 3);
+            this.btnOperation.Image = global::SistemaCashValidador.Properties.Resources.icon_Cash_Register;
+            this.btnOperation.Location = new System.Drawing.Point(149, 3);
             this.btnOperation.Name = "btnOperation";
             this.btnOperation.Size = new System.Drawing.Size(48, 40);
             this.btnOperation.TabIndex = 12;
@@ -517,14 +551,52 @@
             // 
             this.lbMensajeProceso.Cursor = System.Windows.Forms.Cursors.AppStarting;
             this.lbMensajeProceso.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbMensajeProceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMensajeProceso.ForeColor = System.Drawing.Color.ForestGreen;
-            this.lbMensajeProceso.Location = new System.Drawing.Point(81, 504);
+            this.lbMensajeProceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMensajeProceso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(45)))), ((int)(((byte)(54)))));
+            this.lbMensajeProceso.Location = new System.Drawing.Point(83, 540);
             this.lbMensajeProceso.Name = "lbMensajeProceso";
-            this.lbMensajeProceso.Size = new System.Drawing.Size(621, 57);
+            this.lbMensajeProceso.Size = new System.Drawing.Size(634, 60);
             this.lbMensajeProceso.TabIndex = 12;
             this.lbMensajeProceso.Text = "Conectado";
-            this.lbMensajeProceso.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbMensajeProceso.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.barTitle);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(800, 30);
+            this.panel1.TabIndex = 14;
+            // 
+            // barTitle
+            // 
+            this.barTitle.Controls.Add(this.btnClose);
+            this.barTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.barTitle.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.barTitle.Location = new System.Drawing.Point(0, 0);
+            this.barTitle.Name = "barTitle";
+            this.barTitle.Size = new System.Drawing.Size(800, 30);
+            this.barTitle.TabIndex = 0;
+            this.barTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.barTitle_MouseDown);
+            this.barTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.barTitle_MouseMove);
+            this.barTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.barTitle_MouseUp);
+            // 
+            // btnClose
+            // 
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(205)))), ((int)(((byte)(245)))));
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Image = global::SistemaCashValidador.Properties.Resources.icon_Shutdown;
+            this.btnClose.Location = new System.Drawing.Point(757, 5);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 15, 3);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(28, 25);
+            this.btnClose.TabIndex = 13;
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // Form1
             // 
@@ -532,9 +604,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackgroundImage = global::SistemaCashValidador.Properties.Resources.fondo_cash6;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(800, 600);
             this.ControlBox = false;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(800, 600);
             this.MinimumSize = new System.Drawing.Size(800, 600);
@@ -556,6 +630,8 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.barTitle.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -593,6 +669,9 @@
         private System.Windows.Forms.Button btnOperation;
         private System.Windows.Forms.Button btn1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.FlowLayoutPanel barTitle;
+        private System.Windows.Forms.Button btnClose;
     }
 }
 

@@ -11,12 +11,10 @@ namespace SistemaCashValidador.Clases
     class CCTalk
     {
         private static CCTalk instancia = null;
-        public delegate void updateListBillsEventHandler(object sender, MessageEventArgs e);
-        public delegate void updateListCoinsEventHandler(object sender, MessageEventArgs e);
+        public delegate void updateInformationDevicesEventHandler(object sender, MessageEventArgs e);  
         public delegate void updateLbStoreEventHandler(object sender, MessageEventArgs e);
         public delegate void updateLbTransactionEventHandler(object sender, MessageEventArgs e);
-        //public event updateListBillsEventHandler listBillsEvent;
-        //public event updateListCoinsEventHandler listConisEvent;
+        public event updateInformationDevicesEventHandler lbInformationDeviceEvent;
         public event updateLbStoreEventHandler lbStoresEvent;
         public event updateLbTransactionEventHandler lbTransactionEvent;
 
@@ -84,6 +82,11 @@ namespace SistemaCashValidador.Clases
             this.setEvents();
         }
 
+        public Dictionary<string, string> getConfigDevices()
+        {
+            return this.config.getConfig();
+        }
+
         private void setEvents()
         {
             billAcceptor.powerUpEvent += powerUpHandle;
@@ -103,7 +106,7 @@ namespace SistemaCashValidador.Clases
                 fail += " No Conectado Hopper Accepter";
             }
 
-            if (!hopperAcceptor.openConnection())
+            if (!hopperDispenser.openConnection())
             {
                 fail += " No Conectado Hopper Dispenser";
             }
@@ -117,13 +120,14 @@ namespace SistemaCashValidador.Clases
             {
                 fail += " No Conectado Bill Dispenser";
             }
-            this.error.setMesseg(fail);
+            this.components.lbMessage = fail;
+            lbInformationDeviceEvent(this, components);
         }
 
         public void enableDevices(Hashtable DBStored)
         {
             billAcceptor.enable();
-            //billDespenser.enable();
+            billDispenser.enable();
             hopperAcceptor.enable();
             hopperDispenser.enable();
 

@@ -19,36 +19,52 @@ namespace SistemaCashValidador
     public partial class Form1 : Form
     {
         private Controller_Transaccion controllerTransaccion;
+        private Point position = Point.Empty;
+        private bool move;
 
         public Form1()
         {
             InitializeComponent();
             controllerTransaccion = new Controller_Transaccion();
             this.controllerTransaccion.errorEvent += messageError;
-            //this.controllerTransaccion.ListBillsEvent += updateListBill;
-            //this.controllerTransaccion.ListCoinsEvent += updateListCoins;
+            this.controllerTransaccion.informationDeviceEvent += messageError;
             this.controllerTransaccion.storeEvent += updateLbStore;
             this.controllerTransaccion.transactionEvent += updateLbTransaccion;
             this.controllerTransaccion.configHopperEvent += setConfigHopper;
-            
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            this.controllerTransaccion.setConfigEventError();
             this.controllerTransaccion.validateConfigDevices();
-            this.controllerTransaccion.setConfigEvents();
+            this.controllerTransaccion.setConfigEventsDevices();
+            this.controllerTransaccion.initializeDevices();
             this.controllerTransaccion.getStatusDevices();
             this.controllerTransaccion.getCashBox();
-            //listBilletes.Enabled = true;
         }
 
         private void generarTransaccion(object sender, EventArgs e)
         {
-            int depositoRequerido = Int32.Parse(inputEfectivo.Text);
-            this.controllerTransaccion.setNewPayout(depositoRequerido);
+            try
+            {
+                int depositoRequerido = Int32.Parse(inputEfectivo.Text);
+                if (depositoRequerido > 0)
+                {
+                    this.controllerTransaccion.setNewPayout(depositoRequerido);
+                }
+                else
+                {
+                    MessageBox.Show("Debes definir una cantidad mayor a cero para llevar a cabo la transacción");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
-       
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.controllerTransaccion.closesDevices();
@@ -64,13 +80,50 @@ namespace SistemaCashValidador
 
         private void getValueKeyboard(object sender, EventArgs e)
         {
-            inputEfectivo.Text += ((Button)sender).Text; 
+            string number = inputEfectivo.Text;
+            if (number == "0")
+            {
+                inputEfectivo.Text = "";
+                inputEfectivo.Text += ((Button)sender).Text;
+            }
+            else
+            {
+                inputEfectivo.Text += ((Button)sender).Text;
+            }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            inputEfectivo.Text = "";
+            inputEfectivo.Text = "0";            
         }
+ 
+        #region Eventos para la barra de titulo
+
+        private void barTitle_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.position = new Point(e.X,e.Y);
+            this.move = true;
+        }
+
+        private void barTitle_MouseUp(object sender, MouseEventArgs e)
+        {
+            this.move = false;
+        }
+
+        private void barTitle_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (this.move)
+            {                
+                this.Location = new Point((this.Left + e.X - this.position.X),(this.Top + e.Y - this.position.Y));
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        #endregion
 
         #region Eventos Para actualizar vistas
 
@@ -89,7 +142,7 @@ namespace SistemaCashValidador
                 }
                 else
                 {
-                    lbMensajeProceso.ForeColor = Color.Green;
+                    lbMensajeProceso.ForeColor = Color.FromArgb(16, 45, 54);
                     lbMensajeProceso.Text = "Dispositivos Conectados";
                 }
                 lbMensajeProceso.Refresh();
@@ -104,51 +157,7 @@ namespace SistemaCashValidador
             }
             else
             {
-                
-            }
-        }
 
-        private void updateListBill(object sender, MessageEventArgs e)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate () { updateListBill(sender, e); }));
-            }
-            else
-            {
-                //if (e.listBills == 0)
-                //{
-                //    listBilletes.Items.Clear();
-                //    listBilletes.Refresh();
-                //}
-                //else
-                //{
-                //    listBilletes.Items.Add("$" + e.listBills.ToString());
-                //    listBilletes.Refresh();
-
-                //}
-            }
-        }
-
-        private void updateListCoins(object sender, MessageEventArgs e)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate () { updateListBill(sender, e); }));
-            }
-            else
-            {
-                //if (e.listCoins == 0)
-                //{
-                //    listMonedas.Items.Clear();
-                //    listMonedas.Refresh();
-                //}
-                //else
-                //{
-                //    listMonedas.Items.Add("$" + e.listCoins.ToString());
-                //    listMonedas.Refresh();
-
-                //}
             }
         }
 
@@ -208,28 +217,29 @@ namespace SistemaCashValidador
 
         private void updateCashBox(object sender, EventArgs e, Hashtable data)
         {
-            this.controllerTransaccion.updateCashBox(data);           
+            this.controllerTransaccion.updateCashBox(data);
         }
 
-        private void setConfigHopper()
+        private void setConfigHopper(object sender, EventArgs e)
         {
+           
+            Dictionary<string, string> configDevices = this.controllerTransaccion.getConfigDevices();
             FormConfigHopper formConfigHopper = new FormConfigHopper();
             formConfigHopper.getConfigDevicesEvent += setConfigDevices;
+            formConfigHopper.setValuesSelects(configDevices);
             formConfigHopper.ShowDialog();
         }
 
         private void setConfigDevices(Dictionary<string, string> selectedDevices)
-        {
-            this.controllerTransaccion.setConfigDevices(selectedDevices);            
+        {          
+            this.controllerTransaccion.setConfigDevices(selectedDevices);
+            this.controllerTransaccion.setConfigEventsDevices();
+            this.controllerTransaccion.initializeDevices();
+            this.controllerTransaccion.getStatusDevices();
         }
 
         #endregion
 
-        private void setConfigHopper(object sender, EventArgs e)
-        {
-            FormConfigHopper formConfigHopper = new FormConfigHopper();
-            formConfigHopper.getConfigDevicesEvent += setConfigDevices;
-            formConfigHopper.ShowDialog();
-        }
+       
     }
 }
