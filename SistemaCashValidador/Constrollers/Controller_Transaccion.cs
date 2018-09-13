@@ -16,6 +16,7 @@ namespace SistemaCashValidador.Constrollers
         private CCTalk cctalk;
         private Error error;
         private Caja cashBox;
+        private Pago paying;
 
         public delegate void ErrorEventHandler(object sender, MessageEventArgs e);
         public delegate void InformationDevicesEventHandler(object sender, MessageEventArgs e);
@@ -23,12 +24,14 @@ namespace SistemaCashValidador.Constrollers
         public delegate void StoreEventHandler(object sender, MessageEventArgs e);
         public delegate void TransactionEventHandler(object sender, MessageEventArgs e);
         public delegate void ConfigHopperEventHandler(object sender, EventArgs e);
+        public delegate void MessageEventHandler(object sender, MessageEventArgs e);
         public event ErrorEventHandler errorEvent;
         public event InformationDevicesEventHandler informationDeviceEvent;
         //public event DialogErrorEventHandler dialogErrorEvent;
         public event StoreEventHandler storeEvent;
         public event TransactionEventHandler transactionEvent;
         public event ConfigHopperEventHandler configHopperEvent;
+        public event MessageEventHandler messageEvent;
 
         public Controller_Transaccion()
         {
@@ -36,6 +39,7 @@ namespace SistemaCashValidador.Constrollers
             this.error = Error.getInstancia();
             this.transaction = new Transaccion();
             this.cashBox = new Caja();
+            this.paying = new Pago();
         }
 
         public void validateConfigDevices()
@@ -62,6 +66,7 @@ namespace SistemaCashValidador.Constrollers
             this.cctalk.lbInformationDeviceEvent += new CCTalk.updateInformationDevicesEventHandler(informationDeviceEvent);
             this.cctalk.lbStoresEvent += new CCTalk.updateLbStoreEventHandler(storeEvent);
             this.cctalk.lbTransactionEvent += new CCTalk.updateLbTransactionEventHandler(transactionEvent);
+            this.cctalk.messageEvent += new CCTalk.messageEventHandler(messageEvent);
             this.cashBox.lbStoreEvent += new Caja.lbStoreEventHandler(storeEvent);
         }
       
@@ -85,9 +90,35 @@ namespace SistemaCashValidador.Constrollers
             return this.cashBox.setCashBoxInitial();
         }
 
-        public void setNewPayout(int payout)
+        public void startNewTransaction(int payout)
         {
-            this.transaction.setNewRegister(payout);
+            Hashtable caja = this.cashBox.getCashBox();
+
+            this.cctalk.enableDevices(caja);
+            this.paying.getCurrentCashBox(caja);
+            messageEvent(this, new MessageEventArgs { Message = "Empezando transaccion .... "});
+            int cashReceived = cctalk.getCash(payout);
+            int extraMoney = cashReceived - payout;
+
+            if (extraMoney == 0)
+            {
+                this.cashBox.update(this.cctalk.getCashStored());
+                this.transaction.createNewTransaction(payout, cashReceived, extraMoney, this.cctalk.getCashDelivered(), this.cctalk.getCashDeposited());
+                messageEvent(this, new MessageEventArgs { Message = "Transaccion terminada" });
+            }
+            else if (this.paying.validateExtraMoney(extraMoney))
+            {
+                messageEvent(this, new MessageEventArgs { Message = "Entragando cambio ... " });
+                this.cctalk.deliveryExtraMoney(extraMoney, this.paying.getReturnCash());
+                this.cashBox.update(this.cctalk.getCashStored());
+                this.transaction.createNewTransaction(payout, cashReceived, extraMoney, this.cctalk.getCashDelivered(), this.cctalk.getCashDeposited());                         
+                messageEvent(this, new MessageEventArgs { Message = "Transaccion terminada" });
+            }
+            else
+            {
+                messageEvent(this, new MessageEventArgs { Message = "No cuento con efectivo disponible pare entregar el cambio" });
+            }
+
         }
 
         public void updateCashBox(Hashtable data)

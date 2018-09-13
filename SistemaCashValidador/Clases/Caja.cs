@@ -43,7 +43,7 @@ namespace SistemaCashValidador.Clases
 
         public void update(Hashtable data)
         {
-            this.DB.setCashDeposit(data);
+            this.DB.setCashBox(data);
             this.setCashBoxInitial();
         }
 

@@ -19,15 +19,6 @@ namespace CashLib.Class
         public BillDispenserPrueba()
         {            
             this.quantityCodeToDelivered = new Dictionary<int, int>();
-            this.quantityCodeToDelivered.Add(0, 48);
-            this.quantityCodeToDelivered.Add(1, 177);
-            this.quantityCodeToDelivered.Add(2, 178);
-            this.quantityCodeToDelivered.Add(3, 51);
-            this.quantityCodeToDelivered.Add(4, 180);
-            this.quantityCodeToDelivered.Add(5, 53);
-            this.quantityCodeToDelivered.Add(6, 54);
-            this.quantityCodeToDelivered.Add(7, 183);
-            this.quantityCodeToDelivered.Add(8, 57);
         }
 
         public override bool openConnection()
@@ -80,7 +71,8 @@ namespace CashLib.Class
         }
 
         public override void returnCash(int denominationCash, int countMoney, int[] countBill)
-        {                       
+        {
+            
         }
 
         private void setConfigDefault()

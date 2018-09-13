@@ -50,7 +50,7 @@ namespace CashLib.Class
        
         public override void returnCash(int denominationCash, int countMoney, int[] countBill)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

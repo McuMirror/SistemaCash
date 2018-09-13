@@ -31,6 +31,7 @@ namespace SistemaCashValidador
             this.controllerTransaccion.storeEvent += updateLbStore;
             this.controllerTransaccion.transactionEvent += updateLbTransaccion;
             this.controllerTransaccion.configHopperEvent += setConfigHopper;
+            this.controllerTransaccion.messageEvent += dialogMessage;
 
         }
 
@@ -51,7 +52,7 @@ namespace SistemaCashValidador
                 int depositoRequerido = Int32.Parse(inputEfectivo.Text);
                 if (depositoRequerido > 0)
                 {
-                    this.controllerTransaccion.setNewPayout(depositoRequerido);
+                    this.controllerTransaccion.startNewTransaction(depositoRequerido);
                 }
                 else
                 {
@@ -236,6 +237,18 @@ namespace SistemaCashValidador
             this.controllerTransaccion.setConfigEventsDevices();
             this.controllerTransaccion.initializeDevices();
             this.controllerTransaccion.getStatusDevices();
+        }
+
+        private void dialogMessage(object sender, MessageEventArgs e)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate () { dialogMessage(sender, e); }));
+            }
+            else
+            {
+                MessageBox.Show(e.Message);              
+            }
         }
 
         #endregion

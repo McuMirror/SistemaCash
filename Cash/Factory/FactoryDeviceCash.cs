@@ -42,9 +42,9 @@ namespace CashLib.Factory
                 case "F53":
                     return new BillDespenser();
                 case "HOPPER PRUEBA":
-                    return new BillDispenserPrueba();
+                    return new HopperDispenserPrueba(); 
                 case "BILL PRUEBA":
-                    return new HopperDispenserPrueba();
+                    return new BillDispenserPrueba();
                 default:
                     return null;
             }

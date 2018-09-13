@@ -89,6 +89,18 @@ namespace SistemaCashValidador
 
         }
 
-
+        private void getValueKeyboard(object sender, EventArgs e)
+        {
+            //string number = inputEfectivo.Text;
+            //if (number == "0")
+            //{
+            //    inputEfectivo.Text = "";
+            //    inputEfectivo.Text += ((Button)sender).Text;
+            //}
+            //else
+            //{
+            //    inputEfectivo.Text += ((Button)sender).Text;
+            //}
+        }
     }
 }

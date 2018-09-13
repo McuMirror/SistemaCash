@@ -16,49 +16,30 @@ namespace SistemaCashValidador.Clases
         private int deposited;
         private Hashtable stored;
         private Hashtable returnCash;
+        private int extraMoney;
 
         public Pago()
         {
             cctalk = CCTalk.getInstancia();
             error = Error.getInstancia();
         }
+
+        public void getCurrentCashBox(Hashtable cashBox)
+        {
+            this.stored = cashBox;
+        }
         
         public void setNewOperation(int payout, Hashtable DBStored)
         {
-            returnCash = new Hashtable();
-            this.total = payout;
-            this.cctalk.enableDevices(DBStored);
-            this.deposited = cctalk.getCash(this.total);
-            this.deliverCash();
-            this.cctalk.disableDevices();
+            //returnCash = new Hashtable();
+            //this.total = payout;
+            //this.cctalk.enableDevices(DBStored);
+            //this.deposited = cctalk.getCash(this.total);
+            //this.validateCashDelivery();
+            //this.cctalk.disableDevices();
         }
            
-        private void deliverCash()
-        {
-            stored = cctalk.getCashStored();
-            int cashReturn = deposited - this.total;
-            int tempCashReturn = cashReturn;
-
-            if (cashReturn > 0)
-            {
-                tempCashReturn = this.setAmountDeliverCash(tempCashReturn, 100);
-                tempCashReturn = this.setAmountDeliverCash(tempCashReturn, 50);
-                tempCashReturn = this.setAmountDeliverCash(tempCashReturn, 20);
-                tempCashReturn = this.setAmountDeliverCash(tempCashReturn, 10);
-                tempCashReturn = this.setAmountDeliverCash(tempCashReturn, 5);
-                tempCashReturn = this.setAmountDeliverCash(tempCashReturn, 1);
-
-                if (tempCashReturn == 0)
-                {
-                    this.cctalk.setDeliverCash(cashReturn, this.returnCash);
-                }
-                else
-                {
-                    error.setMesseg("No cuento con efectivo disponible pare entregar el cambio");
-                }
-            }
-
-        }
+        
 
         private int setAmountDeliverCash(int cash, int coinType)
         {
@@ -81,6 +62,45 @@ namespace SistemaCashValidador.Clases
             }
 
             return cash;            
+        }
+
+        public bool validateExtraMoney(int money)
+        {            
+            this.calculateExtraMoney(money);
+            if (this.extraMoney == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;                     
+            }
+        }
+
+        private void calculateExtraMoney(int money)
+        {
+            //stored = cctalk.getCashStored();
+            //int cashDelivery = deposited - this.total;
+            returnCash = new Hashtable();
+            int cash = money;
+
+            if (money > 0)
+            {
+                cash = this.setAmountDeliverCash(cash, 100);
+                cash = this.setAmountDeliverCash(cash, 50);
+                cash = this.setAmountDeliverCash(cash, 20);
+                cash = this.setAmountDeliverCash(cash, 10);
+                cash = this.setAmountDeliverCash(cash, 5);
+                cash = this.setAmountDeliverCash(cash, 1);
+            }
+
+            this.extraMoney = cash;
+
+        }
+
+        public Hashtable getReturnCash()
+        {
+            return this.returnCash;
         }
     }
 }

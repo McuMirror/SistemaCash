@@ -11,16 +11,12 @@ namespace SistemaCashValidador.Clases
 {
     class Transaccion
     {
-        private int numTransaccion;
+ 
         private Modelo_Transaccion DB;
-        private Pago pago;
-        private int total;
-        private Hashtable stored;
 
         public Transaccion()
         {
             DB = new Modelo_Transaccion();
-            pago = new Pago();
         }
 
         public Hashtable getDBStore()
@@ -28,12 +24,11 @@ namespace SistemaCashValidador.Clases
             return this.DB.getCashBox();
         }
 
-        public void setNewRegister(int payout)
+        public void createNewTransaction(int payout, int cashReceived, int extraMoney, Hashtable cashDelivered, Hashtable cashDeposited)
         {
-            this.numTransaccion = this.DB.getlatestRegister();
-            stored = this.DB.getCashBox();
-            this.pago.setNewOperation(payout, this.stored);
-            this.total = 0;
+            this.DB.generateNewTransaction(payout, cashReceived, extraMoney);
+            this.DB.setExtraMoneyTransaction(cashDelivered);
+            this.DB.setPayoutTransaction(cashDeposited);           
         }        
                 
     }
