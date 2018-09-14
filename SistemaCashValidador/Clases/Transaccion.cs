@@ -30,6 +30,14 @@ namespace SistemaCashValidador.Clases
             this.DB.setExtraMoneyTransaction(cashDelivered);
             this.DB.setPayoutTransaction(cashDeposited);           
         }        
+
+        public Hashtable getLastDataTransaction()
+        {
+            this.DB.setDataTransaction();
+            this.DB.setDataDepositeTransaction();
+
+            return this.DB.getDataTrasnsaction();
+        }
                 
     }
 }

@@ -104,7 +104,7 @@ namespace CashLib.Interfaces
         }
 
         //Envia mensaje al dispositivo
-        protected void setMessage(List<byte> parameter, List<byte> data)
+        public void setMessage(List<byte> parameter, List<byte> data)
         {
             parameter = this.setChecksum(parameter, data);
             this.sendMessage(parameter);
@@ -157,17 +157,17 @@ namespace CashLib.Interfaces
             string RX = "RX : ";
             int length = 0;
             byte[] result = new byte[portHopper.BytesToRead];
-            portHopper.Read(result, 0, result.Length);
-            length = (this.device == "COMBOT") ? result.Length : (result.Length - parameters.Count);
+            portHopper.Read(result, 0, result.Length);            
+            length = (this.device == "COMBOT") ? result.Length : (result.Length - parameters.Count);   
             resultMessage = new byte[length];
-            length = (this.device == "COMBOT") ? 0 : parameters.Count;
+            length = (this.device == "COMBOT") ? 0 : parameters.Count;            
 
             for (int i = length, j = 0; i < result.Length; i++, j++)
             {
                 resultMessage[j] = result[i];
                 RX += result[i] + " ";
             }
-            Console.WriteLine(RX);
+            //Console.WriteLine(RX);            
         }
 
         /*
@@ -186,7 +186,7 @@ namespace CashLib.Interfaces
         * Encardado de modificar la denominacion que tendra el contenedor de monedas
         */
         public void setValueConteinerCoins(byte[] data)
-        {
+        {            
             this.setMessage(new List<byte>() { 26, 0, 1, 210 }, new
             List<byte>(data));
         }

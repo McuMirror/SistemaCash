@@ -157,6 +157,7 @@ namespace SistemaCashValidador.Clases
             this.cashDeposited.Add("100", 0);
             this.cashDeposited.Add("200", 0);
             this.cashDeposited.Add("500", 0);
+
             lbTransactionEvent(this, components);
         }
 
@@ -166,7 +167,7 @@ namespace SistemaCashValidador.Clases
             byte[] result;
             int deposited = 0;
             int contador = 0;
-            components.Message = "Ingrese el efectivo";
+            components.Message = "Ingrese el efectivo";            
             messageEvent(this,components);
             while (deposited < total)
             {
@@ -268,7 +269,6 @@ namespace SistemaCashValidador.Clases
             hopperDispenser.disable();
             billAcceptor.disable();
             billDispenser.disable();
-
         }
 
         private double getBillDeposite(double bill)

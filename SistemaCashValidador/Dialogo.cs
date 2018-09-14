@@ -17,6 +17,7 @@ namespace SistemaCashValidador
         public delegate void updateCashBoxEventHandler(object sender, EventArgs e, Hashtable data);
         public event updateCashBoxEventHandler cashBoxEvent;
         private Hashtable stored;
+        private TextBox input;
 
         public dialogoCaja()
         {
@@ -66,6 +67,10 @@ namespace SistemaCashValidador
                 inpt200.Text = data["200"].ToString();
                 inpt500.Text = data["500"].ToString();
             }
+
+            this.calculateMoney();
+            this.calculateBills();
+            this.calculateCashBox();
         }
 
         private int validateInput(string data)
@@ -89,18 +94,65 @@ namespace SistemaCashValidador
 
         }
 
+        private void definedInput(object sender, EventArgs e)
+        {
+            this.input = (TextBox)sender;
+        }
+
         private void getValueKeyboard(object sender, EventArgs e)
         {
-            //string number = inputEfectivo.Text;
-            //if (number == "0")
-            //{
-            //    inputEfectivo.Text = "";
-            //    inputEfectivo.Text += ((Button)sender).Text;
-            //}
-            //else
-            //{
-            //    inputEfectivo.Text += ((Button)sender).Text;
-            //}
+            string number = input.Text;
+            if (number == "0")
+            {
+                input.Text = "";
+                input.Text += ((Button)sender).Text;
+            }
+            else
+            {
+                input.Text += ((Button)sender).Text;
+            }
+
+            this.calculateMoney();
+            this.calculateBills();
+            this.calculateCashBox();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            input.Text = "0";
+            this.calculateMoney();
+            this.calculateBills();
+            this.calculateCashBox();
+        }
+
+        private void calculateMoney()
+        {
+            int total = 0;
+            total += Int32.Parse(inpt1.Text);
+            total += (Int32.Parse(inpt2.Text) * 2);
+            total += (Int32.Parse(inpt5.Text) * 5);
+            total += (Int32.Parse(inpt10.Text) * 10);
+
+            totalMoney.Text = total.ToString();
+
+        }
+
+        private void calculateBills()
+        {
+            int total = 0;
+            total += (Int32.Parse(inpt20.Text) * 20);
+            total += (Int32.Parse(inpt50.Text) * 50);
+            total += (Int32.Parse(inpt100.Text) * 100);
+            total += (Int32.Parse(inpt200.Text) * 200);
+            total += (Int32.Parse(inpt500.Text) * 500);
+            totalBill.Text = total.ToString();
+        }
+
+        private void calculateCashBox()
+        {
+            int total = 0;
+            total = Int32.Parse(totalMoney.Text) + Int32.Parse(totalBill.Text);
+            totalCaja.Text = total.ToString();
         }
     }
 }

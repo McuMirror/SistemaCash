@@ -24,7 +24,7 @@ namespace CashLib.Class
         {
             
             byte[] result = new byte[2];
-            this.setMessage(new List<byte>() { 2, 0, 1, 229 }, new
+            this.setMessage(new List<byte>() { 26, 0, 1, 229 }, new
                 List<byte>() { 4 });
 
             if (resultMessage[4] != contador)

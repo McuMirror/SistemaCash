@@ -29,18 +29,18 @@ namespace PruebaConsola
         private static CashLib.Factory.FactoryDeviceCash factory = new CashLib.Factory.FactoryDeviceCash();
         private static int billDesposited;
 
-        private static string deviceHopperAcceptor = "HOPPERPrueba",
-            deviceHopperDispenser = "HOPPERPrueba",
-            deviceBillAcceptor = "BILLPrueba",
-            deviceBillDispenser = "BILLPrueba";
+        private static string deviceHopperAcceptor = "COMBOT",
+            deviceHopperDispenser = "COMBOT",
+            deviceBillAcceptor = "SCADVANCE",
+            deviceBillDispenser = "F53";
             
 
 
         static void Main(string[] args)
         {
             hopperAcceptor = factory.CreateDeviceAcceptor(deviceHopperAcceptor);
-            billAcceptor = factory.CreateDeviceAcceptor(deviceBillAcceptor);
             hopperDispenser = factory.CreateDeviceDispenser(deviceHopperDispenser);
+            billAcceptor = factory.CreateDeviceAcceptor(deviceBillAcceptor);
             billDespenser = factory.CreateDeviceDispenser(deviceBillDispenser);
 
             billAcceptor.powerUpEvent += powerUpHandle;
@@ -68,48 +68,52 @@ namespace PruebaConsola
             {
                 Console.WriteLine("No esta conectado");
             }
-
-            Console.WriteLine("2.- Abriendo conexion Hopper Dispenser");
-            if (hopperDispenser.openConnection())
-            {
-                Console.WriteLine("Esta conectado");
-            }
-            else
-            {
-                Console.WriteLine("No esta conectado");
-            }
-
-            Console.WriteLine("3.- Abriendo conexion Bill Acceptor");
-            if (billAcceptor.openConnection())
-            {
-                Console.WriteLine("Esta conectado");
-            }
-            else
-            {
-                Console.WriteLine("No esta conectado");
-            }
-
-            Console.WriteLine("4.- Abriendo conexion Bill Dispenser");
-            if (billDespenser.openConnection())
-            {
-                Console.WriteLine("Esta conectado");
-            }
-            else
-            {
-                Console.WriteLine("No esta conectado");
-            }
-            Console.WriteLine("-------------");
-            Console.ReadLine();
-
-            //hopperAcceptorASAHI.enable();
-
-            //hopperDispenserASAHI.returnCash(10,1);
-            //int contador = 0;
-            //byte[] result;
-            //while (true)
+            Console.ReadKey();
+            //Console.WriteLine("2.- Abriendo conexion Hopper Dispenser");
+            //if (hopperDispenser.openConnection())
             //{
-            //   result = hopperAcceptorASAHI.depositCash(contador);
+            //    Console.WriteLine("Esta conectado");
             //}
+            //else
+            //{
+            //    Console.WriteLine("No esta conectado");
+            //}
+
+            //Console.WriteLine("3.- Abriendo conexion Bill Acceptor");
+            //if (billAcceptor.openConnection())
+            //{
+            //    Console.WriteLine("Esta conectado");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No esta conectado");
+            //}
+
+            //Console.WriteLine("4.- Abriendo conexion Bill Dispenser");
+            //if (billDespenser.openConnection())
+            //{
+            //    Console.WriteLine("Esta conectado");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No esta conectado");
+            //}
+            Console.WriteLine("-------------");
+            Console.WriteLine("Habilitando dispositvo");
+            //billAcceptor.enable();
+            //billDespenser.enable();
+            hopperAcceptor.enable();            
+            //hopperDispenser.enable();
+
+            Console.WriteLine("-------------");
+            Console.WriteLine("Recibiendo monedas");
+            int contador = 0;
+            byte[] result;
+            while (true)
+            {
+                result = hopperAcceptor.getCashDesposite(contador);
+                Console.ReadKey();
+            }
 
             //bool continuar = true;
             //string b20,b50,b100;

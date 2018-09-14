@@ -31,8 +31,7 @@ namespace SistemaCashValidador
             this.controllerTransaccion.storeEvent += updateLbStore;
             this.controllerTransaccion.transactionEvent += updateLbTransaccion;
             this.controllerTransaccion.configHopperEvent += setConfigHopper;
-            this.controllerTransaccion.messageEvent += dialogMessage;
-
+            this.controllerTransaccion.messageEvent += startDialogMessage;            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -97,7 +96,14 @@ namespace SistemaCashValidador
         {
             inputEfectivo.Text = "0";            
         }
- 
+
+        private void btnOperation_Click(object sender, EventArgs e)
+        {
+            FormTransaction dialogoTransaction = new FormTransaction();
+            dialogoTransaction.getDataTransaction(this.controllerTransaccion.getDataTransaction());
+            dialogoTransaction.ShowDialog();
+        }
+
         #region Eventos para la barra de titulo
 
         private void barTitle_MouseDown(object sender, MouseEventArgs e)
@@ -145,6 +151,7 @@ namespace SistemaCashValidador
                 {
                     lbMensajeProceso.ForeColor = Color.FromArgb(16, 45, 54);
                     lbMensajeProceso.Text = "Dispositivos Conectados";
+                    lbMensajeProceso.Refresh();                    
                 }
                 lbMensajeProceso.Refresh();
             }
@@ -239,17 +246,25 @@ namespace SistemaCashValidador
             this.controllerTransaccion.getStatusDevices();
         }
 
-        private void dialogMessage(object sender, MessageEventArgs e)
+        private void startDialogMessage(object sender, MessageEventArgs e)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new MethodInvoker(delegate () { dialogMessage(sender, e); }));
+                BeginInvoke(new MethodInvoker(delegate () { startDialogMessage(sender, e); }));
             }
             else
             {
-                MessageBox.Show(e.Message);              
+                lbMensajeProceso.ForeColor = Color.FromArgb(168, 93, 18);
+                lbMensajeProceso.Text = e.Message;
+                lbMensajeProceso.Refresh();                         
             }
         }
+
+        private void showLastTransaction()
+        {
+
+        }
+
 
         #endregion
 

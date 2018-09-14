@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using SistemaCashValidador.Clases;
 
@@ -20,7 +21,7 @@ namespace SistemaCashValidador.Constrollers
 
         public delegate void ErrorEventHandler(object sender, MessageEventArgs e);
         public delegate void InformationDevicesEventHandler(object sender, MessageEventArgs e);
-        public delegate void DialogErrorEventHandler(object sender, MessageEventArgs e);       
+        public delegate void DialogErrorEventHandler(object sender, MessageEventArgs e);
         public delegate void StoreEventHandler(object sender, MessageEventArgs e);
         public delegate void TransactionEventHandler(object sender, MessageEventArgs e);
         public delegate void ConfigHopperEventHandler(object sender, EventArgs e);
@@ -62,14 +63,14 @@ namespace SistemaCashValidador.Constrollers
         }
 
         public void setConfigEventsDevices()
-        {            
+        {
             this.cctalk.lbInformationDeviceEvent += new CCTalk.updateInformationDevicesEventHandler(informationDeviceEvent);
             this.cctalk.lbStoresEvent += new CCTalk.updateLbStoreEventHandler(storeEvent);
             this.cctalk.lbTransactionEvent += new CCTalk.updateLbTransactionEventHandler(transactionEvent);
             this.cctalk.messageEvent += new CCTalk.messageEventHandler(messageEvent);
             this.cashBox.lbStoreEvent += new Caja.lbStoreEventHandler(storeEvent);
         }
-      
+
         public void initializeDevices()
         {
             this.cctalk.initializeDevices();
@@ -96,34 +97,45 @@ namespace SistemaCashValidador.Constrollers
 
             this.cctalk.enableDevices(caja);
             this.paying.getCurrentCashBox(caja);
-            messageEvent(this, new MessageEventArgs { Message = "Empezando transaccion .... "});
+            messageEvent(this, new MessageEventArgs { Message = "Empezando transaccion .... " });
             int cashReceived = cctalk.getCash(payout);
             int extraMoney = cashReceived - payout;
 
             if (extraMoney == 0)
             {
                 this.cashBox.update(this.cctalk.getCashStored());
-                this.transaction.createNewTransaction(payout, cashReceived, extraMoney, this.cctalk.getCashDelivered(), this.cctalk.getCashDeposited());
-                messageEvent(this, new MessageEventArgs { Message = "Transaccion terminada" });
+                this.transaction.createNewTransaction(payout, cashReceived, extraMoney, this.cctalk.getCashDelivered(), this.cctalk.getCashDeposited());    
+                messageEvent(this, new MessageEventArgs { Message = "Transaccion terminada"});
             }
             else if (this.paying.validateExtraMoney(extraMoney))
             {
-                messageEvent(this, new MessageEventArgs { Message = "Entragando cambio ... " });
+                messageEvent(this, new MessageEventArgs { Message = "Entragando cambio ... "});
                 this.cctalk.deliveryExtraMoney(extraMoney, this.paying.getReturnCash());
                 this.cashBox.update(this.cctalk.getCashStored());
-                this.transaction.createNewTransaction(payout, cashReceived, extraMoney, this.cctalk.getCashDelivered(), this.cctalk.getCashDeposited());                         
-                messageEvent(this, new MessageEventArgs { Message = "Transaccion terminada" });
+                this.transaction.createNewTransaction(payout, cashReceived, extraMoney, this.cctalk.getCashDelivered(), this.cctalk.getCashDeposited());   
+                messageEvent(this, new MessageEventArgs { Message = "Transaccion terminada"});
             }
             else
             {
-                messageEvent(this, new MessageEventArgs { Message = "No cuento con efectivo disponible pare entregar el cambio" });
+                this.transaction.createNewTransaction(payout, cashReceived, extraMoney, this.cctalk.getCashDelivered(), this.cctalk.getCashDeposited());
+                transactionEvent(this, new MessageEventArgs { lbCambio = extraMoney , lbIngresado = cashReceived });
+                messageEvent(this, new MessageEventArgs { Message = "No cuento con efectivo disponible pare entregar el cambio, favor de pasar a ventanilla para solicitarlo"});
+                Thread.Sleep(3000);
+                messageEvent(this, new MessageEventArgs { Message = "Transaccion terminada" });
             }
-
+            this.cctalk.disableDevices();
+            Thread.Sleep(3000);
+            messageEvent(this, new MessageEventArgs { Message = "Bienvenido al Sistema Demo Cash" });
         }
 
         public void updateCashBox(Hashtable data)
         {
             this.cashBox.update(data);
+        }
+
+        public Hashtable getDataTransaction()
+        {
+            return this.transaction.getLastDataTransaction();
         }
 
         public void closesDevices()

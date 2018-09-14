@@ -65,19 +65,19 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.totalMoney = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.totalBill = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.totalCaja = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -85,7 +85,7 @@
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbMensajeDialogo
@@ -96,6 +96,7 @@
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(98)))), ((int)(((byte)(117)))));
             this.label1.Name = "label1";
             // 
             // label2
@@ -107,11 +108,13 @@
             // 
             resources.ApplyResources(this.inpt1, "inpt1");
             this.inpt1.Name = "inpt1";
+            this.inpt1.Leave += new System.EventHandler(this.definedInput);
             // 
             // inpt2
             // 
             resources.ApplyResources(this.inpt2, "inpt2");
             this.inpt2.Name = "inpt2";
+            this.inpt2.Leave += new System.EventHandler(this.definedInput);
             // 
             // label3
             // 
@@ -122,6 +125,7 @@
             // 
             resources.ApplyResources(this.inpt5, "inpt5");
             this.inpt5.Name = "inpt5";
+            this.inpt5.Leave += new System.EventHandler(this.definedInput);
             // 
             // label4
             // 
@@ -132,6 +136,7 @@
             // 
             resources.ApplyResources(this.inpt10, "inpt10");
             this.inpt10.Name = "inpt10";
+            this.inpt10.Leave += new System.EventHandler(this.definedInput);
             // 
             // label5
             // 
@@ -142,6 +147,7 @@
             // 
             resources.ApplyResources(this.inpt20, "inpt20");
             this.inpt20.Name = "inpt20";
+            this.inpt20.Leave += new System.EventHandler(this.definedInput);
             // 
             // label6
             // 
@@ -152,6 +158,7 @@
             // 
             resources.ApplyResources(this.inpt50, "inpt50");
             this.inpt50.Name = "inpt50";
+            this.inpt50.Leave += new System.EventHandler(this.definedInput);
             // 
             // label7
             // 
@@ -162,6 +169,7 @@
             // 
             resources.ApplyResources(this.inpt100, "inpt100");
             this.inpt100.Name = "inpt100";
+            this.inpt100.Leave += new System.EventHandler(this.definedInput);
             // 
             // label8
             // 
@@ -172,6 +180,7 @@
             // 
             resources.ApplyResources(this.inpt200, "inpt200");
             this.inpt200.Name = "inpt200";
+            this.inpt200.Leave += new System.EventHandler(this.definedInput);
             // 
             // label9
             // 
@@ -182,6 +191,7 @@
             // 
             resources.ApplyResources(this.inpt500, "inpt500");
             this.inpt500.Name = "inpt500";
+            this.inpt500.Leave += new System.EventHandler(this.definedInput);
             // 
             // label10
             // 
@@ -213,6 +223,7 @@
             this.btn0.ForeColor = System.Drawing.Color.White;
             this.btn0.Name = "btn0";
             this.btn0.UseVisualStyleBackColor = false;
+            this.btn0.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btn1
             // 
@@ -223,6 +234,7 @@
             this.btn1.ForeColor = System.Drawing.Color.White;
             this.btn1.Name = "btn1";
             this.btn1.UseVisualStyleBackColor = false;
+            this.btn1.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btn2
             // 
@@ -233,6 +245,7 @@
             this.btn2.ForeColor = System.Drawing.Color.White;
             this.btn2.Name = "btn2";
             this.btn2.UseVisualStyleBackColor = false;
+            this.btn2.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btn3
             // 
@@ -243,6 +256,7 @@
             this.btn3.ForeColor = System.Drawing.Color.White;
             this.btn3.Name = "btn3";
             this.btn3.UseVisualStyleBackColor = false;
+            this.btn3.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btn4
             // 
@@ -253,6 +267,7 @@
             this.btn4.ForeColor = System.Drawing.Color.White;
             this.btn4.Name = "btn4";
             this.btn4.UseVisualStyleBackColor = false;
+            this.btn4.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btn5
             // 
@@ -263,6 +278,7 @@
             this.btn5.ForeColor = System.Drawing.Color.White;
             this.btn5.Name = "btn5";
             this.btn5.UseVisualStyleBackColor = false;
+            this.btn5.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btn6
             // 
@@ -273,6 +289,7 @@
             this.btn6.ForeColor = System.Drawing.Color.White;
             this.btn6.Name = "btn6";
             this.btn6.UseVisualStyleBackColor = false;
+            this.btn6.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btn7
             // 
@@ -283,6 +300,7 @@
             this.btn7.ForeColor = System.Drawing.Color.White;
             this.btn7.Name = "btn7";
             this.btn7.UseVisualStyleBackColor = false;
+            this.btn7.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btn8
             // 
@@ -293,6 +311,7 @@
             this.btn8.ForeColor = System.Drawing.Color.White;
             this.btn8.Name = "btn8";
             this.btn8.UseVisualStyleBackColor = false;
+            this.btn8.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btn9
             // 
@@ -303,6 +322,7 @@
             this.btn9.ForeColor = System.Drawing.Color.White;
             this.btn9.Name = "btn9";
             this.btn9.UseVisualStyleBackColor = false;
+            this.btn9.Click += new System.EventHandler(this.getValueKeyboard);
             // 
             // btnClear
             // 
@@ -314,10 +334,11 @@
             this.btnClear.ForeColor = System.Drawing.Color.White;
             this.btnClear.Name = "btnClear";
             this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.flowLayoutPanel1);
+            this.panel1.Controls.Add(this.panel5);
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
@@ -337,7 +358,7 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.textBox2);
+            this.panel2.Controls.Add(this.totalMoney);
             this.panel2.Controls.Add(this.label14);
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.inpt2);
@@ -351,9 +372,25 @@
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
+            // totalMoney
+            // 
+            resources.ApplyResources(this.totalMoney, "totalMoney");
+            this.totalMoney.Name = "totalMoney";
+            this.totalMoney.ReadOnly = true;
+            // 
+            // label14
+            // 
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.Name = "label14";
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.textBox1);
+            this.panel3.Controls.Add(this.totalBill);
             this.panel3.Controls.Add(this.label15);
             this.panel3.Controls.Add(this.label13);
             this.panel3.Controls.Add(this.inpt20);
@@ -369,9 +406,25 @@
             resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Name = "panel3";
             // 
+            // totalBill
+            // 
+            resources.ApplyResources(this.totalBill, "totalBill");
+            this.totalBill.Name = "totalBill";
+            this.totalBill.ReadOnly = true;
+            // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.Name = "label15";
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.textBox3);
+            this.panel4.Controls.Add(this.totalCaja);
             this.panel4.Controls.Add(this.label11);
             this.panel4.Controls.Add(this.tableLayoutPanel4);
             this.panel4.Controls.Add(this.btnCancelar);
@@ -379,11 +432,16 @@
             resources.ApplyResources(this.panel4, "panel4");
             this.panel4.Name = "panel4";
             // 
-            // flowLayoutPanel1
+            // totalCaja
             // 
-            this.flowLayoutPanel1.Controls.Add(this.label1);
-            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            resources.ApplyResources(this.totalCaja, "totalCaja");
+            this.totalCaja.Name = "totalCaja";
+            this.totalCaja.ReadOnly = true;
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
             // 
             // btnCancelar
             // 
@@ -407,48 +465,11 @@
             this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // label11
+            // panel5
             // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
-            // 
-            // label12
-            // 
-            resources.ApplyResources(this.label12, "label12");
-            this.label12.Name = "label12";
-            // 
-            // label13
-            // 
-            resources.ApplyResources(this.label13, "label13");
-            this.label13.Name = "label13";
-            // 
-            // label14
-            // 
-            resources.ApplyResources(this.label14, "label14");
-            this.label14.Name = "label14";
-            // 
-            // label15
-            // 
-            resources.ApplyResources(this.label15, "label15");
-            this.label15.Name = "label15";
-            // 
-            // textBox1
-            // 
-            resources.ApplyResources(this.textBox1, "textBox1");
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            // 
-            // textBox2
-            // 
-            resources.ApplyResources(this.textBox2, "textBox2");
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            // 
-            // textBox3
-            // 
-            resources.ApplyResources(this.textBox3, "textBox3");
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
+            this.panel5.Controls.Add(this.label1);
+            resources.ApplyResources(this.panel5, "panel5");
+            this.panel5.Name = "panel5";
             // 
             // dialogoCaja
             // 
@@ -458,6 +479,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lbMensajeDialogo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "dialogoCaja";
@@ -472,8 +494,8 @@
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -513,7 +535,6 @@
         private System.Windows.Forms.Button btn9;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Panel panel2;
@@ -524,10 +545,11 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox totalMoney;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox totalBill;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox totalCaja;
+        private System.Windows.Forms.Panel panel5;
     }
 }

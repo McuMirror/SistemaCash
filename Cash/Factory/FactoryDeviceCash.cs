@@ -24,8 +24,7 @@ namespace CashLib.Factory
                 case "HOPPER PRUEBA":
                     return new HopperAcceptorPrueba();               
                 case "BILL PRUEBA":
-                    return new BillAcceptorPrueba();
-               
+                    return new BillAcceptorPrueba();               
                 default:
                     return null;
             }

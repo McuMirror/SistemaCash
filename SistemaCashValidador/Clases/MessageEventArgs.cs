@@ -9,7 +9,7 @@ namespace SistemaCashValidador.Clases
     class MessageEventArgs : EventArgs
     {
         public string lbMessage { get; set; }
-        public string Message { get; set; }
+        public string Message { get; set; }       
         public int listCoins { get; set; }
         public int listBills { get; set; }
         public int lbIngresado { get; set; }

@@ -29,15 +29,15 @@ namespace SistemaCashValidador.Clases
             this.stored = cashBox;
         }
         
-        public void setNewOperation(int payout, Hashtable DBStored)
-        {
-            //returnCash = new Hashtable();
-            //this.total = payout;
-            //this.cctalk.enableDevices(DBStored);
-            //this.deposited = cctalk.getCash(this.total);
-            //this.validateCashDelivery();
-            //this.cctalk.disableDevices();
-        }
+        //public void setNewOperation(int payout, Hashtable DBStored)
+        //{
+        //    //returnCash = new Hashtable();
+        //    //this.total = payout;
+        //    //this.cctalk.enableDevices(DBStored);
+        //    //this.deposited = cctalk.getCash(this.total);
+        //    //this.validateCashDelivery();
+        //    //this.cctalk.disableDevices();
+        //}
            
         
 

@@ -17,6 +17,7 @@ namespace SistemaCashValidador.Modelos
         private SqlCeDataReader query;
         private DataSet dataSet;
         private SqlCeCommand command;
+        Hashtable dataTransaction;
 
 
         public Modelo_Transaccion() {
@@ -188,6 +189,63 @@ namespace SistemaCashValidador.Modelos
             }
 
             return numTransaction;
+        }
+
+        public void setDataTransaction()
+        {
+            dataTransaction = new Hashtable();
+            dataTransaction.Add("Pago", 0);
+            dataTransaction.Add("Depositado",0);
+            dataTransaction.Add("Cambio",0);
+            dataTransaction.Add("M1",0);
+            dataTransaction.Add("M2",0);
+            dataTransaction.Add("M5",0);
+            dataTransaction.Add("M10",0);
+            dataTransaction.Add("B20",0);
+            dataTransaction.Add("B50",0);
+            dataTransaction.Add("B100",0);
+            dataTransaction.Add("B200",0);
+            dataTransaction.Add("B500",0);
+
+            int idTransaction = this.getlatestRegisterTransaction();
+            this.connection.Open();
+            this.dataAdapter = new SqlCeDataAdapter("select * from Transaccion where Id = " + idTransaction, this.connection);
+            this.dataSet = new DataSet("registros");
+            this.dataAdapter.Fill(dataSet, "registros");
+            this.connection.Close();
+            foreach (DataRow registro in dataSet.Tables["registros"].Rows)
+            {
+                dataTransaction["Pago"] = registro["Pago"];
+                dataTransaction["Depositado"] = registro["Depositado"];
+                dataTransaction["Cambio"] = registro["Cambio"];
+            }
+        }
+
+        public void setDataDepositeTransaction()
+        {
+            int idTransaction = this.getlatestRegisterTransaction();
+            this.connection.Open();
+            this.dataAdapter = new SqlCeDataAdapter("select * from Cambio where Id = " + idTransaction, this.connection);
+            this.dataSet = new DataSet("registros");
+            this.dataAdapter.Fill(dataSet, "registros");
+            this.connection.Close();
+            foreach (DataRow registro in dataSet.Tables["registros"].Rows)
+            {
+                dataTransaction["M1"] = registro["M1"];
+                dataTransaction["M2"] = registro["M2"];
+                dataTransaction["M5"] = registro["M5"];
+                dataTransaction["M10"] = registro["M10"];
+                dataTransaction["B20"] = registro["B20"];
+                dataTransaction["B50"] = registro["B50"];
+                dataTransaction["B100"] = registro["B100"];
+                dataTransaction["B200"] = registro["B200"];
+                dataTransaction["B500"] = registro["B500"];
+            }
+        }
+
+        public Hashtable getDataTrasnsaction()
+        {
+            return this.dataTransaction;
         }
     }
 }

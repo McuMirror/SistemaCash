@@ -536,6 +536,7 @@
             this.btnOperation.TabIndex = 12;
             this.btnOperation.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOperation.UseVisualStyleBackColor = true;
+            this.btnOperation.Click += new System.EventHandler(this.btnOperation_Click);
             // 
             // pictureBox1
             // 
