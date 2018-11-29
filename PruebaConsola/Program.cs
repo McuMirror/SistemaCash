@@ -38,18 +38,107 @@ namespace PruebaConsola
 
         static void Main(string[] args)
         {
-            hopperAcceptor = factory.CreateDeviceAcceptor(deviceHopperAcceptor);
-            hopperDispenser = factory.CreateDeviceDispenser(deviceHopperDispenser);
-            billAcceptor = factory.CreateDeviceAcceptor(deviceBillAcceptor);
+            //hopperAcceptor = factory.CreateDeviceAcceptor(deviceHopperAcceptor);
+            //hopperDispenser = factory.CreateDeviceDispenser(deviceHopperDispenser);
+            //billAcceptor = factory.CreateDeviceAcceptor(deviceBillAcceptor);
             billDespenser = factory.CreateDeviceDispenser(deviceBillDispenser);
 
-            billAcceptor.powerUpEvent += powerUpHandle;
-            billAcceptor.connectEvent += connectedHandle;
-            billAcceptor.stackEvent += stackHandle;
-            billAcceptor.powerUpCompleteEvent += PowerUpCompletedHandle;
-            billAcceptor.escrowEvent += escrowHandle;
+            //billAcceptor.powerUpEvent += powerUpHandle;
+            //billAcceptor.connectEvent += connectedHandle;
+            //billAcceptor.stackEvent += stackHandle;
+            //billAcceptor.powerUpCompleteEvent += PowerUpCompletedHandle;
+            //billAcceptor.escrowEvent += escrowHandle;
 
-            pruebas2();
+            //pruebas2();
+            int[] returnBill = new int[3] { 1, 0, 0 };
+            bool seguir = true;
+
+            Console.WriteLine("Abriendo conexion Bill Dispenser");
+            if (billDespenser.openConnection())
+            {
+                Console.WriteLine("Esta conectado");
+            }
+            else
+            {
+                Console.WriteLine("No esta conectado");
+            }
+
+
+            while (seguir)
+            {
+                Console.WriteLine("Indique la cantidad de a 20 retirar: ");
+                string cantidad = Console.ReadLine();
+                returnBill[0] = Int32.Parse(cantidad);
+                billDespenser.enable();
+                billDespenser.returnCash(0, 0, returnBill);
+                Console.WriteLine("Quieres realizar otra peracion (s/n) :");
+                string continuar = Console.ReadLine();
+                if (continuar == "n" || continuar == "n")
+                {
+                    seguir = false;
+                }
+            }
+
+            //billDespenser.disable();
+
+
+
+            //while (seguir)
+            //{
+            //    Console.WriteLine("Ingresa la cantidad a depositar: ");
+            //    string cantidad = Console.ReadLine();
+            //    int solicitado = Int32.Parse(cantidad);
+            //    billDesposited = 0;
+            //    billAcceptor.enable();
+            //    Console.WriteLine("Ingrese el efectivo: ");
+            //    while (billDesposited < solicitado)
+            //    {
+            //    }
+
+            //    billAcceptor.disable();
+
+            //    Console.WriteLine("Quieres realizar otra peracion (S/N) :");
+            //    string continuar = Console.ReadLine();
+            //    if (continuar == "N" || continuar == "n")
+            //    {
+            //        seguir = false;
+            //    }
+
+            //Console.WriteLine("Abriendo conexion Bill Acceptor");
+            //if (billAcceptor.openConnection())
+            //{
+            //    Console.WriteLine("Esta conectado");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No esta conectado");
+            //}
+
+            //billAcceptor.setEvents();
+            //billAcceptor.enable();
+
+            //while (seguir)
+            //{
+            //    Console.WriteLine("Ingresa la cantidad a depositar: ");
+            //    string cantidad = Console.ReadLine();
+            //    int solicitado = Int32.Parse(cantidad);
+            //    billDesposited = 0;
+            //    Console.WriteLine("Ingrese el efectivo: ");
+            //    while (billDesposited < solicitado)
+            //    {
+            //    }
+                
+            //    billAcceptor.disable();
+
+            //    Console.WriteLine("Quieres realizar otra peracion (S/N) :");
+            //    string continuar = Console.ReadLine();
+            //    if (continuar == "N" || continuar == "n")
+            //    {
+            //        seguir = false;
+            //    }
+
+            //}
+
         }
 
         static void pruebas2()
@@ -68,52 +157,52 @@ namespace PruebaConsola
             {
                 Console.WriteLine("No esta conectado");
             }
-            Console.ReadKey();
-            //Console.WriteLine("2.- Abriendo conexion Hopper Dispenser");
-            //if (hopperDispenser.openConnection())
-            //{
-            //    Console.WriteLine("Esta conectado");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("No esta conectado");
-            //}
+            //Console.ReadKey();
+            Console.WriteLine("2.- Abriendo conexion Hopper Dispenser");
+            if (hopperDispenser.openConnection())
+            {
+                Console.WriteLine("Esta conectado");
+            }
+            else
+            {
+                Console.WriteLine("No esta conectado");
+            }
 
-            //Console.WriteLine("3.- Abriendo conexion Bill Acceptor");
-            //if (billAcceptor.openConnection())
-            //{
-            //    Console.WriteLine("Esta conectado");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("No esta conectado");
-            //}
+            Console.WriteLine("3.- Abriendo conexion Bill Acceptor");
+            if (billAcceptor.openConnection())
+            {
+                Console.WriteLine("Esta conectado");
+            }
+            else
+            {
+                Console.WriteLine("No esta conectado");
+            }
 
-            //Console.WriteLine("4.- Abriendo conexion Bill Dispenser");
-            //if (billDespenser.openConnection())
-            //{
-            //    Console.WriteLine("Esta conectado");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("No esta conectado");
-            //}
-            Console.WriteLine("-------------");
-            Console.WriteLine("Habilitando dispositvo");
+            Console.WriteLine("4.- Abriendo conexion Bill Dispenser");
+            if (billDespenser.openConnection())
+            {
+                Console.WriteLine("Esta conectado");
+            }
+            else
+            {
+                Console.WriteLine("No esta conectado");
+            }
+            //Console.WriteLine("-------------");
+            //Console.WriteLine("Habilitando dispositvo");
             //billAcceptor.enable();
             //billDespenser.enable();
-            hopperAcceptor.enable();            
+            // hopperAcceptor.enable();            
             //hopperDispenser.enable();
 
-            Console.WriteLine("-------------");
-            Console.WriteLine("Recibiendo monedas");
-            int contador = 0;
-            byte[] result;
-            while (true)
-            {
-                result = hopperAcceptor.getCashDesposite(contador);
-                Console.ReadKey();
-            }
+            //Console.WriteLine("-------------");
+            //Console.WriteLine("Recibiendo monedas");
+            //int contador = 0;
+            //byte[] result;
+            //while (true)
+            //{
+            //    result = hopperAcceptor.getCashDesposite(contador);
+            //    Console.ReadKey();
+            //}
 
             //bool continuar = true;
             //string b20,b50,b100;
@@ -255,8 +344,16 @@ namespace PruebaConsola
         static void stackHandle(object sender, EventArgs e)
         {
             Console.WriteLine("Evento : Stack");
-            byte[] cash = billAcceptor.getCashDesposite();
-            billDesposited += (int)cash[0];
+            byte[] cash = billAcceptor.getCashDesposite(0);
+            if(cash[0] == 244)
+            {
+                billDesposited += 500;
+            }
+            else
+            {
+                billDesposited += (int)cash[0];
+            }
+            
             Console.WriteLine("Recibido : {0}", billDesposited);
 
         }

@@ -85,7 +85,7 @@ namespace CashLib.Class
            
         }
 
-        private void resetDevice()
+        public override void resetDevice()
         {
             
         }

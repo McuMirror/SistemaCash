@@ -33,20 +33,20 @@ namespace CashLib.Class
         private byte[] mechalReset = new byte[] { 0x10, 0x02, 0x00, 0x11, 0x60, 0x02, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1C, 0x10, 0x03, 0x64, 0xEC };
 
         private Dictionary<int, int> quantityCodeToDelivered;
-       
+
         public BillDespenser()
         {
             //this.deliveriBill = new byte[] {48,177,178,51,180,53,54,183,57};
             this.quantityCodeToDelivered = new Dictionary<int, int>();
-            this.quantityCodeToDelivered.Add(0,48);
-            this.quantityCodeToDelivered.Add(1,177);
-            this.quantityCodeToDelivered.Add(2,178);
-            this.quantityCodeToDelivered.Add(3,51);
-            this.quantityCodeToDelivered.Add(4,180);
-            this.quantityCodeToDelivered.Add(5,53);
-            this.quantityCodeToDelivered.Add(6,54);
-            this.quantityCodeToDelivered.Add(7,183);
-            this.quantityCodeToDelivered.Add(8,57);            
+            this.quantityCodeToDelivered.Add(0, 48);
+            this.quantityCodeToDelivered.Add(1, 177);
+            this.quantityCodeToDelivered.Add(2, 178);
+            this.quantityCodeToDelivered.Add(3, 51);
+            this.quantityCodeToDelivered.Add(4, 180);
+            this.quantityCodeToDelivered.Add(5, 53);
+            this.quantityCodeToDelivered.Add(6, 54);
+            this.quantityCodeToDelivered.Add(7, 183);
+            this.quantityCodeToDelivered.Add(8, 57);
         }
 
         public override bool openConnection()
@@ -56,8 +56,10 @@ namespace CashLib.Class
                 this.COM = getCOMPort();
                 Console.WriteLine("Utiliza el puerto : {0}", this.COM);
                 this.portDispenser = new SerialPort(this.COM, 9600, Parity.Even);
+                Console.WriteLine("Abriendo Puerto");
                 this.portDispenser.Open();
-                //resetDevice();
+                Console.WriteLine("------");
+                resetDevice();
                 setConfigDefault();
             }
             catch (IOException ex)
@@ -70,6 +72,13 @@ namespace CashLib.Class
             }
 
             return this.connection;
+        }
+
+        private void setConfigDefault()
+        {
+            setFreeDevice();
+            sendMessage(statusRequest);
+            sendMessage(configDefault);
         }
 
         public override string getCOMPort()
@@ -97,7 +106,7 @@ namespace CashLib.Class
                         {
                             puertoCOM = valor.Substring(valor.LastIndexOf("COM"), 4);
                         }
-                        else if(valor.Contains("Puerto de comunicaciones"))
+                        else if (valor.Contains("Puerto de comunicaciones"))
                         {
                             puertoCOM = "COM2";
                         }
@@ -115,12 +124,22 @@ namespace CashLib.Class
 
         public override void enable()
         {
-            setFreeDevice();
+            try
+            {
+                setFreeDevice();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al abrir la conexión");
+                this.portDispenser.Open();
+                setFreeDevice();
+            }
         }
 
         public override void disable()
         {
-            setFreeDevice();
+            this.portDispenser.Close();
+            //setFreeDevice();
         }
 
         public override bool isConnection()
@@ -153,13 +172,7 @@ namespace CashLib.Class
             sendMessage(this.dispenserBill);
             setFreeDevice();
         }
-
-        private void setConfigDefault()
-        {
-            sendMessage(statusRequest);
-            sendMessage(configDefault);
-        }
-
+       
         private void setFreeDevice()
         {
             setMessage(cancel);
@@ -176,7 +189,7 @@ namespace CashLib.Class
             getMessage();
         }
 
-        private void resetDevice()
+        public override void resetDevice()
         {
             //Pendiente ya que se requiere ver el codigo de error del dispisitivo
             //Se validara con jesus para obtener el código
@@ -228,7 +241,7 @@ namespace CashLib.Class
             {
                 TX += parameters[i] + " ";
             }
-            //Console.WriteLine(TX);
+            Console.WriteLine(TX);
         }
 
         private byte getMessage()
@@ -246,7 +259,7 @@ namespace CashLib.Class
                 RX += result[i] + " ";
                 finalByte = result[i];
             }
-            //Console.WriteLine(RX);
+            Console.WriteLine(RX);
             return finalByte;
         }
 
@@ -264,7 +277,7 @@ namespace CashLib.Class
             //Obteniendo el rango que se va a calcular
             for (int i = 0; i < this.dispenserBill.Length; i++)
             {
-                range[i] = this.dispenserBill[cont];           
+                range[i] = this.dispenserBill[cont];
                 if (cont == 30)
                 {
                     break;
@@ -274,7 +287,7 @@ namespace CashLib.Class
                     cont++;
                 }
             }
-            
+
             //Definir los valore elevados a la potencia agregandolos a la tabla
             for (ushort i = 0; i < table.Length; ++i)
             {
@@ -295,7 +308,7 @@ namespace CashLib.Class
                 }
                 table[i] = value;
             }
-            
+
             //Obtenniendo el checksum
             for (int x = 0; x < range.Length; x++)
             {
@@ -310,8 +323,7 @@ namespace CashLib.Class
             byte[] listCheckSum = BitConverter.GetBytes(crc);
 
             this.dispenserBill[31] = listCheckSum[1];
-            this.dispenserBill[32] = listCheckSum[0];            
+            this.dispenserBill[32] = listCheckSum[0];
         }
-
     }
 }

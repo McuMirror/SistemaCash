@@ -32,35 +32,11 @@ namespace CashLib.Class
                 case 10:
                     this.emptyContainerCoin(76, (byte)countMoney);                    
                     break;
-                case 2:
-                    this.emptyMoneyBox();
-                    break;
             }            
         }
 
-        /*
-         * Encagado de vaciar todos los contendores
-         * Los valores de lso contendores son los siguientes:
-         *  Contenedor 33 : $1
-         *  Contenedor 76 : $10
-         *  Contenedor 77 : $5
-         *  
-         */
-        public void emptyContainesCoins()
+        public override void resetDevice()
         {
-            this.emptyMoneyBox();
-            this.emptyContainerCoin(33);
-            this.emptyContainerCoin(77);
-            this.emptyContainerCoin(76);
-        }
-
-        /*
-         * Encargado de vaciar el contenedor alcancia con Id 2 contiene monedas de $2
-         */
-        public void emptyMoneyBox()
-        {
-            this.setMessage(new List<byte>() { 12, 0, 1, 70 }, new
-            List<byte>() { 2 });
         }
 
         /*

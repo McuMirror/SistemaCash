@@ -377,7 +377,14 @@ namespace SistemaCashValidador.Clases
         {
             Console.WriteLine("Evento : Stack");
             byte[] cash = billAcceptor.getCashDesposite();
-            this.billDesposited += (int)cash[0];            
+            if (cash[0] == 244)
+            {
+                billDesposited += 500;
+            }
+            else
+            {
+                billDesposited += (int)cash[0];
+            }
             Console.WriteLine("Recibido : {0}", this.billDesposited);
         }
 

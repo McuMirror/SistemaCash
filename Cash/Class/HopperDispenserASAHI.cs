@@ -33,6 +33,10 @@ namespace CashLib.Class
             }
         }
 
+        public override void resetDevice()
+        {
+        }
+
         /*
         * Encagado de vaciar todos los contendores
         * Los valores de lso contendores son los siguientes:

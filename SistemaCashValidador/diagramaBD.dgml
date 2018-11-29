@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="Database" Label="DBCash.sdf1" Category="Database" Group="Expanded" />
+    <Node Id="Caja" Label="Caja" Category="Table" Group="Collapsed" />
+    <Node Id="Caja_Id" Label="Id" Category="Field Primary" Description="int" />
+    <Node Id="Caja_Fecha" Label="Fecha" Category="Field" Description="datetime" />
+    <Node Id="Caja_Hora" Label="Hora" Category="Field" Description="nchar(10)" />
+    <Node Id="Caja_M1" Label="M1" Category="Field Optional" Description="int" />
+    <Node Id="Caja_M2" Label="M2" Category="Field Optional" Description="int" />
+    <Node Id="Caja_M5" Label="M5" Category="Field Optional" Description="int" />
+    <Node Id="Caja_M10" Label="M10" Category="Field Optional" Description="int" />
+    <Node Id="Caja_B20" Label="B20" Category="Field Optional" Description="int" />
+    <Node Id="Caja_B50" Label="B50" Category="Field Optional" Description="int" />
+    <Node Id="Caja_B100" Label="B100" Category="Field Optional" Description="int" />
+    <Node Id="Caja_B200" Label="B200" Category="Field Optional" Description="int" />
+    <Node Id="Caja_B500" Label="B500" Category="Field Optional" Description="int" />
+    <Node Id="Cambio" Label="Cambio" Category="Table" Group="Collapsed" />
+    <Node Id="Cambio_Id" Label="Id" Category="Field Primary" Description="int" />
+    <Node Id="Cambio_IdTransaccion" Label="IdTransaccion" Category="Field Foreign" Description="int" />
+    <Node Id="Cambio_M1" Label="M1" Category="Field Optional" Description="int" />
+    <Node Id="Cambio_M2" Label="M2" Category="Field Optional" Description="int" />
+    <Node Id="Cambio_M5" Label="M5" Category="Field Optional" Description="int" />
+    <Node Id="Cambio_M10" Label="M10" Category="Field Optional" Description="int" />
+    <Node Id="Cambio_B20" Label="B20" Category="Field Optional" Description="int" />
+    <Node Id="Cambio_B50" Label="B50" Category="Field Optional" Description="int" />
+    <Node Id="Cambio_B100" Label="B100" Category="Field Optional" Description="int" />
+    <Node Id="Cambio_B200" Label="B200" Category="Field Optional" Description="int" />
+    <Node Id="Cambio_B500" Label="B500" Category="Field Optional" Description="int" />
+    <Node Id="Deposito" Label="Deposito" Category="Table" Group="Collapsed" />
+    <Node Id="Deposito_Id" Label="Id" Category="Field Primary" Description="int" />
+    <Node Id="Deposito_IdCaja" Label="IdCaja" Category="Field Foreign" Description="int" />
+    <Node Id="Deposito_M1" Label="M1" Category="Field Optional" Description="int" />
+    <Node Id="Deposito_M2" Label="M2" Category="Field Optional" Description="int" />
+    <Node Id="Deposito_M5" Label="M5" Category="Field Optional" Description="int" />
+    <Node Id="Deposito_M10" Label="M10" Category="Field Optional" Description="int" />
+    <Node Id="Deposito_B20" Label="B20" Category="Field Optional" Description="int" />
+    <Node Id="Deposito_B50" Label="B50" Category="Field Optional" Description="int" />
+    <Node Id="Deposito_B100" Label="B100" Category="Field Optional" Description="int" />
+    <Node Id="Deposito_B200" Label="B200" Category="Field Optional" Description="int" />
+    <Node Id="Deposito_B500" Label="B500" Category="Field Optional" Description="int" />
+    <Node Id="Deposito_IdUsuario" Label="IdUsuario" Category="Field Foreign" Description="int" />
+    <Node Id="Pago" Label="Pago" Category="Table" Group="Collapsed" />
+    <Node Id="Pago_Id" Label="Id" Category="Field Primary" Description="int" />
+    <Node Id="Pago_IdTransaccion" Label="IdTransaccion" Category="Field Foreign" Description="int" />
+    <Node Id="Pago_M1" Label="M1" Category="Field Optional" Description="int" />
+    <Node Id="Pago_M2" Label="M2" Category="Field Optional" Description="int" />
+    <Node Id="Pago_M5" Label="M5" Category="Field Optional" Description="int" />
+    <Node Id="Pago_M10" Label="M10" Category="Field Optional" Description="int" />
+    <Node Id="Pago_B20" Label="B20" Category="Field Optional" Description="int" />
+    <Node Id="Pago_B50" Label="B50" Category="Field Optional" Description="int" />
+    <Node Id="Pago_B100" Label="B100" Category="Field Optional" Description="int" />
+    <Node Id="Pago_B200" Label="B200" Category="Field Optional" Description="int" />
+    <Node Id="Pago_B500" Label="B500" Category="Field Optional" Description="int" />
+    <Node Id="Perfil" Label="Perfil" Category="Table" Group="Collapsed" />
+    <Node Id="Perfil_Id" Label="Id" Category="Field Primary" Description="int" />
+    <Node Id="Perfil_Nombre" Label="Nombre" Category="Field" Description="nvarchar(100)" />
+    <Node Id="Perfil_Descripcion" Label="Descripcion" Category="Field" Description="nvarchar(100)" />
+    <Node Id="Retiro" Label="Retiro" Category="Table" Group="Collapsed" />
+    <Node Id="Retiro_Id" Label="Id" Category="Field Primary" Description="int" />
+    <Node Id="Retiro_IdCaja" Label="IdCaja" Category="Field Foreign" Description="int" />
+    <Node Id="Retiro_M1" Label="M1" Category="Field Optional" Description="int" />
+    <Node Id="Retiro_M2" Label="M2" Category="Field Optional" Description="int" />
+    <Node Id="Retiro_M5" Label="M5" Category="Field Optional" Description="int" />
+    <Node Id="Retiro_M10" Label="M10" Category="Field Optional" Description="int" />
+    <Node Id="Retiro_B20" Label="B20" Category="Field Optional" Description="int" />
+    <Node Id="Retiro_B50" Label="B50" Category="Field Optional" Description="int" />
+    <Node Id="Retiro_B100" Label="B100" Category="Field Optional" Description="int" />
+    <Node Id="Retiro_B200" Label="B200" Category="Field Optional" Description="int" />
+    <Node Id="Retiro_B500" Label="B500" Category="Field Optional" Description="int" />
+    <Node Id="Retiro_IdUsuario" Label="IdUsuario" Category="Field Foreign" Description="int" />
+    <Node Id="Transaccion" Label="Transaccion" Category="Table" Group="Collapsed" />
+    <Node Id="Transaccion_Id" Label="Id" Category="Field Primary" Description="int" />
+    <Node Id="Transaccion_IdCaja" Label="IdCaja" Category="Field Foreign" Description="int" />
+    <Node Id="Transaccion_Pago" Label="Pago" Category="Field" Description="bigint" />
+    <Node Id="Transaccion_Depositado" Label="Depositado" Category="Field" Description="bigint" />
+    <Node Id="Transaccion_Cambio" Label="Cambio" Category="Field" Description="bigint" />
+    <Node Id="Usuario" Label="Usuario" Category="Table" Group="Collapsed" />
+    <Node Id="Usuario_Id" Label="Id" Category="Field Primary" Description="int" />
+    <Node Id="Usuario_Nombre" Label="Nombre" Category="Field" Description="nvarchar(100)" />
+    <Node Id="Usuario_Apellidos" Label="Apellidos" Category="Field" Description="nvarchar(100)" />
+    <Node Id="Usuario_Perfil" Label="Perfil" Category="Field Foreign" Description="int" />
+  </Nodes>
+  <Links>
+    <Link Source="Database" Target="Caja" Category="Contains" />
+    <Link Source="Caja" Target="Caja_Id" Category="Contains" />
+    <Link Source="Caja" Target="Caja_Fecha" Category="Contains" />
+    <Link Source="Caja" Target="Caja_Hora" Category="Contains" />
+    <Link Source="Caja" Target="Caja_M1" Category="Contains" />
+    <Link Source="Caja" Target="Caja_M2" Category="Contains" />
+    <Link Source="Caja" Target="Caja_M5" Category="Contains" />
+    <Link Source="Caja" Target="Caja_M10" Category="Contains" />
+    <Link Source="Caja" Target="Caja_B20" Category="Contains" />
+    <Link Source="Caja" Target="Caja_B50" Category="Contains" />
+    <Link Source="Caja" Target="Caja_B100" Category="Contains" />
+    <Link Source="Caja" Target="Caja_B200" Category="Contains" />
+    <Link Source="Caja" Target="Caja_B500" Category="Contains" />
+    <Link Source="Database" Target="Cambio" Category="Contains" />
+    <Link Source="Cambio" Target="Cambio_Id" Category="Contains" />
+    <Link Source="Cambio" Target="Cambio_IdTransaccion" Category="Contains" />
+    <Link Source="Cambio" Target="Cambio_M1" Category="Contains" />
+    <Link Source="Cambio" Target="Cambio_M2" Category="Contains" />
+    <Link Source="Cambio" Target="Cambio_M5" Category="Contains" />
+    <Link Source="Cambio" Target="Cambio_M10" Category="Contains" />
+    <Link Source="Cambio" Target="Cambio_B20" Category="Contains" />
+    <Link Source="Cambio" Target="Cambio_B50" Category="Contains" />
+    <Link Source="Cambio" Target="Cambio_B100" Category="Contains" />
+    <Link Source="Cambio" Target="Cambio_B200" Category="Contains" />
+    <Link Source="Cambio" Target="Cambio_B500" Category="Contains" />
+    <Link Source="Cambio_IdTransaccion" Target="Transaccion_Id" Label="FK_Transaccion_Cambio" Category="Foreign Key" />
+    <Link Source="Database" Target="Deposito" Category="Contains" />
+    <Link Source="Deposito" Target="Deposito_Id" Category="Contains" />
+    <Link Source="Deposito" Target="Deposito_IdCaja" Category="Contains" />
+    <Link Source="Deposito" Target="Deposito_M1" Category="Contains" />
+    <Link Source="Deposito" Target="Deposito_M2" Category="Contains" />
+    <Link Source="Deposito" Target="Deposito_M5" Category="Contains" />
+    <Link Source="Deposito" Target="Deposito_M10" Category="Contains" />
+    <Link Source="Deposito" Target="Deposito_B20" Category="Contains" />
+    <Link Source="Deposito" Target="Deposito_B50" Category="Contains" />
+    <Link Source="Deposito" Target="Deposito_B100" Category="Contains" />
+    <Link Source="Deposito" Target="Deposito_B200" Category="Contains" />
+    <Link Source="Deposito" Target="Deposito_B500" Category="Contains" />
+    <Link Source="Deposito" Target="Deposito_IdUsuario" Category="Contains" />
+    <Link Source="Deposito_IdCaja" Target="Caja_Id" Label="FK_Caja" Category="Foreign Key" />
+    <Link Source="Deposito_IdCaja" Target="Caja_Id" Label="FK_Caja_Deposito" Category="Foreign Key" />
+    <Link Source="Deposito_IdUsuario" Target="Usuario_Id" Label="FK_Usuario_Deposito" Category="Foreign Key" />
+    <Link Source="Database" Target="Pago" Category="Contains" />
+    <Link Source="Pago" Target="Pago_Id" Category="Contains" />
+    <Link Source="Pago" Target="Pago_IdTransaccion" Category="Contains" />
+    <Link Source="Pago" Target="Pago_M1" Category="Contains" />
+    <Link Source="Pago" Target="Pago_M2" Category="Contains" />
+    <Link Source="Pago" Target="Pago_M5" Category="Contains" />
+    <Link Source="Pago" Target="Pago_M10" Category="Contains" />
+    <Link Source="Pago" Target="Pago_B20" Category="Contains" />
+    <Link Source="Pago" Target="Pago_B50" Category="Contains" />
+    <Link Source="Pago" Target="Pago_B100" Category="Contains" />
+    <Link Source="Pago" Target="Pago_B200" Category="Contains" />
+    <Link Source="Pago" Target="Pago_B500" Category="Contains" />
+    <Link Source="Pago_IdTransaccion" Target="Transaccion_Id" Label="FK_Transaccion_Pago" Category="Foreign Key" />
+    <Link Source="Database" Target="Perfil" Category="Contains" />
+    <Link Source="Perfil" Target="Perfil_Id" Category="Contains" />
+    <Link Source="Perfil" Target="Perfil_Nombre" Category="Contains" />
+    <Link Source="Perfil" Target="Perfil_Descripcion" Category="Contains" />
+    <Link Source="Database" Target="Retiro" Category="Contains" />
+    <Link Source="Retiro" Target="Retiro_Id" Category="Contains" />
+    <Link Source="Retiro" Target="Retiro_IdCaja" Category="Contains" />
+    <Link Source="Retiro" Target="Retiro_M1" Category="Contains" />
+    <Link Source="Retiro" Target="Retiro_M2" Category="Contains" />
+    <Link Source="Retiro" Target="Retiro_M5" Category="Contains" />
+    <Link Source="Retiro" Target="Retiro_M10" Category="Contains" />
+    <Link Source="Retiro" Target="Retiro_B20" Category="Contains" />
+    <Link Source="Retiro" Target="Retiro_B50" Category="Contains" />
+    <Link Source="Retiro" Target="Retiro_B100" Category="Contains" />
+    <Link Source="Retiro" Target="Retiro_B200" Category="Contains" />
+    <Link Source="Retiro" Target="Retiro_B500" Category="Contains" />
+    <Link Source="Retiro" Target="Retiro_IdUsuario" Category="Contains" />
+    <Link Source="Retiro_IdCaja" Target="Caja_Id" Label="FK_Caja_Retiro" Category="Foreign Key" />
+    <Link Source="Retiro_IdUsuario" Target="Usuario_Id" Label="FK_Usuario_Retiro" Category="Foreign Key" />
+    <Link Source="Database" Target="Transaccion" Category="Contains" />
+    <Link Source="Transaccion" Target="Transaccion_Id" Category="Contains" />
+    <Link Source="Transaccion" Target="Transaccion_IdCaja" Category="Contains" />
+    <Link Source="Transaccion" Target="Transaccion_Pago" Category="Contains" />
+    <Link Source="Transaccion" Target="Transaccion_Depositado" Category="Contains" />
+    <Link Source="Transaccion" Target="Transaccion_Cambio" Category="Contains" />
+    <Link Source="Transaccion_IdCaja" Target="Caja_Id" Label="FK_Caja1" Category="Foreign Key" />
+    <Link Source="Database" Target="Usuario" Category="Contains" />
+    <Link Source="Usuario" Target="Usuario_Id" Category="Contains" />
+    <Link Source="Usuario" Target="Usuario_Nombre" Category="Contains" />
+    <Link Source="Usuario" Target="Usuario_Apellidos" Category="Contains" />
+    <Link Source="Usuario" Target="Usuario_Perfil" Category="Contains" />
+    <Link Source="Usuario_Perfil" Target="Perfil_Id" Label="Fk_Perfil" Category="Foreign Key" />
+  </Links>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Table" ValueLabel="True">
+      <Condition Expression="HasCategory('Table')" />
+      <Setter Property="Background" Value="#FFC0C0C0" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Schema" ValueLabel="True">
+      <Condition Expression="HasCategory('Schema')" />
+      <Setter Property="Background" Value="#FF7F9169" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Field Primary" ValueLabel="True">
+      <Condition Expression="HasCategory('Field Primary')" />
+      <Setter Property="Background" Value="#FF008000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Field Optional" ValueLabel="True">
+      <Condition Expression="HasCategory('Field Optional')" />
+      <Setter Property="Background" Value="#FF808040" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Field Foreign" ValueLabel="True">
+      <Condition Expression="HasCategory('Field Foreign')" />
+      <Setter Property="Background" Value="#FF8080FF" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Field" ValueLabel="True">
+      <Condition Expression="HasCategory('Field')" />
+      <Setter Property="Background" Value="#FFC0A000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Database" ValueLabel="True">
+      <Condition Expression="HasCategory('Database')" />
+      <Setter Property="Background" Value="#FFFFFFFF" />
+    </Style>
+  </Styles>
+</DirectedGraph>

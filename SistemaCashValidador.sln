@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDLocal", "BDLocal\BDLocal.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaCash", "SistemaCashWPF\SistemaCash\SistemaCash.csproj", "{F3DC42B4-CA76-4679-AC11-C6848400CBF5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PruebasWPF", "PruebasWPF\PruebasWPF.csproj", "{2DF5F7C4-DB8B-4849-ABD0-BED9899C610C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FondoDeCaja", "FondoDeCaja\FondoDeCaja.csproj", "{5C274569-161D-494B-9ED4-A4D5BC25ECF1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{F3DC42B4-CA76-4679-AC11-C6848400CBF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3DC42B4-CA76-4679-AC11-C6848400CBF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3DC42B4-CA76-4679-AC11-C6848400CBF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DF5F7C4-DB8B-4849-ABD0-BED9899C610C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DF5F7C4-DB8B-4849-ABD0-BED9899C610C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DF5F7C4-DB8B-4849-ABD0-BED9899C610C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DF5F7C4-DB8B-4849-ABD0-BED9899C610C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C274569-161D-494B-9ED4-A4D5BC25ECF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C274569-161D-494B-9ED4-A4D5BC25ECF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C274569-161D-494B-9ED4-A4D5BC25ECF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C274569-161D-494B-9ED4-A4D5BC25ECF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -148,9 +148,11 @@ namespace CashLib.Class
         public override byte[] getCashDesposite(int count)
         {
             byte[] bill = new byte[1];
+            
             if (billAcceptor.DocType == DocumentType.Bill)
             {
                 MPOST.Bill bills = billAcceptor.Bill;
+                Console.WriteLine(bills.Value);
                 bill[0] = (byte)bills.Value;
             }
             return bill;

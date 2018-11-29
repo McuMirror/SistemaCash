@@ -157,10 +157,10 @@ namespace CashLib.Interfaces
             string RX = "RX : ";
             int length = 0;
             byte[] result = new byte[portHopper.BytesToRead];
-            portHopper.Read(result, 0, result.Length);            
-            length = (this.device == "COMBOT") ? result.Length : (result.Length - parameters.Count);   
+            portHopper.Read(result, 0, result.Length);
+            length = (this.device == "COMBOT") ? result.Length : (result.Length - parameters.Count);
             resultMessage = new byte[length];
-            length = (this.device == "COMBOT") ? 0 : parameters.Count;            
+            length = (this.device == "COMBOT") ? 0 : parameters.Count;
 
             for (int i = length, j = 0; i < result.Length; i++, j++)
             {
@@ -186,7 +186,7 @@ namespace CashLib.Interfaces
         * Encardado de modificar la denominacion que tendra el contenedor de monedas
         */
         public void setValueConteinerCoins(byte[] data)
-        {            
+        {
             this.setMessage(new List<byte>() { 26, 0, 1, 210 }, new
             List<byte>(data));
         }
@@ -219,7 +219,7 @@ namespace CashLib.Interfaces
             }
             else
             {
-                this.setMessage(new List<byte>() { 2, 0, 1, 1 }, new List<byte>());  
+                this.setMessage(new List<byte>() { 2, 0, 1, 1 }, new List<byte>());
             }
         }
 
@@ -263,6 +263,14 @@ namespace CashLib.Interfaces
         {
             this.setMessage(new List<byte>() { 0, 0, 1, 253 }, new
             List<byte>());
+        }
+
+        public void emptyMoneyBox()
+        {
+            //si data = 1 se vacia por atras
+            //si data = 2 se vacia por enfrente
+            this.setMessage(new List<byte>() { 12, 0, 1, 70 }, new
+                List<byte>() { 1 });
         }
 
 
