@@ -110,20 +110,7 @@ namespace FondoDeCaja.Models
                 idCajaNew = this.getLastRecord();
                 this.insertNewRecordHopperDispenser(idCajaNew, countCash);
                 this.insertNewRecordBillDispenser(idCajaNew, countCash);
-            }
-            else
-            {
-
-            }
-            //this.query.CommandText = "insert into dbo.Caja values(" +
-            //    "'" + data["B20"] + "'," +
-            //    "'" + data["B50"] + "'," +
-            //    "'" + data["B100"] + "')";
-
-            //this.query.CommandText = "insert into dbo.BillDispenser values(" +
-            //    "'" + data["B20"] + "'," +
-            //    "'" + data["B50"] + "'," +
-            //    "'" + data["B100"] + "')";
+            }           
 
         }
 
@@ -190,7 +177,14 @@ namespace FondoDeCaja.Models
                 "Billetes50," +
                 "Billetes100," +
                 "Billetes200," +
-                "Billetes500) values(" + idCaja + "," + cash["20"] + "," + cash["50"] + "," + cash["100"] + "," + cash["200"] + "," + cash["500"] + ")";
+                "Billetes500," +
+                "FechaModificacion) values(" + 
+                idCaja + "," + 
+                cash["20"] + "," + 
+                cash["50"] + "," + 
+                cash["100"] + "," + 
+                cash["200"] + "," + 
+                cash["500"] + ",getdate())";
             this.connection.Open();
             this.query.ExecuteNonQuery();
             this.connection.Close();
@@ -203,7 +197,14 @@ namespace FondoDeCaja.Models
                 "Monedas1," +
                 "Monedas2," +
                 "Monedas5," +
-                "Monedas10) values(" + idCaja + "," + cash["1"] + "," + cash["2"] + "," + cash["5"] + "," + cash["10"] + ")";
+                "Monedas10," +
+                "FechaModificacion) " +
+                "values(" + 
+                idCaja + "," + 
+                cash["1"] + "," + 
+                cash["2"] + "," + 
+                cash["5"] + "," + 
+                cash["10"] + ",getdate())";
             this.connection.Open();
             this.query.ExecuteNonQuery();
             this.connection.Close();

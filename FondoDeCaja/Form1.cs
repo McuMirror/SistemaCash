@@ -25,6 +25,7 @@ namespace FondoDeCaja
         private Model_DB_CashKiosk DB;
         private string minimumMoney = ConfigurationManager.AppSettings.Get("minimumMoney");
         private string minimumBill = ConfigurationManager.AppSettings.Get("minimumBill");
+        private int totalCoins, totalBills;
 
         public Form1()
         {
@@ -102,7 +103,9 @@ namespace FondoDeCaja
             {
                 this.setAmountCashCaptured();
                 this.validateMinimumCashBox();
-                this.DB.saveCashBox(stored);
+                this.setTotalCashCaptured();
+                this.DB.saveCashBox(this.stored);
+                this.setCashCurrent();
                 this.showMessaje(this, "Se guardo con exito el fondo de caja", false);
             }
             catch (Exception ex)
@@ -112,6 +115,17 @@ namespace FondoDeCaja
         }
 
         private void setAmountCashCaptured()
+        {
+            this.stored = new Hashtable();
+            this.stored.Add("1", this.validateInput(cantidad1.Text));
+            this.stored.Add("5", this.validateInput(cantidad5.Text));
+            this.stored.Add("10", this.validateInput(cantidad10.Text));
+            this.stored.Add("20", this.validateInput(cantidad20.Text));
+            this.stored.Add("50", this.validateInput(cantidad50.Text));
+            this.stored.Add("100", this.validateInput(cantidad100.Text));
+        }
+
+        private void setTotalCashCaptured()
         {
             this.stored = new Hashtable();
             this.stored.Add("1",
@@ -133,7 +147,7 @@ namespace FondoDeCaja
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-
+            this.setCashCurrent();
         }
 
         private void validateMinimumCashBox()
@@ -147,7 +161,7 @@ namespace FondoDeCaja
             {
                 int count = Int32.Parse(register.Value.ToString());
                 string key = register.Key.ToString();
-                               
+
                 switch (key)
                 {
                     case "1":
@@ -171,7 +185,7 @@ namespace FondoDeCaja
                 }
             }
 
-            
+
         }
 
         private bool validateMinimum(int minimum, int value)
@@ -316,7 +330,7 @@ namespace FondoDeCaja
         }
         #endregion
 
-        #region Metodos para calculo del efectivo
+        #region Metodos para calculo del efectivo y mostrar la informacion en los textbox
 
         private void calculateMoneyInTextBox()
         {
@@ -352,28 +366,29 @@ namespace FondoDeCaja
         private void calculateMoney()
         {
             int total = 0;
-            total += Int32.Parse(cantidad1.Text);
-            total += (Int32.Parse(cantidad5.Text) * 5);
-            total += (Int32.Parse(cantidad10.Text) * 10);
-
-            totalMoney.Text = total.ToString();
+            total += Int32.Parse(total1.Text);
+            total += Int32.Parse(total5.Text);
+            total += Int32.Parse(total10.Text);
+            this.totalCoins = total;
+            totalMoney.Text = "$" + total.ToString();
 
         }
 
         private void calculateBills()
         {
             int total = 0;
-            total += (Int32.Parse(cantidad20.Text) * 20);
-            total += (Int32.Parse(cantidad50.Text) * 50);
-            total += (Int32.Parse(cantidad100.Text) * 100);
-            totalBill.Text = total.ToString();
+            total += Int32.Parse(total20.Text);
+            total += Int32.Parse(total50.Text);
+            total += Int32.Parse(total100.Text);
+            this.totalBills = total;
+            totalBill.Text = "$" + total.ToString();
         }
 
         private void calculateCashBox()
         {
             int total = 0;
-            total = Int32.Parse(totalMoney.Text) + Int32.Parse(totalBill.Text);
-            totalFondo.Text = total.ToString();
+            total = this.totalCoins + this.totalBills;
+            totalFondo.Text = "$" + total.ToString();
         }
 
         #endregion
